@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestro_app/pages/globals.dart';
+import 'package:gestro_app/globals.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
 class ContainerGestro extends StatefulWidget {

@@ -5,7 +5,7 @@ import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
 
-import 'globals.dart';
+import '../globals.dart';
 
 class CadastroScreen extends StatefulWidget {
   final formKey = GlobalKey<FormState>();
