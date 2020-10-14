@@ -16,7 +16,8 @@ class LoginScreen extends StatelessWidget {
 
     Future<User> signIn(String email, String password) async {
       try {
-        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(
+            email: email, password: password);
 
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
@@ -72,6 +73,7 @@ class LoginScreen extends StatelessWidget {
                         icon: Icon(
                           Icons.email,
                         ),
+                        qtdeLengthCharacters: 35,
                         valueForm: email,
                       ),
                       ContainerGestro(
@@ -79,6 +81,7 @@ class LoginScreen extends StatelessWidget {
                         icon: Icon(
                           Icons.lock,
                         ),
+                        qtdeLengthCharacters: 15,
                         passVisible: true,
                         valueForm: senha,
                       ),
