@@ -26,7 +26,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
 
     Future<User> signUp(email, password) async {
       try {
-        UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
+        UserCredential userCredential = await auth
+            .createUserWithEmailAndPassword(email: email, password: password);
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
         return userCredential.user;
@@ -45,9 +46,13 @@ class _CadastroScreenState extends State<CadastroScreen> {
           ),
           child: Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage("assets/BkRegisterScreen.png"), fit: BoxFit.fitWidth),
+              image: DecorationImage(
+                  image: AssetImage("assets/BkRegisterScreen.png"),
+                  fit: BoxFit.fitWidth),
             ),
-            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width, maxHeight: MediaQuery.of(context).size.height),
+            constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width,
+                maxHeight: MediaQuery.of(context).size.height),
             //Form key
             child: Form(
               key: widget.formKey,
@@ -60,7 +65,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     child: Center(
                       child: Text(
                         "Cadastro",
-                        style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            color: Colors.purple,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -70,6 +78,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       Icons.person,
                       color: purpleSecudary,
                     ),
+                    qtdeLengthCharacters: 50,
                     valueForm: nome,
                     onSaved: (input) => nome = input,
                   ),
@@ -79,6 +88,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       Icons.mail,
                       color: purpleSecudary,
                     ),
+                    qtdeLengthCharacters: 35,
                     valueForm: email,
                     onSaved: (input) => email = input,
                   ),
@@ -89,6 +99,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       Icons.lock,
                       color: purpleSecudary,
                     ),
+                    qtdeLengthCharacters: 15,
                     valueForm: senha,
                     onSaved: (input) => senha = input,
                   ),
@@ -99,6 +110,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       Icons.lock,
                       color: purpleSecudary,
                     ),
+                    qtdeLengthCharacters: 15,
                   ),
                   GestureDetector(
                     // padding: EdgeInsets.all(0),
@@ -113,7 +125,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                           docData['type'] = 'Aluno';
                           docData['created_at'] = Timestamp.now();
                           docData['updated_at'] = Timestamp.now();
-                          FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
+                          FirebaseFirestore.instance
+                              .collection('Users')
+                              .doc(value.uid)
+                              .set(docData);
                           Navigator.pop(context);
                         });
                       }
@@ -137,7 +152,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                         child: InkWell(
                           child: Text(
                             "Faça login.",
-                            style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
+                            style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.purple,
+                                fontWeight: FontWeight.bold),
                           ),
                           onTap: null,
                         ),
