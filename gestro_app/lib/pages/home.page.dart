@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
@@ -32,20 +34,74 @@ class HomePage extends StatelessWidget {
             end: Alignment.bottomLeft,
             colors: [
               purpleSecudary,
-              purplePrimary,
+              Colors.purpleAccent,
             ],
           ),
         ),
         child: Column(
           children: [
+            SizedBox(height: 20),
             Container(
-              height: 150,
-              width: 300,
+              height: MediaQuery.of(context).size.height * 0.2,
+              width: MediaQuery.of(context).size.width * 0.9,
               color: Colors.white,
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Aplicativo de vendas"),
-                  Divider(),
+                  Padding(
+                    padding: EdgeInsets.only(
+                      // top: 12,
+                      // left: 15,
+                      // right: 15,
+                      top: MediaQuery.of(context).size.height * 0.022,
+                      left: MediaQuery.of(context).size.height * 0.024,
+                      right: MediaQuery.of(context).size.height * 0.024,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Aplicativo de vendas",
+                          style: TextStyle(
+                            color: purpleSecudary,
+                            fontSize: MediaQuery.of(context).size.height * 0.022,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.01,
+                        ),
+                        Text(
+                          "Projeto de Rejeitado",
+                          style: TextStyle(
+                            fontStyle: FontStyle.italic,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.009,
+                        ),
+                        Divider(
+                          // color: Colors.grey[900],
+                          color: Colors.black,
+                        ),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                        activeColor: purpleSecudary,
+                        checkColor: Colors.white,
+                        value: true,
+                        autofocus: true,
+                        onChanged: (bool value) {
+                          value = true;
+                        },
+                      ),
+                      Text("0/0"),
+                    ],
+                  ),
                 ],
               ),
             ),
