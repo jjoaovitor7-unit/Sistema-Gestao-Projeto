@@ -11,13 +11,7 @@ class ContainerGestro extends StatefulWidget {
   var valueForm;
   Function onSaved;
 
-  ContainerGestro(
-      {@required this.text,
-      @required this.icon,
-      this.passVisible = false,
-      this.valueForm,
-      this.onSaved,
-      this.qtdeLengthCharacters});
+  ContainerGestro({@required this.text, @required this.icon, this.passVisible = false, this.valueForm, this.onSaved, this.qtdeLengthCharacters});
 
   @override
   _ContainerGestroState createState() => _ContainerGestroState();
@@ -40,13 +34,15 @@ class _ContainerGestroState extends State<ContainerGestro> {
       width: MediaQuery.of(context).size.width / 1.1,
       height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
-        inputFormatters: [
-          LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)
-        ],
+        inputFormatters: [LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)],
         obscureText: widget.passVisible,
         decoration: InputDecoration(
           hintText: widget.text,
-          hintStyle: TextStyle(fontSize: 20, color: Colors.white),
+          hintStyle: TextStyle(
+            fontSize: MediaQuery.of(context).size.height * 0.032,
+            // fontSize: 20,
+            color: Colors.white,
+          ),
           border: InputBorder.none,
           // icon: icon,
           suffixIcon: widget.icon,

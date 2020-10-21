@@ -37,125 +37,122 @@ class _CadastroScreenState extends State<CadastroScreen> {
     }
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: SingleChildScrollView(
-        reverse: true,
-        child: Padding(
-          padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).viewInsets.bottom * 0.6,
-          ),
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage("assets/BkRegisterScreen.png"), fit: BoxFit.fitWidth),
-            ),
-            constraints: BoxConstraints(maxWidth: MediaQuery.of(context).size.width, maxHeight: MediaQuery.of(context).size.height),
-            //Form key
-            child: Form(
-              key: widget.formKey,
-              child: ListView(
-                // physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.symmetric(horizontal: 35),
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.only(top: 245),
-                    child: Center(
-                      child: Text(
-                        "Cadastro",
-                        style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
-                      ),
-                    ),
+      // resizeToAvoidBottomInset: false,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage(
+                "assets/BkRegisterScreen.png",
+              ),
+              fit: BoxFit.cover),
+        ),
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        //Form key
+        child: Form(
+          key: widget.formKey,
+          child: ListView(
+            // physics: NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.symmetric(horizontal: 35),
+            children: <Widget>[
+              Container(
+                padding: EdgeInsets.only(top: 245),
+                child: Center(
+                  child: Text(
+                    "Cadastro",
+                    style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
                   ),
-                  ContainerGestro(
-                    text: "Nome",
-                    icon: Icon(
-                      Icons.person,
-                      color: purpleSecudary,
-                    ),
-                    qtdeLengthCharacters: 50,
-                    valueForm: nome,
-                    onSaved: (input) => nome = input,
-                  ),
-                  ContainerGestro(
-                    text: "Email",
-                    icon: Icon(
-                      Icons.mail,
-                      color: purpleSecudary,
-                    ),
-                    qtdeLengthCharacters: 35,
-                    valueForm: email,
-                    onSaved: (input) => email = input,
-                  ),
-                  ContainerGestro(
-                    text: "Senha",
-                    passVisible: true,
-                    icon: Icon(
-                      Icons.lock,
-                      color: purpleSecudary,
-                    ),
-                    qtdeLengthCharacters: 15,
-                    valueForm: senha,
-                    onSaved: (input) => senha = input,
-                  ),
-                  ContainerGestro(
-                    text: "Confirme a senha",
-                    passVisible: true,
-                    icon: Icon(
-                      Icons.lock,
-                      color: purpleSecudary,
-                    ),
-                    qtdeLengthCharacters: 15,
-                  ),
-                  Button2Gestro(
-                    text: "Anexar Curriculo",
-                    onTap: null,
-                  ),
-                  GestureDetector(
-                    // padding: EdgeInsets.all(0),
-                    onTap: () {
-                      if (widget.formKey.currentState.validate()) {
-                        widget.formKey.currentState.save();
+                ),
+              ),
+              ContainerGestro(
+                text: "Nome",
+                icon: Icon(
+                  Icons.person,
+                  color: purpleSecudary,
+                ),
+                qtdeLengthCharacters: 50,
+                valueForm: nome,
+                onSaved: (input) => nome = input,
+              ),
+              ContainerGestro(
+                text: "Email",
+                icon: Icon(
+                  Icons.mail,
+                  color: purpleSecudary,
+                ),
+                qtdeLengthCharacters: 35,
+                valueForm: email,
+                onSaved: (input) => email = input,
+              ),
+              ContainerGestro(
+                text: "Senha",
+                passVisible: true,
+                icon: Icon(
+                  Icons.lock,
+                  color: purpleSecudary,
+                ),
+                qtdeLengthCharacters: 15,
+                valueForm: senha,
+                onSaved: (input) => senha = input,
+              ),
+              ContainerGestro(
+                text: "Confirme a senha",
+                passVisible: true,
+                icon: Icon(
+                  Icons.lock,
+                  color: purpleSecudary,
+                ),
+                qtdeLengthCharacters: 15,
+              ),
+              Button2Gestro(
+                text: "Anexar Curriculo",
+                onTap: null,
+              ),
+              GestureDetector(
+                // padding: EdgeInsets.all(0),
+                onTap: () {
+                  if (widget.formKey.currentState.validate()) {
+                    widget.formKey.currentState.save();
 
-                        signUp(email, senha).then((value) {
-                          docData['name'] = nome;
-                          docData['email'] = email;
-                          docData['password'] = senha;
-                          docData['type'] = 'Aluno';
-                          docData['created_at'] = Timestamp.now();
-                          docData['updated_at'] = Timestamp.now();
-                          FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
-                          Navigator.pop(context);
-                        });
-                      }
-                    },
-                    child: ButtonGestro(
-                      text: 'Cadastrar',
+                    signUp(email, senha).then((value) {
+                      docData['name'] = nome;
+                      docData['email'] = email;
+                      docData['password'] = senha;
+                      docData['type'] = 'Aluno';
+                      docData['created_at'] = Timestamp.now();
+                      docData['updated_at'] = Timestamp.now();
+                      FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
+                      Navigator.pop(context);
+                    });
+                  }
+                },
+                child: ButtonGestro(
+                  text: 'Cadastrar',
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(top: 25),
+                    child: Text(
+                      "Já possui cadastro?",
+                      style: TextStyle(fontSize: 16, color: Colors.purple),
                     ),
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(top: 25),
-                        child: Text(
-                          "Já possui cadastro?",
-                          style: TextStyle(fontSize: 16, color: Colors.purple),
-                        ),
+                  Padding(
+                    padding: EdgeInsets.only(top: 25, left: 5),
+                    child: InkWell(
+                      child: Text(
+                        "Faça login.",
+                        style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
                       ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 25, left: 5),
-                        child: InkWell(
-                          child: Text(
-                            "Faça login.",
-                            style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
-                          ),
-                          onTap: null,
-                        ),
-                      ),
-                    ],
+                      onTap: null,
+                    ),
                   ),
                 ],
               ),
-            ),
+            ],
           ),
         ),
       ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gestro_app/pages/cadastro_screen.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
+import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -16,8 +17,7 @@ class LoginScreen extends StatelessWidget {
 
     Future<User> signIn(String email, String password) async {
       try {
-        UserCredential userCredential = await auth.signInWithEmailAndPassword(
-            email: email, password: password);
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
 
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
@@ -36,34 +36,40 @@ class LoginScreen extends StatelessWidget {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
               body: Container(
+                // width: double.infinity,
+                // height: double.infinity,
                 decoration: BoxDecoration(
+                  color: purpleSecudary,
                   image: DecorationImage(
                     image: AssetImage(
                       "assets/BkLoginScreen.png",
                     ),
-                    fit: BoxFit.fitWidth,
+                    fit: BoxFit.cover,
                   ),
-                ),
-                constraints: BoxConstraints(
-                  maxWidth: MediaQuery.of(context).size.width,
-                  maxHeight: MediaQuery.of(context).size.height,
                 ),
                 child: Container(
                   padding: EdgeInsets.only(
-                    top: 320,
-                    // top: MediaQuery.of(context).size.height * 0.46,
+                    // top: 320,
+                    // top: MediaQuery.of(context).size.height * 0.45,
                     // top: 150,
-                    left: 35,
-                    right: 35,
+                    // left: 35,
+                    left: MediaQuery.of(context).size.width * 0.052,
+                    // right: 35,
+                    right: MediaQuery.of(context).size.width * 0.052,
                   ),
-                  child: ListView(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
+                      // SizedBox(
+                      //   height: MediaQuery.of(context).size.height * 0.45,
+                      // ),
                       Center(
                         child: Text(
                           "Login",
                           style: TextStyle(
                             color: Colors.purple,
-                            fontSize: 25,
+                            fontSize: MediaQuery.of(context).size.height * 0.04,
+                            // fontSize: 25,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
@@ -101,54 +107,52 @@ class LoginScreen extends StatelessWidget {
                           text: 'Login',
                         ),
                       ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.03,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 55,
+                          Text(
+                            "Não possui cadastro?",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.purple,
                             ),
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.02,
+                          ),
+                          InkWell(
                             child: Text(
-                              "Não possui cadastro?",
+                              "Cadastrar-se.",
                               style: TextStyle(
                                 fontSize: 16,
                                 color: Colors.purple,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              top: 55,
-                              left: 5,
-                            ),
-                            child: InkWell(
-                              child: Text(
-                                "Cadastrar-se.",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.purple,
-                                  fontWeight: FontWeight.bold,
+                            onTap: () {
+                              Future.delayed(
+                                Duration(
+                                  milliseconds: 0,
                                 ),
-                              ),
-                              onTap: () {
-                                Future.delayed(
-                                  Duration(
-                                    milliseconds: 0,
-                                  ),
-                                ).then(
-                                  (_) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => CadastroScreen(),
-                                      ),
-                                    );
-                                  },
-                                );
-                              },
-                            ),
+                              ).then(
+                                (_) {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => CadastroScreen(),
+                                    ),
+                                  );
+                                },
+                              );
+                            },
                           ),
                         ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.05,
                       ),
                     ],
                   ),
