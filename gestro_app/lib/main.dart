@@ -20,11 +20,10 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarBrightness: Brightness.light,
-      statusBarIconBrightness: Brightness.light,
-    ));
+    SystemChrome.setEnabledSystemUIOverlays([
+      // SystemUiOverlay.bottom,
+      // SystemUiOverlay.top,
+    ]);
     return MaterialApp(
       //       localizationsDelegates: [
       //   GlobalMaterialLocalizations.delegate,

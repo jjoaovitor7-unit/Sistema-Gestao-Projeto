@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:gestro_app/pages/login_screen.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/button2Gestro.widget%20copy.dart';
@@ -85,6 +86,13 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 onSaved: (input) => email = input,
               ),
               ContainerGestro(
+                text: "Linkedin",
+                icon: Icon(
+                  FontAwesome.link,
+                  color: purpleSecudary,
+                ),
+              ),
+              ContainerGestro(
                 text: "Senha",
                 passVisible: true,
                 icon: Icon(
@@ -103,10 +111,6 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   color: purpleSecudary,
                 ),
                 qtdeLengthCharacters: 15,
-              ),
-              Button2Gestro(
-                text: "Anexar Curriculo",
-                onTap: null,
               ),
               GestureDetector(
                 // padding: EdgeInsets.all(0),
@@ -147,7 +151,22 @@ class _CadastroScreenState extends State<CadastroScreen> {
                         "Faça login.",
                         style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
                       ),
-                      onTap: null,
+                      onTap: () {
+                        Future.delayed(
+                          Duration(
+                            milliseconds: 0,
+                          ),
+                        ).then(
+                          (_) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => LoginScreen(),
+                              ),
+                            );
+                          },
+                        );
+                      },
                     ),
                   ),
                 ],
