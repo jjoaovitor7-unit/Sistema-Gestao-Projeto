@@ -17,7 +17,8 @@ class LoginScreen extends StatelessWidget {
 
     Future<User> signIn(String email, String password) async {
       try {
-        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(
+            email: email, password: password);
 
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
@@ -75,6 +76,7 @@ class LoginScreen extends StatelessWidget {
                         ),
                       ),
                       ContainerGestro(
+                        textKey: "EmailKey",
                         text: "Email",
                         icon: Icon(
                           Icons.email,
@@ -83,6 +85,7 @@ class LoginScreen extends StatelessWidget {
                         valueForm: email,
                       ),
                       ContainerGestro(
+                        textKey: "PassKey",
                         text: "Senha",
                         icon: Icon(
                           Icons.lock,
@@ -104,6 +107,7 @@ class LoginScreen extends StatelessWidget {
                           });
                         },
                         child: ButtonGestro(
+                          textKey: "btnLoginKey",
                           text: 'Login',
                         ),
                       ),

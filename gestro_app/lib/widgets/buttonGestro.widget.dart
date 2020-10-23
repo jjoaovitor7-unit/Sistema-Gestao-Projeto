@@ -3,12 +3,14 @@ import 'package:gestro_app/themes/globals.themes.dart';
 
 class ButtonGestro extends StatelessWidget {
   final String text;
+  String textKey;
 
-  const ButtonGestro({@required this.text});
+  ButtonGestro({@required this.text, this.textKey});
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      key: ValueKey(this.textKey),
       width: MediaQuery.of(context).size.width / 1.1,
       height: MediaQuery.of(context).size.height * 0.08,
       decoration: BoxDecoration(
@@ -22,7 +24,8 @@ class ButtonGestro extends StatelessWidget {
         child: Container(
           child: Text(
             text,
-            style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w400),
+            style: TextStyle(
+                fontSize: 20, color: Colors.white, fontWeight: FontWeight.w400),
           ),
         ),
       ),

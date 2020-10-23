@@ -12,16 +12,14 @@ void main() {
 
   testWidgets('Teste da Tela de Cadastro', (WidgetTester tester) async {
     await tester.pumpWidget(buildTestableWidget(CadastroScreen()));
-    var singleChildScrollView = find.byType(SingleChildScrollView);
-    expect(singleChildScrollView, findsOneWidget);
 
     // texto "Cadastro"
-    var textCadastro = find.text("Cadastro");
+    var textCadastro = find.byKey(ValueKey("CadastroTextKey"));
     expect(textCadastro, findsOneWidget);
 
     // container gestro
     var containerGestro = find.byType(ContainerGestro);
-    expect(containerGestro, findsNWidgets(4));
+    expect(containerGestro, findsNWidgets(5));
 
     var textNome = find.text("Nome");
     expect(textNome, findsOneWidget);
