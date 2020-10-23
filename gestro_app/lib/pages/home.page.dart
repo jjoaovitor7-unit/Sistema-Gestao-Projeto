@@ -1,10 +1,8 @@
 import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:fluttericon/octicons_icons.dart';
+
 import 'package:gestro_app/themes/globals.themes.dart';
 
 class HomePage extends StatelessWidget {
@@ -64,7 +62,8 @@ class HomePage extends StatelessWidget {
                           "Aplicativo de vendas",
                           style: TextStyle(
                             color: purpleSecudary,
-                            fontSize: MediaQuery.of(context).size.height * 0.022,
+                            fontSize:
+                                MediaQuery.of(context).size.height * 0.022,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

@@ -1,16 +1,14 @@
-import 'dart:collection';
+import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:email_validator/email_validator.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
-import 'package:fluttericon/font_awesome_icons.dart';
-import 'package:gestro_app/pages/login_screen.page.dart';
-import 'package:gestro_app/themes/globals.themes.dart';
-import 'package:gestro_app/widgets/button2Gestro.widget%20copy.dart';
+
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
-
+import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/pages/login_screen.page.dart';
 import '../globals.dart';
 
 class CadastroScreen extends StatefulWidget {
@@ -28,7 +26,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
 
     Future<User> signUp(email, password) async {
       try {
-        UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
+        UserCredential userCredential = await auth
+            .createUserWithEmailAndPassword(email: email, password: password);
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
         return userCredential.user;
@@ -36,6 +35,9 @@ class _CadastroScreenState extends State<CadastroScreen> {
         return null;
       }
     }
+
+    dynamic myControllerPass = TextEditingController();
+    dynamic myControllerPassConfirm = TextEditingController();
 
     return Scaffold(
       // resizeToAvoidBottomInset: false,
@@ -61,11 +63,16 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 child: Center(
                   child: Text(
                     "Cadastro",
-                    style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
+                    key: ValueKey("CadastroTextKey"),
+                    style: TextStyle(
+                        color: Colors.purple,
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
               ContainerGestro(
+                textKey: "NameKey",
                 text: "Nome",
                 icon: Icon(
                   Icons.person,
@@ -73,9 +80,16 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 ),
                 qtdeLengthCharacters: 50,
                 valueForm: nome,
+                validator: (nameValue) {
+                  if (nameValue.isEmpty) {
+                    return 'O campo não pode ficar em branco.';
+                  }
+                  return null;
+                },
                 onSaved: (input) => nome = input,
               ),
               ContainerGestro(
+                textKey: "EmailKey",
                 text: "Email",
                 icon: Icon(
                   Icons.mail,
@@ -83,16 +97,28 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 ),
                 qtdeLengthCharacters: 35,
                 valueForm: email,
+                validator: (emailValue) {
+                  if (emailValue.isEmpty) {
+                    return 'O campo não pode ficar em branco.';
+                  }
+
+                  if (!(EmailValidator.validate(emailValue))) {
+                    return 'E-mail inválido!';
+                  }
+                  return null;
+                },
                 onSaved: (input) => email = input,
               ),
               ContainerGestro(
-                text: "Linkedin",
+                textKey: "LinkedInKey",
+                text: "LinkedIn",
                 icon: Icon(
                   FontAwesome.link,
                   color: purpleSecudary,
                 ),
               ),
               ContainerGestro(
+                textKey: "PassKey",
                 text: "Senha",
                 passVisible: true,
                 icon: Icon(
@@ -101,9 +127,26 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 ),
                 qtdeLengthCharacters: 15,
                 valueForm: senha,
+                myController: myControllerPass,
+                validator: (passValue) {
+                  if (passValue.isEmpty) {
+                    return 'O campo não pode ficar em branco.';
+                  }
+
+                  if (passValue.length < 6) {
+                    return 'Senha tem menos que 6 dígitos.';
+                  }
+
+                  if (myControllerPass.text != myControllerPassConfirm.text) {
+                    return 'As senhas precisam ser iguais.';
+                  }
+
+                  return null;
+                },
                 onSaved: (input) => senha = input,
               ),
               ContainerGestro(
+                textKey: "PassConfirmKey",
                 text: "Confirme a senha",
                 passVisible: true,
                 icon: Icon(
@@ -111,6 +154,22 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   color: purpleSecudary,
                 ),
                 qtdeLengthCharacters: 15,
+                myController: myControllerPassConfirm,
+                validator: (passConfirmValue) {
+                  if (passConfirmValue.isEmpty) {
+                    return 'O campo não pode ficar em branco.';
+                  }
+
+                  if (passConfirmValue.length < 6) {
+                    return 'Senha tem menos que 6 dígitos.';
+                  }
+
+                  if (myControllerPass.text != myControllerPassConfirm.text) {
+                    return 'As senhas precisam ser iguais.';
+                  }
+
+                  return null;
+                },
               ),
               GestureDetector(
                 // padding: EdgeInsets.all(0),
@@ -125,12 +184,16 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       docData['type'] = 'Aluno';
                       docData['created_at'] = Timestamp.now();
                       docData['updated_at'] = Timestamp.now();
-                      FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
+                      FirebaseFirestore.instance
+                          .collection('Users')
+                          .doc(value.uid)
+                          .set(docData);
                       Navigator.pop(context);
                     });
                   }
                 },
                 child: ButtonGestro(
+                  textKey: "btnCadastrarKey",
                   text: 'Cadastrar',
                 ),
               ),
@@ -149,7 +212,10 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     child: InkWell(
                       child: Text(
                         "Faça login.",
-                        style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.purple,
+                            fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         Future.delayed(

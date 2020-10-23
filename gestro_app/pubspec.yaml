@@ -34,12 +34,14 @@ dependencies:
   firebase: ^7.3.0
   fluttericon: ^1.0.7
   device_preview: ^0.4.8
+  email_validator: '^1.0.5'
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  fluttericon: ^1.0.7
+  flutter_driver:
+    sdk: flutter
+  test: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

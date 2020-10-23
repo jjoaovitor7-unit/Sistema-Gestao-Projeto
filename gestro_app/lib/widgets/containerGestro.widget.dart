@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:gestro_app/globals.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
 class ContainerGestro extends StatefulWidget {
@@ -8,10 +7,25 @@ class ContainerGestro extends StatefulWidget {
   final Icon icon;
   final bool passVisible;
   int qtdeLengthCharacters;
+  String textKey;
   var valueForm;
-  Function onSaved;
+  Function onSaved, validator;
+  dynamic myController = TextEditingController();
 
-  ContainerGestro({@required this.text, @required this.icon, this.passVisible = false, this.valueForm, this.onSaved, this.qtdeLengthCharacters});
+  void dispose() {
+    myController.dispose();
+  }
+
+  ContainerGestro(
+      {@required this.text,
+      @required this.icon,
+      this.passVisible = false,
+      this.valueForm,
+      this.onSaved,
+      this.qtdeLengthCharacters,
+      this.textKey,
+      this.validator,
+      this.myController});
 
   @override
   _ContainerGestroState createState() => _ContainerGestroState();
@@ -34,7 +48,10 @@ class _ContainerGestroState extends State<ContainerGestro> {
       width: MediaQuery.of(context).size.width / 1.1,
       height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
-        inputFormatters: [LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)],
+        key: ValueKey(widget.textKey),
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)
+        ],
         obscureText: widget.passVisible,
         decoration: InputDecoration(
           hintText: widget.text,
@@ -47,12 +64,8 @@ class _ContainerGestroState extends State<ContainerGestro> {
           // icon: icon,
           suffixIcon: widget.icon,
         ),
-        validator: (value) {
-          if (value.isEmpty) {
-            return 'Digite um Campo';
-          }
-          return null;
-        },
+        controller: widget.myController,
+        validator: widget.validator,
         // onSaved: (input) => widget.valueForm = input,
         onSaved: this.widget.onSaved,
       ),
