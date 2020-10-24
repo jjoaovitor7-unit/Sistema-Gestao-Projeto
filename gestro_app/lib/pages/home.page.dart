@@ -1,11 +1,51 @@
 import 'dart:ui';
+<<<<<<< Updated upstream
+=======
+
+import 'package:circular_menu/circular_menu.dart';
+import 'package:flutter/cupertino.dart';
+>>>>>>> Stashed changes
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
+<<<<<<< Updated upstream
 
+=======
+import 'package:fluttericon/linecons_icons.dart';
+>>>>>>> Stashed changes
 import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/widgets/bottomNavigatorBarGestro.widget.dart';
+import 'package:gestro_app/widgets/cardProjetos.widget.dart';
 
 class HomePage extends StatelessWidget {
+  final circularMenu = CircularMenu(items: [
+    CircularMenuItem(
+        icon: Icons.home,
+        onTap: () {
+          // callback
+        }),
+    CircularMenuItem(
+        icon: Icons.search,
+        onTap: () {
+          //callback
+        }),
+    CircularMenuItem(
+        icon: Icons.settings,
+        onTap: () {
+          //callback
+        }),
+    CircularMenuItem(
+        icon: Icons.star,
+        onTap: () {
+          //callback
+        }),
+    CircularMenuItem(
+        icon: Icons.pages,
+        onTap: () {
+          //callback
+        }),
+  ]);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,9 +76,10 @@ class HomePage extends StatelessWidget {
             ],
           ),
         ),
-        child: Column(
+        child: ListView(
           children: [
             SizedBox(height: 20),
+<<<<<<< Updated upstream
             Container(
               height: MediaQuery.of(context).size.height * 0.2,
               width: MediaQuery.of(context).size.width * 0.9,
@@ -104,48 +145,40 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
+=======
+            CardProjetos(),
+            SizedBox(height: 20),
+            CardProjetos(),
+            SizedBox(height: 20),
+            CardProjetos(),
+            SizedBox(height: 20),
+            CardProjetos(),
+            SizedBox(height: 20),
+            CardProjetos(),
+            SizedBox(height: 20),
+            CardProjetos(),
+>>>>>>> Stashed changes
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.white,
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: purpleSecudary,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesome5.house_user,
-            ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesome5.clipboard_check,
-            ),
-            label: "",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesome5.list,
-            ),
-            label: "",
-            backgroundColor: Colors.amber,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesome5.users,
-            ),
-            label: "",
-            backgroundColor: Colors.amber,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              FontAwesome5.user,
-            ),
-            label: "",
-          ),
+      floatingActionButton: SpeedDial(
+        animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: purpleSecudary,
+        closeManually: true,
+        children: [
+          SpeedDialChild(
+              child: Icon(Linecons.lightbulb),
+              backgroundColor: purpleSecudary,
+              label: 'Novo Projeto',
+              labelBackgroundColor: purpleSecudary,
+              labelStyle: TextStyle(
+                fontSize: 17.0,
+                color: Colors.white,
+              ),
+              onTap: () => print('FIRST CHILD')),
         ],
       ),
+      bottomNavigationBar: BottomNavigatorBarGestro(),
     );
   }
 }

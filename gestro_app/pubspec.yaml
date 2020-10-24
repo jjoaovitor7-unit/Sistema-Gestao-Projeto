@@ -34,14 +34,23 @@ dependencies:
   firebase: ^7.3.0
   fluttericon: ^1.0.7
   device_preview: ^0.4.8
+<<<<<<< Updated upstream
   email_validator: '^1.0.5'
+=======
+  circular_menu: ^1.1.0
+  flutter_speed_dial: ^1.2.5
+>>>>>>> Stashed changes
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+<<<<<<< Updated upstream
   flutter_driver:
     sdk: flutter
   test: any
+=======
+
+>>>>>>> Stashed changes
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

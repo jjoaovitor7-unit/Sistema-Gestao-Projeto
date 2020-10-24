@@ -4,7 +4,16 @@ import 'package:email_validator/email_validator.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+<<<<<<< Updated upstream
 
+=======
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:gestro_app/pages/login_screen.page.dart';
+import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/widgets/button2Gestro.widget.dart';
+>>>>>>> Stashed changes
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
