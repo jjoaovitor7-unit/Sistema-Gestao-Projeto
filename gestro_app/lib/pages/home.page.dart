@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/linecons_icons.dart';
+import 'package:gestro_app/pages/novoProjeto.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/bottomNavigatorBarGestro.widget.dart';
@@ -52,15 +53,21 @@ class HomePage extends StatelessWidget {
         closeManually: true,
         children: [
           SpeedDialChild(
-              child: Icon(Linecons.lightbulb),
-              backgroundColor: purpleSecudary,
-              label: 'Novo Projeto',
-              labelBackgroundColor: purpleSecudary,
-              labelStyle: TextStyle(
-                fontSize: 17.0,
-                color: Colors.white,
+            child: Icon(Linecons.lightbulb),
+            backgroundColor: purpleSecudary,
+            label: 'Novo Projeto',
+            labelBackgroundColor: purpleSecudary,
+            labelStyle: TextStyle(
+              fontSize: 17.0,
+              color: Colors.white,
+            ),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NovoProjetoPage(),
               ),
-              onTap: () => print('FIRST CHILD')),
+            ),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigatorBarGestro(),
