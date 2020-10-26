@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:email_validator/email_validator.dart';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:gestro_app/pages/login_screen.page.dart';
+import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/widgets/button2Gestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
@@ -26,8 +30,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
 
     Future<User> signUp(email, password) async {
       try {
-        UserCredential userCredential = await auth
-            .createUserWithEmailAndPassword(email: email, password: password);
+        UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
         return userCredential.user;
@@ -64,10 +67,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   child: Text(
                     "Cadastro",
                     key: ValueKey("CadastroTextKey"),
-                    style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -184,10 +184,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                       docData['type'] = 'Aluno';
                       docData['created_at'] = Timestamp.now();
                       docData['updated_at'] = Timestamp.now();
-                      FirebaseFirestore.instance
-                          .collection('Users')
-                          .doc(value.uid)
-                          .set(docData);
+                      FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
                       Navigator.pop(context);
                     });
                   }
@@ -212,10 +209,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     child: InkWell(
                       child: Text(
                         "Faça login.",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         Future.delayed(
