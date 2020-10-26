@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
-import 'package:gestro_app/widgets/bottomNavigatorBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestroGrande.widget.dart';
@@ -57,7 +56,6 @@ class NovoProjetoPage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigatorBarGestro(),
     );
   }
 }

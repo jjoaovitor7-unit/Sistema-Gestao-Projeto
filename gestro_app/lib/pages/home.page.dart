@@ -7,7 +7,6 @@ import 'package:fluttericon/linecons_icons.dart';
 import 'package:gestro_app/pages/novoProjeto.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
-import 'package:gestro_app/widgets/bottomNavigatorBarGestro.widget.dart';
 import 'package:gestro_app/widgets/cardProjetos.widget.dart';
 
 class HomePage extends StatelessWidget {
@@ -70,7 +69,6 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigatorBarGestro(),
     );
   }
 }

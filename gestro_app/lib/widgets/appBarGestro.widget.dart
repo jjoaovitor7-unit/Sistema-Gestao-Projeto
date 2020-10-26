@@ -4,9 +4,11 @@ import 'package:gestro_app/themes/globals.themes.dart';
 
 class AppBarGestro extends StatefulWidget implements PreferredSizeWidget {
   final String title;
+  final bool tabBar;
 
   const AppBarGestro({
     @required this.title,
+    this.tabBar = false,
   });
 
   @override
@@ -39,6 +41,28 @@ class _AppBarGestroState extends State<AppBarGestro> {
           width: MediaQuery.of(context).size.width * 0.03,
         )
       ],
+      // bottom: TabBar(
+      //   tabs: [
+      //     Tab(
+      //       child: Text(
+      //         'Consultas',
+      //         style: TextStyle(
+      //           fontSize: MediaQuery.of(context).size.width * 0.045,
+      //           fontWeight: FontWeight.w400,
+      //         ),
+      //       ),
+      //     ),
+      //     Tab(
+      //       child: Text(
+      //         'Pacientes',
+      //         style: TextStyle(
+      //           fontSize: MediaQuery.of(context).size.width * 0.045,
+      //           fontWeight: FontWeight.w400,
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 

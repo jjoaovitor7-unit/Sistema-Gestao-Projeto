@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 
 import 'package:gestro_app/pages/cadastro_screen.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
+import 'package:gestro_app/pages/pagInicial.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
@@ -19,8 +20,7 @@ class LoginScreen extends StatelessWidget {
 
     Future<User> signIn(String email, String password) async {
       try {
-        UserCredential userCredential = await auth.signInWithEmailAndPassword(
-            email: email, password: password);
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
 
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
@@ -124,15 +124,12 @@ class LoginScreen extends StatelessWidget {
                       GestureDetector(
                         onTap: () {
                           signIn(email, senha).then((value) {
-                            if (EmailValidator.validate(
-                                    myControllerEmail.text) &&
-                                (myControllerPass.text.toString().length >=
-                                    6)) {
+                            if (EmailValidator.validate(myControllerEmail.text) && (myControllerPass.text.toString().length >= 6)) {
                               // print(value);
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomePage(),
+                                  builder: (context) => PagInicial(),
                                 ),
                               );
                             }
