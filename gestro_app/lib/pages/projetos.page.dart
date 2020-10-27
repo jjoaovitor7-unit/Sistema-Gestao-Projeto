@@ -24,12 +24,12 @@ class ProjetosPage extends StatelessWidget {
         ),
         child: ListView(
           children: [
-            CardProjetos(),
-            CardProjetos(),
-            CardProjetos(),
-            CardProjetos(),
-            CardProjetos(),
-            CardProjetos(),
+            CardProjeto(),
+            CardProjeto(),
+            CardProjeto(),
+            CardProjeto(),
+            CardProjeto(),
+            CardProjeto(),
           ],
         ),
       ),

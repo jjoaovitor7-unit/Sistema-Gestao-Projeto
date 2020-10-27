@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/button2Gestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
+import 'package:gestro_app/widgets/smallButton2Gestro.widget.dart';
+import 'package:gestro_app/widgets/smallButtonGestro.widget.dart';
 
-class CardAprocaoes extends StatelessWidget {
+class CardAprocao extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.5,
+      height: MediaQuery.of(context).size.height * 0.532,
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.015,
         left: MediaQuery.of(context).size.height * 0.024,
@@ -75,21 +77,72 @@ class CardAprocaoes extends StatelessWidget {
                   "finalizar a compra no próprio app (via cartão de crédito)."
                   "Mas o que chama a atenção mesmo, por enquanto, é o frete gratuito",
                   style: TextStyle(
-                    color: Colors.grey[700],
+                    color: grey,
                   ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.015,
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Data de Início: ",
+                      style: TextStyle(
+                        color: purpleSecudary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "10/11/2020",
+                      style: TextStyle(
+                        color: purpleSecudary,
+                        fontStyle: FontStyle.normal,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Data de Térmno: ",
+                      style: TextStyle(
+                        color: purpleSecudary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Text(
+                      "10/12/2020",
+                      style: TextStyle(
+                        color: purpleSecudary,
+                        fontStyle: FontStyle.normal,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.008,
                 ),
                 Divider(
                   color: Colors.black,
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    SmallButton2Gestro(
+                      text: "Rejeitar",
+                      onTap: null,
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.013,
+                    ),
+                    SmallButtonGestro(
+                      text: "Aprovar",
+                      onTap: null,
+                    )
+                  ],
+                ),
               ],
             ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Button2Gestro(text: "Rejeitar", onTap: null),
-              // ButtonGestro(text: "Aprovrar"),
-            ],
           ),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
-class CardProjetos extends StatelessWidget {
+class CardProjeto extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(

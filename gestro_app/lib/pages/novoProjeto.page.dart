@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
-import 'package:gestro_app/widgets/containerGestro.widget.dart';
-import 'package:gestro_app/widgets/containerGestroGrande.widget.dart';
+import 'package:gestro_app/widgets/inputGestro.widget.dart';
+import 'package:gestro_app/widgets/inputGestroGrande.widget.dart';
 
 class NovoProjetoPage extends StatelessWidget {
   @override
@@ -29,7 +29,7 @@ class NovoProjetoPage extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.only(
                 top: MediaQuery.of(context).size.height * 0.3,
-                bottom: MediaQuery.of(context).size.height * 0.19,
+                bottom: MediaQuery.of(context).size.height * 0.1,
               ),
               child: ListView(
                 physics: AlwaysScrollableScrollPhysics(),
@@ -45,10 +45,10 @@ class NovoProjetoPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  ContainerGestro(text: "Nome", icon: null),
-                  ContainerGestroGrande(text: "Descrição", icon: null),
-                  ContainerGestro(text: "Data de início", icon: null),
-                  ContainerGestro(text: "Data de Término", icon: null),
+                  InputGestro(text: "Nome", icon: null),
+                  InputGestroGrande(text: "Descrição", icon: null),
+                  InputGestro(text: "Data de início", icon: null),
+                  InputGestro(text: "Data de Término", icon: null),
                   ButtonGestro(text: "Salvar"),
                 ],
               ),

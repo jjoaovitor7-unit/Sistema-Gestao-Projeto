@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:gestro_app/pages/cadastro_screen.page.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
-import 'package:gestro_app/widgets/containerGestro.widget.dart';
+import 'package:gestro_app/widgets/inputGestro.widget.dart';
 
 void main() {
   Widget buildTestableWidget(Widget widget) {
@@ -18,7 +18,7 @@ void main() {
     expect(textCadastro, findsOneWidget);
 
     // container gestro
-    var containerGestro = find.byType(ContainerGestro);
+    var containerGestro = find.byType(InputGestro);
     expect(containerGestro, findsNWidgets(5));
 
     var textNome = find.text("Nome");

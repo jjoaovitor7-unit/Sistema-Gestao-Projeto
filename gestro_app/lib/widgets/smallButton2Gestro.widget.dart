@@ -3,21 +3,20 @@ import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
-class Button2Gestro extends StatelessWidget {
+class SmallButton2Gestro extends StatelessWidget {
   final String text;
   final Function onTap;
-  final Icon icon;
+  final IconData icon;
 
-  const Button2Gestro({@required this.text, @required this.onTap, this.icon});
+  const SmallButton2Gestro({@required this.text, @required this.onTap, this.icon});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        alignment: Alignment.center,
-        width: MediaQuery.of(context).size.width / 1.1,
-        height: MediaQuery.of(context).size.height * 0.055,
+        width: MediaQuery.of(context).size.width * 0.25,
+        height: MediaQuery.of(context).size.height * 0.04,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(
@@ -29,22 +28,17 @@ class Button2Gestro extends StatelessWidget {
         ),
         margin: EdgeInsets.only(top: 15),
         child: Container(
-          padding: EdgeInsets.only(
-            right: MediaQuery.of(context).size.height * 0.035,
-            left: MediaQuery.of(context).size.height * 0.02,
-          ),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 text,
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 15,
                   color: purpleSecudary,
-                  fontWeight: FontWeight.w400,
+                  fontWeight: FontWeight.w600,
                 ),
               ),
-              this.icon,
             ],
           ),
         ),

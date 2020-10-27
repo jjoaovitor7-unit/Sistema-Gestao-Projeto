@@ -9,7 +9,7 @@ import 'package:gestro_app/pages/projetos.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
-import 'package:gestro_app/widgets/containerGestro.widget.dart';
+import 'package:gestro_app/widgets/inputGestro.widget.dart';
 import 'package:gestro_app/globals.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -80,7 +80,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      ContainerGestro(
+                      InputGestro(
                         textKey: "EmailKey",
                         text: "Email",
                         icon: Icon(
@@ -100,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                           return null;
                         },
                       ),
-                      ContainerGestro(
+                      InputGestro(
                         textKey: "PassKey",
                         text: "Senha",
                         icon: Icon(

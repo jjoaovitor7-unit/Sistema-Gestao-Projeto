@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
-import 'package:gestro_app/widgets/cardAprovacoes.page.dart';
+import 'package:gestro_app/widgets/cardAprovacao.page.dart';
+import 'package:gestro_app/widgets/cardPesquisador.page.dart';
 import 'package:gestro_app/widgets/cardProjetos.widget.dart';
-import 'package:gestro_app/widgets/containerGestroGrande.widget.dart';
+import 'package:gestro_app/widgets/inputGestroGrande.widget.dart';
 
 class AprovacoesPage extends StatelessWidget {
   @override
@@ -26,13 +27,21 @@ class AprovacoesPage extends StatelessWidget {
                 ),
                 child: ListView(
                   children: [
-                    CardAprocaoes(),
+                    CardAprocao(),
+                    CardAprocao(),
+                    CardAprocao(),
                   ],
                 ),
               ),
               Container(
                 decoration: BoxDecoration(
                   gradient: gradientGestro,
+                ),
+                child: ListView(
+                  children: [
+                    CardPesquisador(),
+                    CardPesquisador(),
+                  ],
                 ),
               ),
             ],

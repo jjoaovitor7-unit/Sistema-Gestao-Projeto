@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
-class ContainerGestro extends StatefulWidget {
+class InputGestroGrande extends StatefulWidget {
   final String text;
   final Icon icon;
   final bool passVisible;
@@ -16,7 +16,7 @@ class ContainerGestro extends StatefulWidget {
     myController.dispose();
   }
 
-  ContainerGestro(
+  InputGestroGrande(
       {@required this.text,
       @required this.icon,
       this.passVisible = false,
@@ -28,10 +28,10 @@ class ContainerGestro extends StatefulWidget {
       this.myController});
 
   @override
-  _ContainerGestroState createState() => _ContainerGestroState();
+  _InputGestroGrandeState createState() => _InputGestroGrandeState();
 }
 
-class _ContainerGestroState extends State<ContainerGestro> {
+class _InputGestroGrandeState extends State<InputGestroGrande> {
   // String email;
 
   @override
@@ -46,12 +46,10 @@ class _ContainerGestroState extends State<ContainerGestro> {
       margin: EdgeInsets.only(top: 15),
       padding: EdgeInsets.only(left: 20, right: 10),
       width: MediaQuery.of(context).size.width / 1.1,
-      height: MediaQuery.of(context).size.height * 0.08,
+      height: MediaQuery.of(context).size.height * 0.25,
       child: TextFormField(
         key: ValueKey(widget.textKey),
-        inputFormatters: [
-          LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)
-        ],
+        inputFormatters: [LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)],
         obscureText: widget.passVisible,
         decoration: InputDecoration(
           hintText: widget.text,

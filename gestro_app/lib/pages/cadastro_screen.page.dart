@@ -10,7 +10,7 @@ import 'package:gestro_app/pages/login_screen.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/button2Gestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
-import 'package:gestro_app/widgets/containerGestro.widget.dart';
+import 'package:gestro_app/widgets/inputGestro.widget.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/pages/login_screen.page.dart';
 import '../globals.dart';
@@ -71,7 +71,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   ),
                 ),
               ),
-              ContainerGestro(
+              InputGestro(
                 textKey: "NameKey",
                 text: "Nome",
                 icon: Icon(
@@ -88,7 +88,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 },
                 onSaved: (input) => nome = input,
               ),
-              ContainerGestro(
+              InputGestro(
                 textKey: "EmailKey",
                 text: "Email",
                 icon: Icon(
@@ -109,7 +109,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 },
                 onSaved: (input) => email = input,
               ),
-              ContainerGestro(
+              InputGestro(
                 textKey: "LinkedInKey",
                 text: "LinkedIn",
                 icon: Icon(
@@ -117,7 +117,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   color: purpleSecudary,
                 ),
               ),
-              ContainerGestro(
+              InputGestro(
                 textKey: "PassKey",
                 text: "Senha",
                 passVisible: true,
@@ -145,7 +145,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 },
                 onSaved: (input) => senha = input,
               ),
-              ContainerGestro(
+              InputGestro(
                 textKey: "PassConfirmKey",
                 text: "Confirme a senha",
                 passVisible: true,

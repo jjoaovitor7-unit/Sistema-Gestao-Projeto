@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
-class ContainerGestroGrande extends StatefulWidget {
+class InputGestro extends StatefulWidget {
   final String text;
   final Icon icon;
   final bool passVisible;
@@ -16,7 +16,7 @@ class ContainerGestroGrande extends StatefulWidget {
     myController.dispose();
   }
 
-  ContainerGestroGrande(
+  InputGestro(
       {@required this.text,
       @required this.icon,
       this.passVisible = false,
@@ -28,10 +28,10 @@ class ContainerGestroGrande extends StatefulWidget {
       this.myController});
 
   @override
-  _ContainerGestroGrandeState createState() => _ContainerGestroGrandeState();
+  _InputGestroState createState() => _InputGestroState();
 }
 
-class _ContainerGestroGrandeState extends State<ContainerGestroGrande> {
+class _InputGestroState extends State<InputGestro> {
   // String email;
 
   @override
@@ -46,7 +46,7 @@ class _ContainerGestroGrandeState extends State<ContainerGestroGrande> {
       margin: EdgeInsets.only(top: 15),
       padding: EdgeInsets.only(left: 20, right: 10),
       width: MediaQuery.of(context).size.width / 1.1,
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.08,
       child: TextFormField(
         key: ValueKey(widget.textKey),
         inputFormatters: [LengthLimitingTextInputFormatter(widget.qtdeLengthCharacters)],
