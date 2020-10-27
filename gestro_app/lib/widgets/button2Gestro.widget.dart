@@ -6,8 +6,9 @@ import 'package:gestro_app/themes/globals.themes.dart';
 class Button2Gestro extends StatelessWidget {
   final String text;
   final Function onTap;
+  final IconData icon;
 
-  const Button2Gestro({@required this.text, @required this.onTap});
+  const Button2Gestro({@required this.text, @required this.onTap, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +44,7 @@ class Button2Gestro extends StatelessWidget {
                 ),
               ),
               Icon(
-                FontAwesome.doc_text,
-                color: purpleSecudary,
-                size: MediaQuery.of(context).size.height * 0.035,
+                this.icon,
               ),
             ],
           ),

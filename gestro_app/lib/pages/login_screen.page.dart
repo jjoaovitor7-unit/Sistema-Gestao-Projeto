@@ -5,8 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'package:gestro_app/pages/cadastro_screen.page.dart';
+import 'package:gestro_app/pages/projetos.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
-import 'package:gestro_app/pages/pagInicial.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/containerGestro.widget.dart';
@@ -129,7 +129,7 @@ class LoginScreen extends StatelessWidget {
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => PagInicial(),
+                                  builder: (context) => HomePage(),
                                 ),
                               );
                             }

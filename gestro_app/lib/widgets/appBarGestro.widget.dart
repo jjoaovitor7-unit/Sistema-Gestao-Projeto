@@ -5,10 +5,14 @@ import 'package:gestro_app/themes/globals.themes.dart';
 class AppBarGestro extends StatefulWidget implements PreferredSizeWidget {
   final String title;
   final bool tabBar;
+  final String tabBarName1;
+  final String tabBarName2;
 
   const AppBarGestro({
     @required this.title,
     this.tabBar = false,
+    this.tabBarName1,
+    this.tabBarName2,
   });
 
   @override
@@ -41,28 +45,32 @@ class _AppBarGestroState extends State<AppBarGestro> {
           width: MediaQuery.of(context).size.width * 0.03,
         )
       ],
-      // bottom: TabBar(
-      //   tabs: [
-      //     Tab(
-      //       child: Text(
-      //         'Consultas',
-      //         style: TextStyle(
-      //           fontSize: MediaQuery.of(context).size.width * 0.045,
-      //           fontWeight: FontWeight.w400,
-      //         ),
-      //       ),
-      //     ),
-      //     Tab(
-      //       child: Text(
-      //         'Pacientes',
-      //         style: TextStyle(
-      //           fontSize: MediaQuery.of(context).size.width * 0.045,
-      //           fontWeight: FontWeight.w400,
-      //         ),
-      //       ),
-      //     ),
-      //   ],
-      // ),
+      bottom: this.widget.tabBar
+          ? TabBar(
+              onTap: (value) {},
+              indicatorColor: Colors.white,
+              tabs: <Widget>[
+                Tab(
+                  child: Text(
+                    'Projetos',
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.04,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    'Pesquisadores',
+                    style: TextStyle(
+                      fontSize: MediaQuery.of(context).size.width * 0.04,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ],
+            )
+          : null,
     );
   }
 

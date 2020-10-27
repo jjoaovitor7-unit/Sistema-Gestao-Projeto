@@ -1,71 +1,73 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
-import 'package:fluttericon/linecons_icons.dart';
-import 'package:gestro_app/pages/novoProjeto.page.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:gestro_app/pages/aprovacoes.page.dart';
+import 'package:gestro_app/pages/projetos.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
-import 'package:gestro_app/widgets/appBarGestro.widget.dart';
-import 'package:gestro_app/widgets/cardProjetos.widget.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  int _currentIndex = 0;
+
+  final List<Widget> _pages = [
+    ProjetosPage(),
+    AprovacoesPage(),
+  ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBarGestro(
-        title: "Projetos",
-      ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomLeft,
-            colors: [
-              purpleSecudary,
-              Colors.purpleAccent,
-            ],
+      body: _pages[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        unselectedItemColor: Colors.grey,
+        selectedItemColor: purpleSecudary,
+        type: BottomNavigationBarType.fixed,
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesome5.house_user,
+              // color: index == 0 ? purpleSecudary : Colors.grey,
+            ),
+            label: "Home",
           ),
-        ),
-        child: ListView(
-          children: [
-            SizedBox(height: 20),
-            CardProjetos(),
-            SizedBox(height: 20),
-            CardProjetos(),
-            SizedBox(height: 20),
-            CardProjetos(),
-            SizedBox(height: 20),
-            CardProjetos(),
-            SizedBox(height: 20),
-            CardProjetos(),
-            SizedBox(height: 20),
-            CardProjetos(),
-          ],
-        ),
-      ),
-      floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        backgroundColor: purpleSecudary,
-        closeManually: true,
-        children: [
-          SpeedDialChild(
-            child: Icon(Linecons.lightbulb),
-            backgroundColor: purpleSecudary,
-            label: 'Novo Projeto',
-            labelBackgroundColor: purpleSecudary,
-            labelStyle: TextStyle(
-              fontSize: 17.0,
-              color: Colors.white,
+          BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesome5.clipboard_check,
+              // color: index == 1 ? purpleSecudary : Colors.grey,
             ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => NovoProjetoPage(),
-              ),
+            label: "Aprovações",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesome5.list,
             ),
+            label: "Tarefas",
+            backgroundColor: Colors.amber,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesome5.users,
+            ),
+            label: "Alunos",
+            backgroundColor: Colors.amber,
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              FontAwesome5.user,
+            ),
+            label: "Perfil",
           ),
         ],
       ),
