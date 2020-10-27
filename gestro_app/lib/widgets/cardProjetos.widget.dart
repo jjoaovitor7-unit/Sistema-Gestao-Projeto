@@ -7,7 +7,7 @@ class CardProjetos extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.2,
       margin: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * 0.0,
+        top: MediaQuery.of(context).size.height * 0.015,
         left: MediaQuery.of(context).size.height * 0.024,
         right: MediaQuery.of(context).size.height * 0.024,
       ),
