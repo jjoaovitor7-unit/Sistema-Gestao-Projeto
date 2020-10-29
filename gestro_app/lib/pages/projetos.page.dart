@@ -1,9 +1,9 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/linecons_icons.dart';
+import 'package:gestro_app/pages/bottomNavigation.dart';
 import 'package:gestro_app/pages/detalheProjeto.page.dart';
 import 'package:gestro_app/pages/novoProjeto.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
@@ -14,6 +14,7 @@ class ProjetosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: BottomNavigation(),
       appBar: AppBarGestro(
         title: "Projetos",
       ),
