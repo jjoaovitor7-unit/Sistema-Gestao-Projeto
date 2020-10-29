@@ -20,7 +20,8 @@ class LoginScreen extends StatelessWidget {
 
     Future<User> signIn(String email, String password) async {
       try {
-        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(
+            email: email, password: password);
 
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
@@ -29,7 +30,7 @@ class LoginScreen extends StatelessWidget {
         assert(userCredential.user.uid == currentUser.uid);
         return userCredential.user;
       } catch (e) {
-        return null;
+        print("===Error===\n${e}\n-----------");
       }
     }
 
@@ -97,7 +98,6 @@ class LoginScreen extends StatelessWidget {
                           if (!(EmailValidator.validate(emailValue))) {
                             return 'E-mail inválido!';
                           }
-                          return null;
                         },
                       ),
                       InputGestro(
@@ -118,18 +118,28 @@ class LoginScreen extends StatelessWidget {
                           if (passValue.length < 6) {
                             return 'Senha tem menos que 6 dígitos.';
                           }
-                          return null;
                         },
                       ),
                       GestureDetector(
                         onTap: () {
                           signIn(email, senha).then((value) {
-                            if (EmailValidator.validate(myControllerEmail.text) && (myControllerPass.text.toString().length >= 6)) {
+                            if (EmailValidator.validate(
+                                    myControllerEmail.text) &&
+                                (myControllerPass.text.toString().length >=
+                                    6)) {
                               // print(value);
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => HomePage(),
+                                ),
+                              );
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (_) => AlertDialog(
+                                  title: Text(
+                                      "Formato de e-mail inválido ou senha com menos de 6 dígitos."),
                                 ),
                               );
                             }
