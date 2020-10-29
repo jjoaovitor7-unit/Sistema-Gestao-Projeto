@@ -17,6 +17,24 @@ class AprovacoesPage extends StatelessWidget {
             child: AppBarGestro(
               title: "Aprovações",
               tabBar: true,
+              tabBar1: Tab(
+                child: Text(
+                  'Projetos',
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.04,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
+              tabBar2: Tab(
+                child: Text(
+                  'Pesquisadores',
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.04,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+              ),
             ),
           ),
           body: TabBarView(

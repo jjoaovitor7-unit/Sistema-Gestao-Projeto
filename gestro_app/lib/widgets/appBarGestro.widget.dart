@@ -5,14 +5,18 @@ import 'package:gestro_app/themes/globals.themes.dart';
 class AppBarGestro extends StatefulWidget implements PreferredSizeWidget {
   final String title;
   final bool tabBar;
-  final String tabBarName1;
-  final String tabBarName2;
+  final bool isThree;
+  final Tab tabBar1;
+  final Tab tabBar2;
+  final Tab tabBar3;
 
   const AppBarGestro({
     @required this.title,
     this.tabBar = false,
-    this.tabBarName1,
-    this.tabBarName2,
+    this.isThree,
+    this.tabBar1,
+    this.tabBar2,
+    this.tabBar3,
   });
 
   @override
@@ -46,30 +50,24 @@ class _AppBarGestroState extends State<AppBarGestro> {
         )
       ],
       bottom: this.widget.tabBar
-          ? TabBar(
-              onTap: (value) {},
-              indicatorColor: Colors.white,
-              tabs: <Widget>[
-                Tab(
-                  child: Text(
-                    'Projetos',
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width * 0.04,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-                Tab(
-                  child: Text(
-                    'Pesquisadores',
-                    style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width * 0.04,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ],
-            )
+          ? this.widget.isThree == true
+              ? TabBar(
+                  onTap: (value) {},
+                  indicatorColor: Colors.white,
+                  tabs: [
+                    this.widget.tabBar1,
+                    this.widget.tabBar2,
+                    this.widget.tabBar3,
+                  ],
+                )
+              : TabBar(
+                  onTap: (value) {},
+                  indicatorColor: Colors.white,
+                  tabs: [
+                    this.widget.tabBar1,
+                    this.widget.tabBar2,
+                  ],
+                )
           : null,
     );
   }

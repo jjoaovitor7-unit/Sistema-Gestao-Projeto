@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:gestro_app/pages/aprovacoes.page.dart';
+import 'package:gestro_app/pages/detalheProjeto.page.dart';
 import 'package:gestro_app/pages/projetos.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
@@ -15,6 +16,10 @@ class _HomePageState extends State<HomePage> {
   final List<Widget> _pages = [
     ProjetosPage(),
     AprovacoesPage(),
+    AprovacoesPage(),
+    AprovacoesPage(),
+    AprovacoesPage(),
+    DetalheProjeto(),
   ];
 
   void onTabTapped(int index) {
@@ -25,6 +30,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final currentPages = _pages[_currentIndex];
     return Scaffold(
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(

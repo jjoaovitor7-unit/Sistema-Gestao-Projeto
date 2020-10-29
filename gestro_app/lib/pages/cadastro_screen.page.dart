@@ -176,17 +176,18 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 onTap: () {
                   if (widget.formKey.currentState.validate()) {
                     widget.formKey.currentState.save();
-
-                    signUp(email, senha).then((value) {
-                      docData['name'] = nome;
-                      docData['email'] = email;
-                      docData['password'] = senha;
-                      docData['type'] = 'Aluno';
-                      docData['created_at'] = Timestamp.now();
-                      docData['updated_at'] = Timestamp.now();
-                      FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
-                      Navigator.pop(context);
-                    });
+                    signUp(email, senha).then(
+                      (value) {
+                        docData['name'] = nome;
+                        docData['email'] = email;
+                        docData['password'] = senha;
+                        docData['type'] = 'Pesquisador';
+                        docData['created_at'] = Timestamp.now();
+                        docData['updated_at'] = Timestamp.now();
+                        FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
+                        Navigator.pop(context);
+                      },
+                    );
                   }
                 },
                 child: ButtonGestro(

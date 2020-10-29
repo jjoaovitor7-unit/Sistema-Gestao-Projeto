@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/linecons_icons.dart';
+import 'package:gestro_app/pages/detalheProjeto.page.dart';
 import 'package:gestro_app/pages/novoProjeto.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
@@ -24,7 +25,9 @@ class ProjetosPage extends StatelessWidget {
         ),
         child: ListView(
           children: [
-            CardProjeto(),
+            CardProjeto(
+              onTap: DetalheProjeto(),
+            ),
             CardProjeto(),
             CardProjeto(),
             CardProjeto(),
