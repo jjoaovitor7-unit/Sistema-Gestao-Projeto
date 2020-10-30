@@ -68,74 +68,12 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
         body: TabBarView(
           children: [
             Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage(
-                      "assets/BkDetalheProjeto.jpg",
-                    ),
-                    fit: BoxFit.cover),
-              ),
               child: AbaProjeto(),
             ),
             Container(
               child: AbaTarefa(),
             ),
             Container(),
-          ],
-        ),
-        floatingActionButton: SpeedDial(
-          animatedIcon: AnimatedIcons.menu_close,
-          backgroundColor: purpleSecudary,
-          closeManually: true,
-          children: [
-            SpeedDialChild(
-              child: Icon(FontAwesome5.list),
-              backgroundColor: purpleSecudary,
-              label: 'Nova Tarefa',
-              labelBackgroundColor: purpleSecudary,
-              labelStyle: TextStyle(
-                fontSize: 17.0,
-                color: Colors.white,
-              ),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NovaTarefaPage(),
-                ),
-              ),
-            ),
-            SpeedDialChild(
-              child: Icon(Icons.person, size: 30),
-              backgroundColor: purpleSecudary,
-              label: 'Novo Aluno',
-              labelBackgroundColor: purpleSecudary,
-              labelStyle: TextStyle(
-                fontSize: 17.0,
-                color: Colors.white,
-              ),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NovaTarefaPage(),
-                ),
-              ),
-            ),
-            SpeedDialChild(
-              child: Icon(FontAwesome5.search),
-              backgroundColor: purpleSecudary,
-              label: 'Selecionar Aluno',
-              labelBackgroundColor: purpleSecudary,
-              labelStyle: TextStyle(
-                fontSize: 17.0,
-                color: Colors.white,
-              ),
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NovaTarefaPage(),
-                ),
-              ),
-            ),
           ],
         ),
       ),
