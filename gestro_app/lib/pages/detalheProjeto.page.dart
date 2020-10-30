@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:fluttericon/linecons_icons.dart';
+import 'package:gestro_app/pages/abaAlunos.page.dart';
 import 'package:gestro_app/pages/abaProjeto.page.dart';
 import 'package:gestro_app/pages/abaTarefa.page.dart';
 import 'package:gestro_app/pages/bottomNavigation.dart';
@@ -73,7 +74,9 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
             Container(
               child: AbaTarefa(),
             ),
-            Container(),
+            Container(
+              child: AbaAluno(),
+            ),
           ],
         ),
       ),

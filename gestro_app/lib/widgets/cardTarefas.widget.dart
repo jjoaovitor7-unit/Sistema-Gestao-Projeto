@@ -14,9 +14,9 @@ class CardTarefa extends StatelessWidget {
     return Container(
       height: MediaQuery.of(context).size.height * 0.275,
       margin: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * 0.005,
-        left: MediaQuery.of(context).size.height * 0.024,
-        right: MediaQuery.of(context).size.height * 0.024,
+        top: MediaQuery.of(context).size.height * 0.025,
+        left: MediaQuery.of(context).size.height * 0.025,
+        right: MediaQuery.of(context).size.height * 0.025,
       ),
       color: Colors.white,
       child: Column(
@@ -25,8 +25,8 @@ class CardTarefa extends StatelessWidget {
           Padding(
             padding: EdgeInsets.only(
               top: MediaQuery.of(context).size.height * 0.0,
-              left: MediaQuery.of(context).size.height * 0.024,
-              right: MediaQuery.of(context).size.height * 0.024,
+              left: MediaQuery.of(context).size.height * 0.025,
+              right: MediaQuery.of(context).size.height * 0.025,
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -100,7 +100,11 @@ class CardTarefa extends StatelessWidget {
               softWrap: true,
             ),
           ),
-          Divider(color: Colors.black),
+          Container(
+            margin: EdgeInsets.symmetric(horizontal: 20),
+            width: 100,
+            child: Divider(color: Colors.black),
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
