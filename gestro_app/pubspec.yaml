@@ -66,6 +66,7 @@ flutter:
     - assets/BkDetalheProjeto.jpg
     - assets/BkNovaTarefa.jpg
     - assets/BkAlunos.jpg
+    - assets/BkNovoAluno.jpg
     - assets/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
