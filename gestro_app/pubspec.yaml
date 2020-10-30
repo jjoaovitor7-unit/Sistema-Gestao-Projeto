@@ -37,6 +37,7 @@ dependencies:
   circular_menu: ^1.1.0
   flutter_speed_dial: ^1.2.5
   email_validator: '^1.0.5'
+  circular_profile_avatar: ^1.0.6
   # custom_navigator: ^0.3.0
 
 dev_dependencies:
