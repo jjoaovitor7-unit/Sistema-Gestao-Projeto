@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/pages/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/inputGestro.widget.dart';
@@ -9,6 +9,7 @@ class NovoProjetoPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // bottomNavigationBar: BottomNavigation(),
       appBar: AppBarGestro(
         title: "Projetos",
       ),
