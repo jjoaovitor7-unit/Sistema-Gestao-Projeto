@@ -3,21 +3,21 @@ import 'package:gestro_app/pages/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/cardTarefas.widget.dart';
 
-class TarefasPage extends StatefulWidget {
+class AbaTarefa extends StatefulWidget {
   @override
-  _TarefasPageState createState() => _TarefasPageState();
+  _AbaTarefaState createState() => _AbaTarefaState();
 }
 
-class _TarefasPageState extends State<TarefasPage> {
+class _AbaTarefaState extends State<AbaTarefa> {
   int _value = 1;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: BottomNavigation(),
-      appBar: AppBarGestro(
-        title: "Tarefas",
-      ),
+      // bottomNavigationBar: BottomNavigation(),
+      // appBar: AppBarGestro(
+      //   title: "Tarefas",
+      // ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -124,8 +124,14 @@ class _TarefasPageState extends State<TarefasPage> {
                     }),
               ),
             ),
-            CardTarefa(),
-            CardTarefa(),
+            CardTarefa(
+              textStatus: "Concluída",
+              status: true,
+            ),
+            CardTarefa(
+              textStatus: "Criada",
+              status: false,
+            ),
           ],
         ),
       ),

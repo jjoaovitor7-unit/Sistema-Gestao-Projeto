@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:fluttericon/linecons_icons.dart';
+import 'package:gestro_app/pages/abaProjeto.page.dart';
+import 'package:gestro_app/pages/abaTarefa.page.dart';
 import 'package:gestro_app/pages/bottomNavigation.dart';
+import 'package:gestro_app/pages/novaTarefa.page.dart';
+import 'package:gestro_app/pages/novoProjeto.page.dart';
 import 'package:gestro_app/pages/projetos.page.dart';
+import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'aprovacoes.page.dart';
 
@@ -57,57 +65,79 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
             ),
           ),
         ),
-        // body: _pages[_currentIndex],
-        // body: Stack(
-        //   children: [
-        //     [
-        //       DetalheProjeto(),
-        //     ][_currentIndex]
-        //   ],
-        // ),
-        // bottomNavigationBar: BottomNavigationBar(
-        //   backgroundColor: Colors.white,
-        //   unselectedItemColor: Colors.grey,
-        //   selectedItemColor: purpleSecudary,
-        //   type: BottomNavigationBarType.fixed,
-        //   onTap: onTabTapped,
-        //   currentIndex: _currentIndex,
-        //   items: [
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         FontAwesome5.house_user,
-        //       ),
-        //       label: "Home",
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         FontAwesome5.clipboard_check,
-        //         // color: index == 1 ? purpleSecudary : Colors.grey,
-        //       ),
-        //       label: "Aprovações",
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         FontAwesome5.list,
-        //       ),
-        //       label: "Tarefas",
-        //       backgroundColor: Colors.amber,
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         FontAwesome5.users,
-        //       ),
-        //       label: "Alunos",
-        //       backgroundColor: Colors.amber,
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(
-        //         FontAwesome5.user,
-        //       ),
-        //       label: "Perfil",
-        //     ),
-        //   ],
-        // ),
+        body: TabBarView(
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(
+                      "assets/BkDetalheProjeto.jpg",
+                    ),
+                    fit: BoxFit.cover),
+              ),
+              child: AbaProjeto(),
+            ),
+            Container(
+              child: AbaTarefa(),
+            ),
+            Container(),
+          ],
+        ),
+        floatingActionButton: SpeedDial(
+          animatedIcon: AnimatedIcons.menu_close,
+          backgroundColor: purpleSecudary,
+          closeManually: true,
+          children: [
+            SpeedDialChild(
+              child: Icon(FontAwesome5.list),
+              backgroundColor: purpleSecudary,
+              label: 'Nova Tarefa',
+              labelBackgroundColor: purpleSecudary,
+              labelStyle: TextStyle(
+                fontSize: 17.0,
+                color: Colors.white,
+              ),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NovaTarefaPage(),
+                ),
+              ),
+            ),
+            SpeedDialChild(
+              child: Icon(Icons.person, size: 30),
+              backgroundColor: purpleSecudary,
+              label: 'Novo Aluno',
+              labelBackgroundColor: purpleSecudary,
+              labelStyle: TextStyle(
+                fontSize: 17.0,
+                color: Colors.white,
+              ),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NovaTarefaPage(),
+                ),
+              ),
+            ),
+            SpeedDialChild(
+              child: Icon(FontAwesome5.search),
+              backgroundColor: purpleSecudary,
+              label: 'Selecionar Aluno',
+              labelBackgroundColor: purpleSecudary,
+              labelStyle: TextStyle(
+                fontSize: 17.0,
+                color: Colors.white,
+              ),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NovaTarefaPage(),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
