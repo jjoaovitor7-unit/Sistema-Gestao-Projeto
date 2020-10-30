@@ -124,13 +124,19 @@ class _AbaTarefaState extends State<AbaTarefa> {
                     }),
               ),
             ),
-            CardTarefa(
-              textStatus: "Concluída",
-              status: true,
-            ),
-            CardTarefa(
-              textStatus: "Criada",
-              status: false,
+            Expanded(
+              child: ListView(
+                children: [
+                  CardTarefa(
+                    textStatus: "Concluída",
+                    status: true,
+                  ),
+                  CardTarefa(
+                    textStatus: "Criada",
+                    status: false,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
