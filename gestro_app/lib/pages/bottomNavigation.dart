@@ -37,14 +37,14 @@ class _BottomNavigationState extends State<BottomNavigation> {
       );
     }
 
-    // if (currentIndexSection == 2) {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(
-    //       builder: (context) => TarefasPage(),
-    //     ),
-    //   );
-    // }
+    if (currentIndexSection == 2) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => TarefasPage(),
+        ),
+      );
+    }
   }
 
   @override
