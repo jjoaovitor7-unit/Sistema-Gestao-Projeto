@@ -124,8 +124,14 @@ class _AbaTarefaState extends State<AbaTarefa> {
                     }),
               ),
             ),
-            CardTarefa(),
-            CardTarefa(),
+            CardTarefa(
+              textStatus: "Concluída",
+              status: true,
+            ),
+            CardTarefa(
+              textStatus: "Criada",
+              status: false,
+            ),
           ],
         ),
       ),

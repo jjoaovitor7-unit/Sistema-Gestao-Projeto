@@ -8,7 +8,7 @@ class SmallButtonGestro extends StatelessWidget {
   final Function onTap;
   final IconData icon;
 
-  const SmallButtonGestro({@required this.text, @required this.onTap, this.icon});
+  const SmallButtonGestro({this.text, this.onTap, this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class SmallButtonGestro extends StatelessWidget {
             color: purpleSecudary,
           ),
         ),
-        margin: EdgeInsets.only(top: 15),
+        // margin: EdgeInsets.only(top: 15),
         child: Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

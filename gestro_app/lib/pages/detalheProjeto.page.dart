@@ -5,6 +5,7 @@ import 'package:fluttericon/linecons_icons.dart';
 import 'package:gestro_app/pages/abaProjeto.page.dart';
 import 'package:gestro_app/pages/abaTarefa.page.dart';
 import 'package:gestro_app/pages/bottomNavigation.dart';
+import 'package:gestro_app/pages/novaTarefa.page.dart';
 import 'package:gestro_app/pages/novoProjeto.page.dart';
 import 'package:gestro_app/pages/projetos.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
@@ -99,7 +100,7 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NovoProjetoPage(),
+                  builder: (context) => NovaTarefaPage(),
                 ),
               ),
             ),
@@ -115,7 +116,7 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NovoProjetoPage(),
+                  builder: (context) => NovaTarefaPage(),
                 ),
               ),
             ),
@@ -131,7 +132,7 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => NovoProjetoPage(),
+                  builder: (context) => NovaTarefaPage(),
                 ),
               ),
             ),

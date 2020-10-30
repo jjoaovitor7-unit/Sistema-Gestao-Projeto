@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/widgets/smallButtonGestro.widget.dart';
 
 class CardTarefa extends StatelessWidget {
+  String textStatus;
+  bool status;
+  IconData icon;
+
+  CardTarefa({@required this.textStatus, this.status = false, this.icon});
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.275,
       margin: EdgeInsets.only(
-        top: MediaQuery.of(context).size.height * 0.015,
+        top: MediaQuery.of(context).size.height * 0.005,
         left: MediaQuery.of(context).size.height * 0.024,
         right: MediaQuery.of(context).size.height * 0.024,
       ),
@@ -36,27 +43,30 @@ class CardTarefa extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    PopupMenuButton(
-                        // key: _menuKey,
-                        color: purpleSecudary,
-                        itemBuilder: (_) => <PopupMenuItem<String>>[
-                              new PopupMenuItem<String>(
-                                  child: const Text(
-                                    'Editar',
-                                    style: TextStyle(
-                                      color: Colors.white,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 65),
+                      child: PopupMenuButton(
+                          // key: _menuKey,
+                          color: purpleSecudary,
+                          itemBuilder: (_) => <PopupMenuItem<String>>[
+                                new PopupMenuItem<String>(
+                                    child: const Text(
+                                      'Editar',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                      // textAlign: TextAlign.center,
                                     ),
-                                    // textAlign: TextAlign.center,
-                                  ),
-                                  value: 'Editar'),
-                              new PopupMenuItem<String>(
-                                  child: const Text(
-                                    'Excluir',
-                                    style: TextStyle(color: Colors.white),
-                                  ),
-                                  value: 'Excluir'),
-                            ],
-                        onSelected: (_) {}),
+                                    value: 'Editar'),
+                                new PopupMenuItem<String>(
+                                    child: const Text(
+                                      'Excluir',
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    value: 'Excluir'),
+                              ],
+                          onSelected: (_) {}),
+                    ),
                   ],
                 ),
                 Row(
@@ -81,11 +91,14 @@ class CardTarefa extends StatelessWidget {
               ],
             ),
           ),
-          Text(
-            "On the other hand, we denounce with righteous indignation and dislike men who are so beguiledand demoralized by the.",
-            style:
-                TextStyle(fontSize: MediaQuery.of(context).size.height * 0.025),
-            softWrap: true,
+          Padding(
+            padding: const EdgeInsets.only(left: 15, top: 5),
+            child: Text(
+              "On the other hand, we denounce with righteous indignation and dislike men who are so beguiledand demoralized by the.",
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height * 0.025),
+              softWrap: true,
+            ),
           ),
           Divider(color: Colors.black),
           Row(
@@ -94,13 +107,19 @@ class CardTarefa extends StatelessWidget {
               Checkbox(
                 activeColor: purpleSecudary,
                 checkColor: Colors.white,
-                value: true,
+                value: this.status,
                 autofocus: true,
                 onChanged: (bool value) {
                   value = true;
                 },
               ),
-              Text("Concluída"),
+              Text(this.textStatus),
+              Container(
+                  margin: EdgeInsets.only(left: 100),
+                  child: SmallButtonGestro(
+                    text: "LC",
+                    icon: this.icon,
+                  )),
             ],
           ),
         ],
