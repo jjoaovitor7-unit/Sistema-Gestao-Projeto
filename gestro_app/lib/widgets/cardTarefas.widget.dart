@@ -12,7 +12,7 @@ class CardTarefa extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.275,
+      height: MediaQuery.of(context).size.height * 0.3,
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.025,
         left: MediaQuery.of(context).size.height * 0.025,
@@ -47,6 +47,10 @@ class CardTarefa extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 65),
                       child: PopupMenuButton(
                           // key: _menuKey,
+                          icon: Icon(
+                            Icons.more_vert,
+                            color: purpleSecudary,
+                          ),
                           color: purpleSecudary,
                           itemBuilder: (_) => <PopupMenuItem<String>>[
                                 new PopupMenuItem<String>(
@@ -95,35 +99,40 @@ class CardTarefa extends StatelessWidget {
             padding: const EdgeInsets.only(left: 15, top: 5),
             child: Text(
               "On the other hand, we denounce with righteous indignation and dislike men who are so beguiledand demoralized by the.",
-              style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.025),
+              style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.025),
               softWrap: true,
             ),
           ),
           Container(
             margin: EdgeInsets.symmetric(horizontal: 20),
-            width: 100,
+            width: MediaQuery.of(context).size.width,
             child: Divider(color: Colors.black),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Checkbox(
-                activeColor: purpleSecudary,
-                checkColor: Colors.white,
-                value: this.status,
-                autofocus: true,
-                onChanged: (bool value) {
-                  value = true;
-                },
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Checkbox(
+                    activeColor: purpleSecudary,
+                    checkColor: Colors.white,
+                    value: this.status,
+                    autofocus: true,
+                    onChanged: (bool value) {
+                      value = true;
+                    },
+                  ),
+                  Text(this.textStatus),
+                ],
               ),
-              Text(this.textStatus),
               Container(
-                  margin: EdgeInsets.only(left: 100),
-                  child: SmallButtonGestro(
-                    text: "LC",
-                    icon: this.icon,
-                  )),
+                margin: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+                child: SmallButtonGestro(
+                  text: "LC",
+                  icon: this.icon,
+                ),
+              ),
             ],
           ),
         ],

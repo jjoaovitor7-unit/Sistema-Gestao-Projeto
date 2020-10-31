@@ -26,7 +26,7 @@ class SmallButton2Gestro extends StatelessWidget {
             color: purpleSecudary,
           ),
         ),
-        margin: EdgeInsets.only(top: 15),
+        // margin: EdgeInsets.only(top: 15),
         child: Container(
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

@@ -74,7 +74,10 @@ class AbaAluno extends StatelessWidget {
               fit: BoxFit.cover),
         ),
         child: Container(
-          padding: EdgeInsets.only(top: 30, left: 30),
+          padding: EdgeInsets.only(
+            top: 30,
+            // left: 30,
+          ),
           child: Column(
             children: [
               Expanded(
@@ -84,16 +87,13 @@ class AbaAluno extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CircularProfileAvatar(
                               '',
                               radius: 35,
                               backgroundColor: Colors.purple[200],
-                              initialsText: Text("LC",
-                                  style: TextStyle(
-                                      fontSize: 35,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.purple)),
+                              initialsText: Text("LC", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
                             ),
                             Stack(
                               children: [
@@ -101,27 +101,24 @@ class AbaAluno extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     "Lucas Calheiros dos Santos",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
+                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 25),
-                                  child: Text("lucascalheiros@souunit.com.br",
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                          color: Colors.white)),
+                                  padding: const EdgeInsets.only(left: 10, top: 25),
+                                  child: Text("lucascalheiros@souunit.com.br", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.only(left: 250),
+                                  // color: Colors.blue,
+                                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
                                   child: PopupMenuButton(
                                       // key: _menuKey,
+                                      icon: Icon(
+                                        Icons.more_vert,
+                                        color: Colors.white,
+                                      ),
                                       color: purpleSecudary,
-                                      itemBuilder: (_) =>
-                                          <PopupMenuItem<String>>[
+                                      itemBuilder: (_) => <PopupMenuItem<String>>[
                                             new PopupMenuItem<String>(
                                                 child: const Text(
                                                   'Editar',
@@ -134,8 +131,7 @@ class AbaAluno extends StatelessWidget {
                                             new PopupMenuItem<String>(
                                                 child: const Text(
                                                   'Excluir',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
+                                                  style: TextStyle(color: Colors.white),
                                                 ),
                                                 value: 'Excluir'),
                                           ],
@@ -146,21 +142,17 @@ class AbaAluno extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                          width: 300, child: Divider(color: Colors.white)),
+                      Container(width: 300, child: Divider(color: Colors.white)),
                       Padding(
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CircularProfileAvatar(
                               '',
                               radius: 35,
                               backgroundColor: Colors.purple[200],
-                              initialsText: Text("AD",
-                                  style: TextStyle(
-                                      fontSize: 35,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.purple)),
+                              initialsText: Text("AD", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
                             ),
                             Stack(
                               children: [
@@ -168,27 +160,23 @@ class AbaAluno extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     "Artur Delgado",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
+                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 25),
-                                  child: Text("arturdelgado@souunit.com.br",
-                                      style: TextStyle(
-                                          fontStyle: FontStyle.italic,
-                                          color: Colors.white)),
+                                  padding: const EdgeInsets.only(left: 10, top: 25),
+                                  child: Text("arturdelgado@souunit.com.br", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.only(left: 250),
+                                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
                                   child: PopupMenuButton(
                                       // key: _menuKey,
+                                      icon: Icon(
+                                        Icons.more_vert,
+                                        color: Colors.white,
+                                      ),
                                       color: purpleSecudary,
-                                      itemBuilder: (_) =>
-                                          <PopupMenuItem<String>>[
+                                      itemBuilder: (_) => <PopupMenuItem<String>>[
                                             new PopupMenuItem<String>(
                                                 child: const Text(
                                                   'Editar',
@@ -201,8 +189,7 @@ class AbaAluno extends StatelessWidget {
                                             new PopupMenuItem<String>(
                                                 child: const Text(
                                                   'Excluir',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
+                                                  style: TextStyle(color: Colors.white),
                                                 ),
                                                 value: 'Excluir'),
                                           ],
@@ -213,21 +200,17 @@ class AbaAluno extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                          width: 300, child: Divider(color: Colors.white)),
+                      Container(width: 300, child: Divider(color: Colors.white)),
                       Padding(
                         padding: const EdgeInsets.only(top: 10, bottom: 10),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             CircularProfileAvatar(
                               '',
                               radius: 35,
                               backgroundColor: Colors.purple[200],
-                              initialsText: Text("AD",
-                                  style: TextStyle(
-                                      fontSize: 35,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.purple)),
+                              initialsText: Text("AD", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
                             ),
                             Stack(
                               children: [
@@ -235,29 +218,26 @@ class AbaAluno extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Text(
                                     "Crislaine Santos de Macêdo",
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white),
+                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 25),
+                                  padding: const EdgeInsets.only(left: 10, top: 25),
                                   child: Text(
                                     "arturdelgado@souunit.com.br",
-                                    style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        color: Colors.white),
+                                    style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white),
                                   ),
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.only(left: 250),
+                                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
                                   child: PopupMenuButton(
                                       // key: _menuKey,
+                                      icon: Icon(
+                                        Icons.more_vert,
+                                        color: Colors.white,
+                                      ),
                                       color: purpleSecudary,
-                                      itemBuilder: (_) =>
-                                          <PopupMenuItem<String>>[
+                                      itemBuilder: (_) => <PopupMenuItem<String>>[
                                             new PopupMenuItem<String>(
                                                 child: const Text(
                                                   'Editar',
@@ -270,8 +250,7 @@ class AbaAluno extends StatelessWidget {
                                             new PopupMenuItem<String>(
                                                 child: const Text(
                                                   'Excluir',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
+                                                  style: TextStyle(color: Colors.white),
                                                 ),
                                                 value: 'Excluir'),
                                           ],
@@ -282,8 +261,7 @@ class AbaAluno extends StatelessWidget {
                           ],
                         ),
                       ),
-                      Container(
-                          width: 300, child: Divider(color: Colors.white)),
+                      Container(width: 300, child: Divider(color: Colors.white)),
                     ],
                   ),
                 ]),

@@ -10,7 +10,7 @@ class CardPesquisador extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.34,
+      height: MediaQuery.of(context).size.height * 0.32,
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.015,
         left: MediaQuery.of(context).size.height * 0.024,
@@ -69,29 +69,32 @@ class CardPesquisador extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.015,
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.008,
+                  height: MediaQuery.of(context).size.height * 0.023,
                 ),
                 Divider(
                   color: Colors.black,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    SmallButton2Gestro(
-                      text: "Rejeitar",
-                      onTap: null,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.013,
-                    ),
-                    SmallButtonGestro(
-                      text: "Aprovar",
-                      onTap: null,
-                    )
-                  ],
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.01,
+                ),
+                Container(
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SmallButton2Gestro(
+                        text: "Rejeitar",
+                        onTap: null,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.013,
+                      ),
+                      SmallButtonGestro(
+                        text: "Aprovar",
+                        onTap: null,
+                      )
+                    ],
+                  ),
                 ),
               ],
             ),

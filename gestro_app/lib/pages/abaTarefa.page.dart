@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestro_app/pages/bottomNavigation.dart';
+import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/cardTarefas.widget.dart';
 
@@ -32,17 +33,16 @@ class _AbaTarefaState extends State<AbaTarefa> {
               margin: EdgeInsets.only(top: 25, left: 10),
               height: MediaQuery.of(context).size.height * 0.11,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
-                    margin: EdgeInsets.symmetric(horizontal: 10),
                     child: Column(
                       children: [
                         Text(
                           "10",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Concluídas",
-                            style: TextStyle(color: Colors.white)),
+                        Text("Concluídas", style: TextStyle(color: Colors.white)),
                       ],
                     ),
                   ),
@@ -72,8 +72,7 @@ class _AbaTarefaState extends State<AbaTarefa> {
                           "05",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Executando",
-                            style: TextStyle(color: Colors.white))
+                        Text("Executando", style: TextStyle(color: Colors.white))
                       ],
                     ),
                   ),
@@ -97,7 +96,7 @@ class _AbaTarefaState extends State<AbaTarefa> {
             ),
             Container(
               height: 35,
-              padding: EdgeInsets.only(left: 15),
+              // padding: EdgeInsets.only(left: 15),
               decoration: BoxDecoration(
                 border: Border.all(color: Colors.white),
                 borderRadius: BorderRadius.circular(5),
@@ -106,15 +105,47 @@ class _AbaTarefaState extends State<AbaTarefa> {
               margin: EdgeInsets.only(top: 5),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton(
+                    dropdownColor: purpleSecudary,
+                    iconDisabledColor: Colors.white,
+                    iconEnabledColor: Colors.white,
                     isExpanded: true,
                     value: _value,
                     items: [
                       DropdownMenuItem(
-                        child: Text(
-                          "concluída",
-                          style: TextStyle(color: Colors.white),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.02,
+                          ),
+                          child: Text(
+                            "Concluídas",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                         value: 1,
+                      ),
+                      DropdownMenuItem(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.02,
+                          ),
+                          child: Text(
+                            "Atrasadas",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        value: 2,
+                      ),
+                      DropdownMenuItem(
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                            left: MediaQuery.of(context).size.width * 0.02,
+                          ),
+                          child: Text(
+                            "Em Andamento",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ),
+                        value: 3,
                       ),
                     ],
                     onChanged: (value) {
