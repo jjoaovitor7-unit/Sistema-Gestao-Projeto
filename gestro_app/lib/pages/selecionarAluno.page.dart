@@ -80,7 +80,7 @@ class SelecionarAlunoPage extends StatelessWidget {
                         popMenu: false,
                         initials: "LC",
                       ),
-                      // Container(width: 300, child: Divider(color: Colors.white)),
+                      Container(width: 300, child: Divider(color: Colors.white)),
                       // CardAlunoGestro(
                       //   name: "Artur Delgado",
                       //   email: "arturdelgado@souunit.com.br",
@@ -91,7 +91,7 @@ class SelecionarAlunoPage extends StatelessWidget {
                           width: 300, child: Divider(color: Colors.white)),
                       CardAlunoGestro(
                         name: "Crislaine Santos de Macêdo",
-                        email: "arturdelgado@souunit.com.br",
+                        email: "crislainesantos@souunit.com.br",
                         popMenu: false,
                         initials: "CM",
                       ),
