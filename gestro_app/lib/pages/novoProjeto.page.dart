@@ -51,6 +51,9 @@ class NovoProjetoPage extends StatelessWidget {
                   InputGestro(text: "Data de início", icon: null),
                   InputGestro(text: "Data de Término", icon: null),
                   ButtonGestro(text: "Salvar"),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  )
                 ],
               ),
             ),
