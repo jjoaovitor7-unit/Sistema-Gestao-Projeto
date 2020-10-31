@@ -9,12 +9,34 @@ import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/cardAlunoGestro.widget.dart';
 
-class SelecionarAlunoPage extends StatelessWidget {
+class AlunosPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: SpeedDial(
+          animatedIcon: AnimatedIcons.menu_close,
+          backgroundColor: purpleSecudary,
+          closeManually: true,
+          children: [
+            SpeedDialChild(
+              child: Icon(Icons.person, size: 30),
+              backgroundColor: purpleSecudary,
+              label: 'Novo Aluno',
+              labelBackgroundColor: purpleSecudary,
+              labelStyle: TextStyle(
+                fontSize: 17.0,
+                color: Colors.white,
+              ),
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => NovoAlunoPage(),
+                ),
+              ),
+            ),
+          ]),
       bottomNavigationBar: BottomNavigation(),
       appBar: AppBarGestro(
-        title: "Selecionar Aluno",
+        title: "Alunos",
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -80,18 +102,35 @@ class SelecionarAlunoPage extends StatelessWidget {
                         popMenu: false,
                         initials: "LC",
                       ),
-                      Container(width: 300, child: Divider(color: Colors.white)),
-                      // CardAlunoGestro(
-                      //   name: "Artur Delgado",
-                      //   email: "arturdelgado@souunit.com.br",
-                      //   popMenu: false,
-                      //   initials: "AD",
-                      // ),
+                      Container(
+                          width: 300, child: Divider(color: Colors.white)),
+                      CardAlunoGestro(
+                        name: "Artur Delgado",
+                        email: "arturdelgado@souunit.com.br",
+                        popMenu: false,
+                        initials: "AD",
+                      ),
                       Container(
                           width: 300, child: Divider(color: Colors.white)),
                       CardAlunoGestro(
                         name: "Crislaine Santos de Macêdo",
-                        email: "crislainesantos@souunit.com.br",
+                        email: "arturdelgado@souunit.com.br",
+                        popMenu: false,
+                        initials: "CM",
+                      ),
+                      Container(
+                          width: 300, child: Divider(color: Colors.white)),
+                      CardAlunoGestro(
+                        name: "Diâna Araujo Santos",
+                        email: "arturdelgado@souunit.com.br",
+                        popMenu: false,
+                        initials: "DA",
+                      ),
+                      Container(
+                          width: 300, child: Divider(color: Colors.white)),
+                      CardAlunoGestro(
+                        name: "Crislaine Santos de Macêdo",
+                        email: "arturdelgado@souunit.com.br",
                         popMenu: false,
                         initials: "CM",
                       ),
