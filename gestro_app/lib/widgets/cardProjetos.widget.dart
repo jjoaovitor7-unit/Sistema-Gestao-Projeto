@@ -51,6 +51,10 @@ class CardProjeto extends StatelessWidget {
                       PopupMenuButton(
                           // key: _menuKey,
                           color: purpleSecudary,
+                          icon: Icon(
+                            Icons.more_vert,
+                            color: purpleSecudary,
+                          ),
                           itemBuilder: (_) => <PopupMenuItem<String>>[
                                 new PopupMenuItem<String>(
                                     child: const Text(

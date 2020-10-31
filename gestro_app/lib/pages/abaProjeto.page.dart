@@ -74,21 +74,20 @@ class AbaProjeto extends StatelessWidget {
               fit: BoxFit.cover),
         ),
         // margin: EdgeInsets.symmetric(horizontal: 20),
-        child: Column(
+        child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.only(top: 180),
+              padding: EdgeInsets.only(
+                top: MediaQuery.of(context).size.height * 0.26,
+                left: MediaQuery.of(context).size.height * 0.12,
+              ),
               child: Text(
                 "Aplicativo de vendas",
-                style: TextStyle(
-                    color: Colors.purple,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),
+                style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 20, left: 35, right: 35, bottom: 20),
+              padding: const EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
               child: Text(
                 "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensure; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases",
                 style: TextStyle(
@@ -106,10 +105,7 @@ class AbaProjeto extends StatelessWidget {
                     children: [
                       Text(
                         "Pesquisador: ",
-                        style: TextStyle(
-                            color: Colors.purple,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "Dr. Fabio Gomes Rocha",
@@ -121,10 +117,7 @@ class AbaProjeto extends StatelessWidget {
                     children: [
                       Text(
                         "Data de Início: ",
-                        style: TextStyle(
-                            color: Colors.purple,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "10/08/2020",
@@ -137,10 +130,7 @@ class AbaProjeto extends StatelessWidget {
                       children: [
                         Text(
                           "Data de Término: ",
-                          style: TextStyle(
-                              color: Colors.purple,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           "15/09/2020",
