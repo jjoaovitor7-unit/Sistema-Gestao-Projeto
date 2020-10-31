@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:gestro_app/pages/novoAluno.page.dart';
+import 'package:gestro_app/pages/selecionarAluno.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
 import 'novaTarefa.page.dart';
@@ -42,7 +43,7 @@ class AbaProjeto extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NovoAlunoPage(),
+                builder: (context) => SelecionarAlunoPage(),
               ),
             ),
           ),

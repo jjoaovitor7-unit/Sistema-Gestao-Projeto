@@ -2,68 +2,18 @@ import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:gestro_app/pages/bottomNavigation.dart';
 import 'package:gestro_app/pages/novaTarefa.page.dart';
 import 'package:gestro_app/pages/novoAluno.page.dart';
-import 'package:gestro_app/pages/selecionarAluno.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 
-class AbaAluno extends StatelessWidget {
+class SelecionarAlunoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: SpeedDial(
-        animatedIcon: AnimatedIcons.menu_close,
-        backgroundColor: purpleSecudary,
-        closeManually: true,
-        children: [
-          SpeedDialChild(
-            child: Icon(FontAwesome5.list),
-            backgroundColor: purpleSecudary,
-            label: 'Nova Tarefa',
-            labelBackgroundColor: purpleSecudary,
-            labelStyle: TextStyle(
-              fontSize: 17.0,
-              color: Colors.white,
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => NovaTarefaPage(),
-              ),
-            ),
-          ),
-          SpeedDialChild(
-            child: Icon(Icons.person, size: 30),
-            backgroundColor: purpleSecudary,
-            label: 'Novo Aluno',
-            labelBackgroundColor: purpleSecudary,
-            labelStyle: TextStyle(
-              fontSize: 17.0,
-              color: Colors.white,
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => NovoAlunoPage(),
-              ),
-            ),
-          ),
-          SpeedDialChild(
-            child: Icon(FontAwesome5.search),
-            backgroundColor: purpleSecudary,
-            label: 'Selecionar Aluno',
-            labelBackgroundColor: purpleSecudary,
-            labelStyle: TextStyle(
-              fontSize: 17.0,
-              color: Colors.white,
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => SelecionarAlunoPage(),
-              ),
-            ),
-          ),
-        ],
+      bottomNavigationBar: BottomNavigation(),
+      appBar: AppBarGestro(
+        title: "Selecionar Aluno",
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -77,12 +27,41 @@ class AbaAluno extends StatelessWidget {
           padding: EdgeInsets.only(top: 30, left: 30),
           child: Column(
             children: [
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                height: 35,
+                margin: EdgeInsets.only(bottom: 35, right: 30),
+                child: Container(
+                  child: Theme(
+                    data: Theme.of(context).copyWith(
+                        primaryColor: Colors.white,
+                        accentColor: Colors.white,
+                        brightness: Brightness.light),
+                    child: TextFormField(
+                      style: TextStyle(fontSize: 20, color: Colors.white),
+                      decoration: new InputDecoration(
+                        border: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorBorder: InputBorder.none,
+                        disabledBorder: InputBorder.none,
+                        hintText: "Procurar",
+                        hintStyle: TextStyle(color: Colors.white),
+                        suffixIcon: Icon(FontAwesome5.search),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
               Expanded(
                 child: ListView(children: [
                   Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
+                        padding: EdgeInsets.only(bottom: 10),
                         child: Row(
                           children: [
                             CircularProfileAvatar(
@@ -98,7 +77,7 @@ class AbaAluno extends StatelessWidget {
                             Stack(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10),
+                                  padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     "Lucas Calheiros dos Santos",
                                     style: TextStyle(
@@ -108,15 +87,14 @@ class AbaAluno extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 25),
+                                  padding: EdgeInsets.only(left: 10, top: 25),
                                   child: Text("lucascalheiros@souunit.com.br",
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                           color: Colors.white)),
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.only(left: 250),
+                                  padding: EdgeInsets.only(left: 250),
                                   child: PopupMenuButton(
                                       // key: _menuKey,
                                       color: purpleSecudary,
@@ -132,7 +110,7 @@ class AbaAluno extends StatelessWidget {
                                                 ),
                                                 value: 'Editar'),
                                             new PopupMenuItem<String>(
-                                                child: const Text(
+                                                child: Text(
                                                   'Excluir',
                                                   style: TextStyle(
                                                       color: Colors.white),
@@ -149,7 +127,7 @@ class AbaAluno extends StatelessWidget {
                       Container(
                           width: 300, child: Divider(color: Colors.white)),
                       Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
+                        padding: EdgeInsets.only(top: 10, bottom: 10),
                         child: Row(
                           children: [
                             CircularProfileAvatar(
@@ -165,7 +143,7 @@ class AbaAluno extends StatelessWidget {
                             Stack(
                               children: [
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 10),
+                                  padding: EdgeInsets.only(left: 10),
                                   child: Text(
                                     "Artur Delgado",
                                     style: TextStyle(
@@ -175,22 +153,21 @@ class AbaAluno extends StatelessWidget {
                                   ),
                                 ),
                                 Padding(
-                                  padding:
-                                      const EdgeInsets.only(left: 10, top: 25),
+                                  padding: EdgeInsets.only(left: 10, top: 25),
                                   child: Text("arturdelgado@souunit.com.br",
                                       style: TextStyle(
                                           fontStyle: FontStyle.italic,
                                           color: Colors.white)),
                                 ),
                                 Container(
-                                  padding: const EdgeInsets.only(left: 250),
+                                  padding: EdgeInsets.only(left: 250),
                                   child: PopupMenuButton(
                                       // key: _menuKey,
                                       color: purpleSecudary,
                                       itemBuilder: (_) =>
                                           <PopupMenuItem<String>>[
                                             new PopupMenuItem<String>(
-                                                child: const Text(
+                                                child: Text(
                                                   'Editar',
                                                   style: TextStyle(
                                                     color: Colors.white,
@@ -199,7 +176,7 @@ class AbaAluno extends StatelessWidget {
                                                 ),
                                                 value: 'Editar'),
                                             new PopupMenuItem<String>(
-                                                child: const Text(
+                                                child: Text(
                                                   'Excluir',
                                                   style: TextStyle(
                                                       color: Colors.white),
