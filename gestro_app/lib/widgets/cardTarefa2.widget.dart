@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/smallButtonGestro.widget.dart';
 
-class CardTarefa extends StatelessWidget {
+class CardTarefa2 extends StatelessWidget {
   String textStatus;
   bool status;
   IconData icon;
+  // Container container;
 
-  CardTarefa({@required this.textStatus, this.status = false, this.icon});
+  CardTarefa2({@required this.textStatus, this.status = false, this.icon});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.35,
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.025,
         left: MediaQuery.of(context).size.height * 0.025,
@@ -22,20 +23,37 @@ class CardTarefa extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: EdgeInsets.only(
-              top: MediaQuery.of(context).size.height * 0.0,
-              left: MediaQuery.of(context).size.height * 0.025,
-              right: MediaQuery.of(context).size.height * 0.025,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  // crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                // crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 15, bottom: 5),
+                    child: Text(
+                      "Aplicativo de vendas",
+                      style: TextStyle(
+                        color: purpleSecudary,
+                        fontSize: MediaQuery.of(context).size.height * 0.03,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Divider(
+                color: Colors.black,
+              ),
+              Row(
+                // crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 20, top: 15),
+                    child: Text(
                       "Criação da tela de cadastro",
                       style: TextStyle(
                         color: purpleSecudary,
@@ -43,37 +61,15 @@ class CardTarefa extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 65),
-                      child: PopupMenuButton(
-                          // key: _menuKey,
-                          icon: Icon(
-                            Icons.more_vert,
-                            color: purpleSecudary,
-                          ),
-                          color: purpleSecudary,
-                          itemBuilder: (_) => <PopupMenuItem<String>>[
-                                new PopupMenuItem<String>(
-                                    child: const Text(
-                                      'Editar',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      // textAlign: TextAlign.center,
-                                    ),
-                                    value: 'Editar'),
-                                new PopupMenuItem<String>(
-                                    child: const Text(
-                                      'Excluir',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    value: 'Excluir'),
-                              ],
-                          onSelected: (_) {}),
-                    ),
-                  ],
-                ),
-                Row(
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 65),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 5, left: 20),
+                child: Row(
                   children: [
                     Text(
                       "Prazo: ",
@@ -92,11 +88,11 @@ class CardTarefa extends StatelessWidget {
                     ),
                   ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           Padding(
-            padding: const EdgeInsets.only(left: 15, top: 5),
+            padding: const EdgeInsets.only(left: 20, top: 5),
             child: Text(
               "On the other hand, we denounce with righteous indignation and dislike men who are so beguiledand demoralized by the.",
               style: TextStyle(
@@ -137,6 +133,7 @@ class CardTarefa extends StatelessWidget {
               ),
             ],
           ),
+          // this.container,
         ],
       ),
     );
