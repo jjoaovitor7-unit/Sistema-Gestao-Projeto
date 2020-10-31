@@ -53,6 +53,9 @@ class _BottomNavigationState extends State<BottomNavigation> {
         context,
         MaterialPageRoute(
           builder: (context) => AlunosPage(),
+        ),
+      );
+    }
 
     if (currentIndexSection == 4) {
       Navigator.pushReplacement(

@@ -49,10 +49,7 @@ class SelecionarAlunoPage extends StatelessWidget {
                 ),
                 child: Container(
                   child: Theme(
-                    data: Theme.of(context).copyWith(
-                        primaryColor: Colors.white,
-                        accentColor: Colors.white,
-                        brightness: Brightness.light),
+                    data: Theme.of(context).copyWith(primaryColor: Colors.white, accentColor: Colors.white, brightness: Brightness.light),
                     child: TextFormField(
                       style: TextStyle(fontSize: 20, color: Colors.white),
                       decoration: new InputDecoration(
@@ -81,22 +78,13 @@ class SelecionarAlunoPage extends StatelessWidget {
                         initials: "LC",
                       ),
                       Container(width: 300, child: Divider(color: Colors.white)),
-                      // CardAlunoGestro(
-                      //   name: "Artur Delgado",
-                      //   email: "arturdelgado@souunit.com.br",
-                      //   popMenu: false,
-                      //   initials: "AD",
-                      // ),
-                      Container(
-                          width: 300, child: Divider(color: Colors.white)),
                       CardAlunoGestro(
                         name: "Crislaine Santos de Macêdo",
                         email: "crislainesantos@souunit.com.br",
                         popMenu: false,
                         initials: "CM",
                       ),
-                      Container(
-                          width: 300, child: Divider(color: Colors.white)),
+                      Container(width: 300, child: Divider(color: Colors.white)),
                     ],
                   ),
                 ]),

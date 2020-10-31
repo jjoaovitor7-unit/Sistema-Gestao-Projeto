@@ -28,23 +28,19 @@ class _TarefaPageState extends State<TarefaPage> {
               ),
               fit: BoxFit.cover),
         ),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView(
-                children: [
-                  CardTarefa2(
-                    textStatus: "Executando",
-                    status: false,
-                  ),
-                  CardTarefa2(
-                    textStatus: "Executando",
-                    status: false,
-                  ),
-                ],
+        child: Expanded(
+          child: ListView(
+            children: [
+              CardTarefa2(
+                textStatus: "Executando",
+                status: false,
               ),
-            ),
-          ],
+              CardTarefa2(
+                textStatus: "Executando",
+                status: false,
+              ),
+            ],
+          ),
         ),
       ),
     );
