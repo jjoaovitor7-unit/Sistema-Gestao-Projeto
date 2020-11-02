@@ -36,7 +36,8 @@ class _CardTarefa2State extends State<CardTarefa2> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 10, left: 15, bottom: 5),
+                    padding:
+                        const EdgeInsets.only(top: 10, left: 15, bottom: 5),
                     child: Text(
                       "Aplicativo de vendas",
                       style: TextStyle(
@@ -99,7 +100,8 @@ class _CardTarefa2State extends State<CardTarefa2> {
             padding: const EdgeInsets.only(left: 20, top: 5),
             child: Text(
               "On the other hand, we denounce with righteous indignation and dislike men who are so beguiledand demoralized by the.",
-              style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.025),
+              style: TextStyle(
+                  fontSize: MediaQuery.of(context).size.height * 0.025),
               softWrap: true,
             ),
           ),
@@ -122,6 +124,11 @@ class _CardTarefa2State extends State<CardTarefa2> {
                     onChanged: (bool value) {
                       setState((() {
                         this.widget.status = value;
+                        if (this.widget.status == true) {
+                          widget.textStatus = "Concluída";
+                        } else {
+                          widget.textStatus = "Executando";
+                        }
                       }));
                     },
                   ),
@@ -129,7 +136,8 @@ class _CardTarefa2State extends State<CardTarefa2> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
+                margin: EdgeInsets.only(
+                    right: MediaQuery.of(context).size.width * 0.05),
                 child: SmallButtonGestro(
                   text: "LC",
                   icon: this.widget.icon,
@@ -137,7 +145,7 @@ class _CardTarefa2State extends State<CardTarefa2> {
               ),
             ],
           ),
-          // this.container,
+          // widget.container,
         ],
       ),
     );
