@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/smallButtonGestro.widget.dart';
 
-class CardTarefa2 extends StatelessWidget {
+class CardTarefa2 extends StatefulWidget {
   String textStatus;
   bool status;
   IconData icon;
@@ -10,6 +10,11 @@ class CardTarefa2 extends StatelessWidget {
 
   CardTarefa2({@required this.textStatus, this.status = false, this.icon});
 
+  @override
+  _CardTarefa2State createState() => _CardTarefa2State();
+}
+
+class _CardTarefa2State extends State<CardTarefa2> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -114,13 +119,15 @@ class CardTarefa2 extends StatelessWidget {
                   Checkbox(
                     activeColor: purpleSecudary,
                     checkColor: Colors.white,
-                    value: this.status,
+                    value: this.widget.status,
                     autofocus: true,
                     onChanged: (bool value) {
-                      value = true;
+                      setState((() {
+                        this.widget.status = value;
+                      }));
                     },
                   ),
-                  Text(this.textStatus),
+                  Text(this.widget.textStatus),
                 ],
               ),
               Container(
@@ -128,7 +135,7 @@ class CardTarefa2 extends StatelessWidget {
                     right: MediaQuery.of(context).size.width * 0.05),
                 child: SmallButtonGestro(
                   text: "LC",
-                  icon: this.icon,
+                  icon: this.widget.icon,
                 ),
               ),
             ],

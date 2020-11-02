@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
-class CardProjeto extends StatelessWidget {
+class CardProjeto extends StatefulWidget {
   Widget onTap;
+  bool status;
 
-  CardProjeto({this.onTap});
+  CardProjeto({this.onTap, this.status});
+
+  @override
+  _CardProjetoState createState() => _CardProjetoState();
+}
+
+class _CardProjetoState extends State<CardProjeto> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -12,7 +19,7 @@ class CardProjeto extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => this.onTap,
+            builder: (context) => this.widget.onTap,
           ),
         );
       },
@@ -98,10 +105,12 @@ class CardProjeto extends StatelessWidget {
                 Checkbox(
                   activeColor: purpleSecudary,
                   checkColor: Colors.white,
-                  value: true,
+                  value: this.widget.status,
                   autofocus: true,
                   onChanged: (bool value) {
-                    value = true;
+                    setState((() {
+                      this.widget.status = value;
+                    }));
                   },
                 ),
                 Text("0/0"),

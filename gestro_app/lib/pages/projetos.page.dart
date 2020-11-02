@@ -26,14 +26,16 @@ class ProjetosPage extends StatelessWidget {
         ),
         child: ListView(
           children: [
+            CardProjeto(onTap: DetalheProjeto(), status: true),
             CardProjeto(
-              onTap: DetalheProjeto(),
+              status: true,
             ),
-            CardProjeto(),
-            CardProjeto(),
-            CardProjeto(),
-            CardProjeto(),
-            CardProjeto(),
+            CardProjeto(
+              status: true,
+            ),
+            CardProjeto(status: true),
+            CardProjeto(status: true),
+            CardProjeto(status: true),
           ],
         ),
       ),
