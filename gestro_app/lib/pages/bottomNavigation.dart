@@ -3,6 +3,7 @@ import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:gestro_app/pages/alunos.page.dart';
 import 'package:gestro_app/pages/aprovacoes.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
+import 'package:gestro_app/pages/perfil.page.dart';
 import 'package:gestro_app/pages/projetos.page.dart';
 import 'package:gestro_app/pages/tarefas.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
@@ -52,6 +53,15 @@ class _BottomNavigationState extends State<BottomNavigation> {
         context,
         MaterialPageRoute(
           builder: (context) => AlunosPage(),
+        ),
+      );
+    }
+
+    if (currentIndexSection == 4) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PerfilPage(),
         ),
       );
     }
