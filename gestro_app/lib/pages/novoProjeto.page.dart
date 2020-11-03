@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/globals.dart';
 import 'package:gestro_app/pages/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
@@ -6,6 +8,21 @@ import 'package:gestro_app/widgets/inputGestro.widget.dart';
 import 'package:gestro_app/widgets/inputGestroGrande.widget.dart';
 
 class NovoProjetoPage extends StatelessWidget {
+  final firestoreInstance = FirebaseFirestore.instance;
+
+  dynamic myControllerNomeProjeto = TextEditingController();
+  dynamic myControllerDescProjeto = TextEditingController();
+  dynamic myControllerdataInicio = TextEditingController();
+  dynamic myControllerdataTermino = TextEditingController();
+
+  void newProject() {
+    firestoreInstance.collection("Projects").add({
+      "name": "${myControllerNomeProjeto.text}",
+      "description": "${myControllerDescProjeto.text}",
+      "startedAt": "${myControllerdataInicio.text}"
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,11 +63,29 @@ class NovoProjetoPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InputGestro(text: "Nome", icon: null),
-                  InputGestroGrande(text: "Descrição", icon: null),
-                  InputGestro(text: "Data de início", icon: null),
-                  InputGestro(text: "Data de Término", icon: null),
-                  ButtonGestro(text: "Salvar"),
+                  InputGestro(
+                      text: "Nome",
+                      icon: null,
+                      myController: myControllerNomeProjeto),
+                  InputGestroGrande(
+                    text: "Descrição",
+                    icon: null,
+                    myController: myControllerDescProjeto,
+                  ),
+                  InputGestro(
+                    text: "Data de início",
+                    icon: null,
+                    myController: myControllerdataInicio,
+                  ),
+                  InputGestro(
+                    text: "Data de Término",
+                    icon: null,
+                    myController: myControllerdataTermino,
+                  ),
+                  GestureDetector(
+                    onTap: () => newProject(),
+                    child: ButtonGestro(text: "Salvar"),
+                  ),
                   SizedBox(
                     height: MediaQuery.of(context).size.height * 0.02,
                   )
