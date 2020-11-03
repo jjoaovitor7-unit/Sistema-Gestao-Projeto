@@ -4,9 +4,9 @@ class TaskModel extends Equatable {
   final String id;
   final String name;
   final String description;
-  final String completationStatus;
-  final String deadline;
-  final String startedAt;
+  final bool completationStatus;
+  final DateTime deadline;
+  final DateTime startedAt;
   final String projectId;
 
   TaskModel({

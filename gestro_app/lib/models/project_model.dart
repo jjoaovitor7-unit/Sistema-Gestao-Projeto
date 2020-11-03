@@ -4,8 +4,8 @@ class ProjectModel extends Equatable {
   final String id;
   final String name;
   final String description;
-  final String startedAt;
-  final String activationStatus;
+  final DateTime startedAt;
+  final bool activationStatus;
 
   ProjectModel({
     this.id,

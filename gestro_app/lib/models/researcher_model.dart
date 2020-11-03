@@ -4,7 +4,7 @@ class ResearcherModel extends Equatable {
   final String id;
   final String type;
   final String curriculum;
-  final String activationStatus;
+  final bool activationStatus;
   final String userId;
 
   ResearcherModel({
