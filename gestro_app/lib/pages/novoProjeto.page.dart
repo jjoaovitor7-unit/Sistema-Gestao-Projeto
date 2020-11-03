@@ -83,7 +83,10 @@ class NovoProjetoPage extends StatelessWidget {
                     myController: myControllerdataTermino,
                   ),
                   GestureDetector(
-                    onTap: () => newProject(),
+                    onTap: () => {
+                      newProject(),
+                      Navigator.pop(context),
+                    },
                     child: ButtonGestro(text: "Salvar"),
                   ),
                   SizedBox(
