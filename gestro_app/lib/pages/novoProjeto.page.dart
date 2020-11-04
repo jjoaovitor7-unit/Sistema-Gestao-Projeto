@@ -19,7 +19,8 @@ class NovoProjetoPage extends StatelessWidget {
     firestoreInstance.collection("Projects").add({
       "name": "${myControllerNomeProjeto.text}",
       "description": "${myControllerDescProjeto.text}",
-      "startedAt": "${myControllerdataInicio.text}"
+      "startedAt": "${myControllerdataInicio.text}",
+      "activationStatu": false,
     });
   }
 
@@ -32,6 +33,7 @@ class NovoProjetoPage extends StatelessWidget {
       ),
       body: ListView(
         physics: NeverScrollableScrollPhysics(),
+        // padding: EdgeInsets.symmetric(horizontal: 35),
         children: [
           Container(
             decoration: BoxDecoration(
@@ -63,10 +65,7 @@ class NovoProjetoPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InputGestro(
-                      text: "Nome",
-                      icon: null,
-                      myController: myControllerNomeProjeto),
+                  InputGestro(text: "Nome", icon: null, myController: myControllerNomeProjeto),
                   InputGestroGrande(
                     text: "Descrição",
                     icon: null,
