@@ -14,7 +14,7 @@ class NovoAlunoPage extends StatelessWidget {
         title: "Alunos",
       ),
       body: ListView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: AlwaysScrollableScrollPhysics(),
         children: [
           Container(
             decoration: BoxDecoration(

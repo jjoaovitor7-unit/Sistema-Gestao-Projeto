@@ -32,7 +32,7 @@ class NovoProjetoPage extends StatelessWidget {
         title: "Projetos",
       ),
       body: ListView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: AlwaysScrollableScrollPhysics(),
         // padding: EdgeInsets.symmetric(horizontal: 35),
         children: [
           Container(
@@ -65,7 +65,10 @@ class NovoProjetoPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InputGestro(text: "Nome", icon: null, myController: myControllerNomeProjeto),
+                  InputGestro(
+                      text: "Nome",
+                      icon: null,
+                      myController: myControllerNomeProjeto),
                   InputGestroGrande(
                     text: "Descrição",
                     icon: null,

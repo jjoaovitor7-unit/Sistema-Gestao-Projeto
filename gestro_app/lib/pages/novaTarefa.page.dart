@@ -14,7 +14,7 @@ class NovaTarefaPage extends StatelessWidget {
         title: "Tarefa",
       ),
       body: ListView(
-        physics: NeverScrollableScrollPhysics(),
+        physics: AlwaysScrollableScrollPhysics(),
         children: [
           Container(
             decoration: BoxDecoration(
