@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestro_app/pages/bottomNavigation.dart';
+import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/cardTarefas.widget.dart';
@@ -42,7 +42,8 @@ class _AbaTarefaState extends State<AbaTarefa> {
                           "10",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Concluídas", style: TextStyle(color: Colors.white)),
+                        Text("Concluídas",
+                            style: TextStyle(color: Colors.white)),
                       ],
                     ),
                   ),
@@ -72,7 +73,8 @@ class _AbaTarefaState extends State<AbaTarefa> {
                           "05",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Executando", style: TextStyle(color: Colors.white))
+                        Text("Executando",
+                            style: TextStyle(color: Colors.white))
                       ],
                     ),
                   ),

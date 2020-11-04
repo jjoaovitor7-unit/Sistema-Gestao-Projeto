@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gestro_app/globals.dart';
-import 'package:gestro_app/pages/bottomNavigation.dart';
+import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/inputGestro.widget.dart';

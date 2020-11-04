@@ -5,7 +5,7 @@ import 'package:gestro_app/pages/novoAluno.page.dart';
 import 'package:gestro_app/pages/selecionarAluno.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
-import 'novaTarefa.page.dart';
+import '../novaTarefa.page.dart';
 
 class AbaProjeto extends StatelessWidget {
   Widget build(BuildContext context) {
