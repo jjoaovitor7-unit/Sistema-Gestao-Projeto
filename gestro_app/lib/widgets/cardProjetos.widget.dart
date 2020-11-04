@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
 class CardProjeto extends StatefulWidget {
   Widget onTap;
   bool status;
 
-  CardProjeto({this.onTap, this.status});
+  ProjectModel projectModel;
+
+  CardProjeto({
+    this.onTap,
+    this.status,
+    this.projectModel,
+  });
 
   @override
   _CardProjetoState createState() => _CardProjetoState();
@@ -48,7 +55,8 @@ class _CardProjetoState extends State<CardProjeto> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "Aplicativo de vendas",
+                        // "Aplicativo de vendas",
+                        this.widget.projectModel.name,
                         style: TextStyle(
                           color: purpleSecudary,
                           fontSize: MediaQuery.of(context).size.height * 0.025,
