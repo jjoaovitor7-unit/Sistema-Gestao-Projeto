@@ -2,7 +2,7 @@ import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:gestro_app/pages/bottomNavigation.dart';
+import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/pages/novaTarefa.page.dart';
 import 'package:gestro_app/pages/novoAluno.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
@@ -49,7 +49,10 @@ class SelecionarAlunoPage extends StatelessWidget {
                 ),
                 child: Container(
                   child: Theme(
-                    data: Theme.of(context).copyWith(primaryColor: Colors.white, accentColor: Colors.white, brightness: Brightness.light),
+                    data: Theme.of(context).copyWith(
+                        primaryColor: Colors.white,
+                        accentColor: Colors.white,
+                        brightness: Brightness.light),
                     child: TextFormField(
                       style: TextStyle(fontSize: 20, color: Colors.white),
                       decoration: new InputDecoration(
@@ -77,14 +80,16 @@ class SelecionarAlunoPage extends StatelessWidget {
                         popMenu: false,
                         initials: "LC",
                       ),
-                      Container(width: 300, child: Divider(color: Colors.white)),
+                      Container(
+                          width: 300, child: Divider(color: Colors.white)),
                       CardAlunoGestro(
                         name: "Crislaine Santos de Macêdo",
                         email: "crislainesantos@souunit.com.br",
                         popMenu: false,
                         initials: "CM",
                       ),
-                      Container(width: 300, child: Divider(color: Colors.white)),
+                      Container(
+                          width: 300, child: Divider(color: Colors.white)),
                     ],
                   ),
                 ]),

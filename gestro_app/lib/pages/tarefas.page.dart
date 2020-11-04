@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gestro_app/pages/bottomNavigation.dart';
+import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/cardTarefa2.widget.dart';

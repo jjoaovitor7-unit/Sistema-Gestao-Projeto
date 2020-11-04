@@ -4,7 +4,7 @@ import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 
-import 'bottomNavigation.dart';
+import 'package:gestro_app/widgets/bottomNavigation.dart';
 
 class PerfilPage extends StatelessWidget {
   @override
@@ -89,14 +89,16 @@ class PerfilPage extends StatelessWidget {
                       ),
                       Text(
                         "crislainesantos@souunit.com.br",
-                        style: TextStyle(fontStyle: FontStyle.italic, color: grey),
+                        style:
+                            TextStyle(fontStyle: FontStyle.italic, color: grey),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Text(
                         "linkedin.com/in/crislainesantos/",
-                        style: TextStyle(fontStyle: FontStyle.italic, color: purpleSecudary),
+                        style: TextStyle(
+                            fontStyle: FontStyle.italic, color: purpleSecudary),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.1,
@@ -120,7 +122,10 @@ class PerfilPage extends StatelessWidget {
                           child: Container(
                             child: Text(
                               "Atualizar dados",
-                              style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w400),
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400),
                             ),
                           ),
                         ),

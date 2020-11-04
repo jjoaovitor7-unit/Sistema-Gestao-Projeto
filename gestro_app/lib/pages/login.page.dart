@@ -5,7 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'package:gestro_app/pages/cadastro_screen.page.dart';
+import 'package:gestro_app/pages/cadastro.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';

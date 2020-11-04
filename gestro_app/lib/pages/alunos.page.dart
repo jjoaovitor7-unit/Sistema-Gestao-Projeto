@@ -2,7 +2,7 @@ import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
-import 'package:gestro_app/pages/bottomNavigation.dart';
+import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/pages/novaTarefa.page.dart';
 import 'package:gestro_app/pages/novoAluno.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
