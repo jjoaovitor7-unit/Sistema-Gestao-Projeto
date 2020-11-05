@@ -39,6 +39,8 @@ dependencies:
   firebase_core: ^0.5.0
   flutter_speed_dial: ^1.2.5
   fluttericon: ^1.0.7
+  intl: ^0.16.1
+  datetime_picker_formfield: ^1.0.0
 
 dev_dependencies:
   flutter_driver:
