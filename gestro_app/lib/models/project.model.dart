@@ -6,7 +6,7 @@ class ProjectModel extends Equatable {
   final String name;
   final String description;
   final Timestamp startedAt;
-  final bool activationStatus;
+  bool activationStatus;
 
   ProjectModel({
     // this.id,
