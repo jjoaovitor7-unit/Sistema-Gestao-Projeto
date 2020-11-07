@@ -28,7 +28,7 @@ class NovoProjetoPage extends StatelessWidget {
       "name": myControllerNomeProjeto.text,
       "description": myControllerDescProjeto.text,
       "startedAt": dataInicioProjeto,
-      "activationStatus": false,
+      "activationStatus": null,
     });
   }
 
@@ -159,13 +159,6 @@ class NovoProjetoPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () => {
                       newProject(),
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ProjetosPage(),
-                        ),
-                      ),
-                      Navigator.pop(context),
                       Navigator.pop(context),
                       Navigator.pushReplacement(
                         context,

@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/button2Gestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/smallButton2Gestro.widget.dart';
 import 'package:gestro_app/widgets/smallButtonGestro.widget.dart';
 
-class CardAprocao extends StatelessWidget {
+class CardAprovacao extends StatefulWidget {
+  ProjectModel projectModel;
+
+  CardAprovacao({this.projectModel});
+
+  @override
+  _CardAprovacaoState createState() => _CardAprovacaoState();
+}
+
+class _CardAprovacaoState extends State<CardAprovacao> {
+  bool rejeitarProjeto() {
+    return this.widget.projectModel.activationStatus = false;
+  }
+
+  bool aprovarProjeto() {
+    return this.widget.projectModel.activationStatus = true;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.532,
+      height: MediaQuery.of(context).size.height * 0.5,
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.015,
         left: MediaQuery.of(context).size.height * 0.024,
@@ -36,7 +54,7 @@ class CardAprocao extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Aplicativo de vendas",
+                      this.widget.projectModel.name,
                       style: TextStyle(
                         color: purpleSecudary,
                         fontSize: MediaQuery.of(context).size.height * 0.03,
@@ -70,12 +88,7 @@ class CardAprocao extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.025,
                 ),
                 Text(
-                  "App que funciona como um classificados de anúncios."
-                  "Ele já foi baixado por mais de 5 milhões de usuários, mas as suas vantagens vão além da sua popularidade."
-                  "O aplicativo possui um visual limpo e que lembra algumas redes sociais mais visuais."
-                  "O público pode curtir as ofertas publicadas, conversar e negociar com os vendedores e "
-                  "finalizar a compra no próprio app (via cartão de crédito)."
-                  "Mas o que chama a atenção mesmo, por enquanto, é o frete gratuito",
+                  this.widget.projectModel.description,
                   style: TextStyle(
                     color: grey,
                   ),
@@ -130,14 +143,14 @@ class CardAprocao extends StatelessWidget {
                   children: [
                     SmallButton2Gestro(
                       text: "Rejeitar",
-                      onTap: null,
+                      onTap: () => rejeitarProjeto(),
                     ),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.013,
                     ),
                     SmallButtonGestro(
                       text: "Aprovar",
-                      onTap: null,
+                      onTap: () => aprovarProjeto(),
                     )
                   ],
                 ),
