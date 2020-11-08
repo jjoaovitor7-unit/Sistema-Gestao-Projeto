@@ -1,14 +1,12 @@
 import 'package:equatable/equatable.dart';
 
 class ParticipationModel extends Equatable {
-  final String id;
   final String userId;
   final String taskId;
   final String projectId;
   final String researcherId;
 
   ParticipationModel({
-    this.id,
     this.userId,
     this.taskId,
     this.projectId,
@@ -17,7 +15,6 @@ class ParticipationModel extends Equatable {
 
   factory ParticipationModel.fromJson(Map<String, dynamic> json) {
     return ParticipationModel(
-      id: json['id'],
       userId: json['userId'],
       taskId: json['taskId'],
       projectId: json['projectId'],
@@ -28,7 +25,6 @@ class ParticipationModel extends Equatable {
   @override
   List<dynamic> get props {
     return <dynamic>[
-      this.id,
       this.userId,
       this.taskId,
       this.projectId,
@@ -38,7 +34,6 @@ class ParticipationModel extends Equatable {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
     data['userId'] = this.userId;
     data['taskId'] = this.taskId;
     data['projectId'] = this.projectId;
