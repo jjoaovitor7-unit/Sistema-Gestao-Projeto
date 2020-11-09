@@ -77,6 +77,7 @@ class _AprovacoesPageState extends State<AprovacoesPage> {
                             itemCount: snapshot.data.docs.length,
                             itemBuilder: (BuildContext context, int index) {
                               return CardAprovacao(
+                                index: index,
                                 projectModel: ProjectModel.fromJson(
                                     snapshot.data.docs[index].data()),
                               );
