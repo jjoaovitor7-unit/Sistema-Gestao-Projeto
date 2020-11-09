@@ -5,10 +5,10 @@ import 'package:gestro_app/themes/globals.themes.dart';
 
 class SmallButton2Gestro extends StatelessWidget {
   final String text;
-  final Function onTap;
+  Function onTap;
   final IconData icon;
 
-  const SmallButton2Gestro({@required this.text, @required this.onTap, this.icon});
+  SmallButton2Gestro({@required this.text, @required this.onTap, this.icon});
 
   @override
   Widget build(BuildContext context) {

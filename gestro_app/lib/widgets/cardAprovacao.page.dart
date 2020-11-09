@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
@@ -8,22 +9,15 @@ import 'package:gestro_app/widgets/smallButtonGestro.widget.dart';
 
 class CardAprovacao extends StatefulWidget {
   ProjectModel projectModel;
+  int index;
 
-  CardAprovacao({this.projectModel});
+  CardAprovacao({this.projectModel, @required this.index});
 
   @override
   _CardAprovacaoState createState() => _CardAprovacaoState();
 }
 
 class _CardAprovacaoState extends State<CardAprovacao> {
-  bool rejeitarProjeto() {
-    return this.widget.projectModel.activationStatus = false;
-  }
-
-  bool aprovarProjeto() {
-    return this.widget.projectModel.activationStatus = true;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -142,16 +136,40 @@ class _CardAprovacaoState extends State<CardAprovacao> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     SmallButton2Gestro(
-                      text: "Rejeitar",
-                      onTap: () => rejeitarProjeto(),
-                    ),
+                        text: "Rejeitar",
+                        onTap: () {
+                          // FirebaseFirestore.instance
+                          //     .collection('Projects')
+                          //     .where('activationStatus')
+                          //     .snapshots()
+                          //     .listen(
+                          //       (data) => FirebaseFirestore.instance
+                          //           .collection("Projects")
+                          //           .doc(data.docs[widget.index].id)
+                          //           .update({"activationStatus": false}),
+
+                          // print('${data.docs[widget.index]['activationStatus']}'),
+                          // );
+                        }),
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.013,
                     ),
                     SmallButtonGestro(
-                      text: "Aprovar",
-                      onTap: () => aprovarProjeto(),
-                    )
+                        text: "Aprovar",
+                        onTap: () {
+                          // FirebaseFirestore.instance
+                          //     .collection('Projects')
+                          //     .where('activationStatus')
+                          //     .snapshots()
+                          //     .listen(
+                          //       (data) => FirebaseFirestore.instance
+                          //           .collection("Projects")
+                          //           .doc(data.docs[widget.index].id)
+                          //           .update({"activationStatus": true}),
+
+                          // print('${data.docs[widget.index]['activationStatus']}'),
+                          // );
+                        }),
                   ],
                 ),
               ],
