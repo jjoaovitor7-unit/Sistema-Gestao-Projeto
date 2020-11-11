@@ -14,8 +14,7 @@ import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/cardProjetos.widget.dart';
 
 class ProjetosPage extends StatelessWidget {
-  CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('Projects');
+  CollectionReference collectionReference = FirebaseFirestore.instance.collection('Projects');
 
   Future<QuerySnapshot> getData() {
     final Completer<QuerySnapshot> c = new Completer();
@@ -40,8 +39,7 @@ class ProjetosPage extends StatelessWidget {
         ),
         child: FutureBuilder<QuerySnapshot>(
           future: getData(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             return snapshot.hasData
                 ? ListView.builder(
                     itemCount: snapshot.data.docs.length,
@@ -49,29 +47,13 @@ class ProjetosPage extends StatelessWidget {
                       return CardProjeto(
                         onTap: DetalheProjeto(),
                         status: true,
-                        projectModel: ProjectModel.fromJson(
-                            snapshot.data.docs[index].data()),
+                        projectModel: ProjectModel.fromJson(snapshot.data.docs[index].data()),
                       );
                     },
                   )
                 : CircularProgressIndicator();
           },
         ),
-        // children: [
-        //   CardProjeto(
-        //     onTap: DetalheProjeto(),
-        //     status: true,
-        //   ),
-        //   CardProjeto(
-        //     status: true,
-        //   ),
-        //   CardProjeto(
-        //     status: true,
-        //   ),
-        //   CardProjeto(status: true),
-        //   CardProjeto(status: true),
-        //   CardProjeto(status: true),
-        // ],
       ),
       floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,

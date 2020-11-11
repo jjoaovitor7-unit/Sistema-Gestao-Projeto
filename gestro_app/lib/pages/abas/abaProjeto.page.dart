@@ -1,13 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/pages/novoAluno.page.dart';
 import 'package:gestro_app/pages/selecionarAluno.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
 import '../novaTarefa.page.dart';
 
-class AbaProjeto extends StatelessWidget {
+class AbaProjeto extends StatefulWidget {
+  ProjectModel projectModel;
+
+  AbaProjeto({this.projectModel});
+
+  @override
+  _AbaProjetoState createState() => _AbaProjetoState();
+}
+
+class _AbaProjetoState extends State<AbaProjeto> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: SpeedDial(
@@ -83,15 +93,12 @@ class AbaProjeto extends StatelessWidget {
               ),
               child: Text(
                 "Aplicativo de vendas",
-                style: TextStyle(
-                    color: Colors.purple,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold),
+                // this.widget.projectModel.name,
+                style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 20, left: 35, right: 35, bottom: 20),
+              padding: const EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
               child: Text(
                 "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensure; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases",
                 style: TextStyle(
@@ -109,10 +116,7 @@ class AbaProjeto extends StatelessWidget {
                     children: [
                       Text(
                         "Pesquisador: ",
-                        style: TextStyle(
-                            color: Colors.purple,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "Dr. Fabio Gomes Rocha",
@@ -124,10 +128,7 @@ class AbaProjeto extends StatelessWidget {
                     children: [
                       Text(
                         "Data de Início: ",
-                        style: TextStyle(
-                            color: Colors.purple,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         "10/08/2020",
@@ -140,10 +141,7 @@ class AbaProjeto extends StatelessWidget {
                       children: [
                         Text(
                           "Data de Término: ",
-                          style: TextStyle(
-                              color: Colors.purple,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           "15/09/2020",

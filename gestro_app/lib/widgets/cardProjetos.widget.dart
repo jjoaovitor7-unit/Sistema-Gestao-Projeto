@@ -93,7 +93,11 @@ class _CardProjetoState extends State<CardProjeto> {
                   Row(
                     children: [
                       Text(
-                        "Projeto de Rejeitado",
+                        this.widget.projectModel.activationStatus == null
+                            ? "Projeto Aguardando Aprovação"
+                            : this.widget.projectModel.activationStatus == true
+                                ? "Projeto em execução"
+                                : "Projeto rejeitado",
                         style: TextStyle(
                           fontStyle: FontStyle.italic,
                         ),
