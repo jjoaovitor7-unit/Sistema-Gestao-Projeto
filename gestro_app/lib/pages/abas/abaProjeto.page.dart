@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
@@ -12,14 +15,25 @@ import '../novaTarefa.page.dart';
 
 class AbaProjeto extends StatefulWidget {
   ProjectModel projectModel;
-
-  AbaProjeto({this.projectModel});
+  int index;
+  AbaProjeto({this.projectModel, this.index});
 
   @override
   _AbaProjetoState createState() => _AbaProjetoState();
 }
 
 class _AbaProjetoState extends State<AbaProjeto> {
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('Projects');
+
+  Future<QuerySnapshot> getData() {
+    final Completer<QuerySnapshot> c = new Completer();
+    collectionReference.snapshots().listen((data) {
+      c.complete(Future.value(data));
+    });
+    return c.future;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: SpeedDial(
@@ -86,15 +100,29 @@ class _AbaProjetoState extends State<AbaProjeto> {
               fit: BoxFit.cover),
         ),
         // margin: EdgeInsets.symmetric(horizontal: 20),
-        child: DetalheProjetoGestro(
-          titleText: "Gestro",
-          // this.widget.projectModel.name,
-          descText:
-              "On the other hand, we denounce with righteous indignation and dislike men who are so beguiled and demoralized by the charms of pleasure of the moment, so blinded by desire, that they cannot foresee the pain and trouble that are bound to ensure; and equal blame belongs to those who fail in their duty through weakness of will, which is the same as saying through shrinking from toil and pain. These cases",
-          pesquisador: "Dr. Fabio Gomes Rocha",
-          dataInicio: new DateTime.utc(2020, 08, 10),
-          dataTermino: new DateTime.utc(2020, 09, 15),
-        ),
+        child: FutureBuilder(
+            future: getData(),
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+              return snapshot.hasData
+                  ? DetalheProjetoGestro(
+                      titleText: ProjectModel.fromJson(
+                              snapshot.data.docs[widget.index].data())
+                          .name,
+                      // this.widget.projectModel.name,
+                      descText: ProjectModel.fromJson(
+                              snapshot.data.docs[widget.index].data())
+                          .description,
+                      pesquisador: ProjectModel.fromJson(
+                              snapshot.data.docs[widget.index].data())
+                          .name
+                          .toString(),
+                      dataInicio: ProjectModel.fromJson(
+                              snapshot.data.docs[widget.index].data())
+                          .startedAt,
+                    )
+                  : CircularProgressIndicator();
+            }),
       ),
     );
   }
