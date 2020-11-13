@@ -8,6 +8,10 @@ import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'aprovacoes.page.dart';
 
 class DetalheProjeto extends StatefulWidget {
+  int index;
+
+  DetalheProjeto({this.index});
+
   @override
   _DetalheProjetoState createState() => _DetalheProjetoState();
 }
@@ -63,7 +67,9 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
         body: TabBarView(
           children: [
             Container(
-              child: AbaProjeto(),
+              child: AbaProjeto(
+                index: widget.index,
+              ),
             ),
             Container(
               child: AbaTarefa(),

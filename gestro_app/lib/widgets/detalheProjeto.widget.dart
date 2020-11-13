@@ -1,18 +1,19 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class DetalheProjetoGestro extends StatelessWidget {
   String titleText;
   String descText;
   String pesquisador;
-  DateTime dataInicio;
-  DateTime dataTermino;
+  Timestamp dataInicio;
+  Timestamp dataTermino;
 
   DetalheProjetoGestro(
       {@required this.titleText,
       @required this.descText,
       @required this.pesquisador,
       @required this.dataInicio,
-      @required this.dataTermino});
+      this.dataTermino});
 
   @override
   Widget build(BuildContext context) {
@@ -74,11 +75,11 @@ class DetalheProjetoGestro extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    this.dataInicio.day.toString() +
+                    this.dataInicio.toDate().day.toString() +
                         "/" +
-                        this.dataInicio.month.toString() +
+                        this.dataInicio.toDate().month.toString() +
                         "/" +
-                        this.dataInicio.year.toString(),
+                        this.dataInicio.toDate().year.toString(),
                     style: TextStyle(color: Colors.purple, fontSize: 20),
                   ),
                 ],
@@ -93,14 +94,14 @@ class DetalheProjetoGestro extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      this.dataTermino.day.toString() +
-                          "/" +
-                          this.dataTermino.month.toString() +
-                          "/" +
-                          this.dataTermino.year.toString(),
-                      style: TextStyle(color: Colors.purple, fontSize: 20),
-                    ),
+                    // Text(
+                    //   this.dataTermino.toDate().day.toString() +
+                    //       "/" +
+                    //       this.dataTermino.toDate().month.toString() +
+                    //       "/" +
+                    //       this.dataTermino.toDate().year.toString(),
+                    //   style: TextStyle(color: Colors.purple, fontSize: 20),
+                    // ),
                   ],
                 ),
               ),
