@@ -17,7 +17,7 @@ class _CardTarefaState extends State<CardTarefa> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.3,
+      height: MediaQuery.of(context).size.height * 0.33,
       margin: EdgeInsets.only(
         top: MediaQuery.of(context).size.height * 0.025,
         left: MediaQuery.of(context).size.height * 0.025,
@@ -49,7 +49,7 @@ class _CardTarefaState extends State<CardTarefa> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.only(left: 65),
+                      padding: const EdgeInsets.only(left: 15),
                       child: PopupMenuButton(
                           // key: _menuKey,
                           icon: Icon(
@@ -104,8 +104,7 @@ class _CardTarefaState extends State<CardTarefa> {
             padding: const EdgeInsets.only(left: 15, top: 5),
             child: Text(
               "On the other hand, we denounce with righteous indignation and dislike men who are so beguiledand demoralized by the.",
-              style: TextStyle(
-                  fontSize: MediaQuery.of(context).size.height * 0.025),
+              style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.025),
               softWrap: true,
             ),
           ),
@@ -135,8 +134,7 @@ class _CardTarefaState extends State<CardTarefa> {
                 ],
               ),
               Container(
-                margin: EdgeInsets.only(
-                    right: MediaQuery.of(context).size.width * 0.05),
+                margin: EdgeInsets.only(right: MediaQuery.of(context).size.width * 0.05),
                 child: SmallButtonGestro(
                   text: "LC",
                   icon: this.widget.icon,

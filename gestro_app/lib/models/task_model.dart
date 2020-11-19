@@ -6,7 +6,7 @@ class TaskModel extends Equatable {
   final String description;
   final bool completationStatus;
   final Timestamp deadline;
-  final Timestamp startedAt;
+  // final Timestamp startedAt;
   final String projectId;
 
   TaskModel({
@@ -14,7 +14,7 @@ class TaskModel extends Equatable {
     this.description,
     this.completationStatus,
     this.deadline,
-    this.startedAt,
+    // this.startedAt,
     this.projectId,
   });
 
@@ -24,7 +24,7 @@ class TaskModel extends Equatable {
       description: json['description'],
       completationStatus: json['completationStatus'],
       deadline: json['deadline'],
-      startedAt: json['startedAt'],
+      // startedAt: json['startedAt'],
       projectId: json['projectId'],
     );
   }
@@ -36,7 +36,7 @@ class TaskModel extends Equatable {
       this.description,
       this.completationStatus,
       this.deadline,
-      this.startedAt,
+      // this.startedAt,
       this.projectId,
     ];
   }
@@ -47,7 +47,7 @@ class TaskModel extends Equatable {
     data['description'] = this.description;
     data['completationStatus'] = this.completationStatus;
     data['deadline'] = this.deadline;
-    data['startedAt'] = this.startedAt;
+    // data['startedAt'] = this.startedAt;
     data['projectId'] = this.projectId;
     return data;
   }
