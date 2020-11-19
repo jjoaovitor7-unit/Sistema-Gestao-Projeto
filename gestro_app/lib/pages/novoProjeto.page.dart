@@ -18,6 +18,7 @@ class NovoProjetoPage extends StatelessWidget {
   dynamic myControllerDescProjeto = TextEditingController();
   dynamic myControllerdataInicio = TextEditingController();
   dynamic myControllerdataTermino = TextEditingController();
+  dynamic myControllerdataPesquisador = TextEditingController();
 
   final format = DateFormat("yyyy-MM-dd HH:mm");
   dynamic dataInicioProjeto;
@@ -28,6 +29,7 @@ class NovoProjetoPage extends StatelessWidget {
       "name": myControllerNomeProjeto.text,
       "description": myControllerDescProjeto.text,
       "startedAt": dataInicioProjeto,
+      "endDate": dataTerminoProjeto,
       "activationStatus": null,
     });
   }
@@ -73,10 +75,7 @@ class NovoProjetoPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InputGestro(
-                      text: "Nome",
-                      icon: null,
-                      myController: myControllerNomeProjeto),
+                  InputGestro(text: "Nome", icon: null, myController: myControllerNomeProjeto),
                   InputGestroGrande(
                     text: "Descrição",
                     icon: null,
@@ -99,8 +98,7 @@ class NovoProjetoPage extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: "Data de Início",
                               hintStyle: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.032,
+                                fontSize: MediaQuery.of(context).size.height * 0.032,
                                 color: Colors.white,
                               ),
                               border: InputBorder.none,
@@ -136,8 +134,7 @@ class NovoProjetoPage extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: "Data de Término",
                             hintStyle: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.032,
+                              fontSize: MediaQuery.of(context).size.height * 0.032,
                               color: Colors.white,
                             ),
                             border: InputBorder.none,

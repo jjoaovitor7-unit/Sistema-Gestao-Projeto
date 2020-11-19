@@ -11,7 +11,7 @@ class CardAprovacao extends StatefulWidget {
   ProjectModel projectModel;
   int index;
 
-  CardAprovacao({this.projectModel, @required this.index});
+  CardAprovacao({@required this.projectModel, @required this.index});
 
   @override
   _CardAprovacaoState createState() => _CardAprovacaoState();

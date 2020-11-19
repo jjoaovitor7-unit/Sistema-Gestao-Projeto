@@ -8,12 +8,7 @@ class DetalheProjetoGestro extends StatelessWidget {
   Timestamp dataInicio;
   Timestamp dataTermino;
 
-  DetalheProjetoGestro(
-      {@required this.titleText,
-      @required this.descText,
-      @required this.pesquisador,
-      @required this.dataInicio,
-      this.dataTermino});
+  DetalheProjetoGestro({this.titleText, this.descText, this.pesquisador, this.dataInicio, this.dataTermino});
 
   @override
   Widget build(BuildContext context) {
@@ -27,16 +22,12 @@ class DetalheProjetoGestro extends StatelessWidget {
             alignment: Alignment(0.0, 0.0),
             child: Text(
               this.titleText,
-              style: TextStyle(
-                  color: Colors.purple,
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold),
+              style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
             ),
           ),
         ),
         Padding(
-          padding:
-              const EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
+          padding: const EdgeInsets.only(top: 20, left: 35, right: 35, bottom: 20),
           child: Text(
             this.descText,
             style: TextStyle(
@@ -54,10 +45,7 @@ class DetalheProjetoGestro extends StatelessWidget {
                 children: [
                   Text(
                     "Pesquisador: ",
-                    style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     this.pesquisador,
@@ -69,10 +57,7 @@ class DetalheProjetoGestro extends StatelessWidget {
                 children: [
                   Text(
                     "Data de Início: ",
-                    style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
                     this.dataInicio.toDate().day.toString() +
@@ -89,10 +74,7 @@ class DetalheProjetoGestro extends StatelessWidget {
                   children: [
                     Text(
                       "Data de Término: ",
-                      style: TextStyle(
-                          color: Colors.purple,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                      style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                     // Text(
                     //   this.dataTermino.toDate().day.toString() +

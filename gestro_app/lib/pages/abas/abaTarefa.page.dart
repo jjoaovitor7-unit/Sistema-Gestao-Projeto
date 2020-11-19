@@ -1,16 +1,41 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/task_model.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/cardTarefas.widget.dart';
+import 'package:gestro_app/models/project.model.dart';
 
 class AbaTarefa extends StatefulWidget {
+  final ProjectModel projectModel;
+  AbaTarefa({
+    @required this.projectModel,
+  });
   @override
   _AbaTarefaState createState() => _AbaTarefaState();
 }
 
 class _AbaTarefaState extends State<AbaTarefa> {
   int _value = 1;
+
+  List<TaskModel> tarefas;
+
+  @override
+  void initState() {
+    super.initState();
+    tarefas = [];
+    widget.projectModel.idProject.collection('Tasks').get().then((snapshot) {
+      if (snapshot.docs.isNotEmpty) {
+        var t = List<TaskModel>.from(snapshot.docs.map((element) {
+          return TaskModel.fromJson(element.data());
+        }));
+        setState(() {
+          tarefas = t;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -162,17 +187,15 @@ class _AbaTarefaState extends State<AbaTarefa> {
               ),
             ),
             Expanded(
-              child: ListView(
-                children: [
-                  CardTarefa(
+              child: ListView.builder(
+                itemCount: tarefas.length,
+                itemBuilder: (context, index) {
+                  return CardTarefa(
                     textStatus: "Concluída",
                     status: true,
-                  ),
-                  CardTarefa(
-                    textStatus: "Criada",
-                    status: false,
-                  ),
-                ],
+                    model: tarefas[index],
+                  );
+                },
               ),
             ),
           ],

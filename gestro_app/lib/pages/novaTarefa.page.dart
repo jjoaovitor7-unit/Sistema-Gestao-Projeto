@@ -49,7 +49,12 @@ class NovaTarefaPage extends StatelessWidget {
                   InputGestro(text: "Nome", icon: null),
                   InputGestro(text: "Prazo", icon: null),
                   InputGestroGrande(text: "Descrição", icon: null),
-                  ButtonGestro(text: "Salvar"),
+                  GestureDetector(
+                    onTap: () {},
+                    child: ButtonGestro(
+                      text: "Salvar",
+                    ),
+                  ),
                 ],
               ),
             ),

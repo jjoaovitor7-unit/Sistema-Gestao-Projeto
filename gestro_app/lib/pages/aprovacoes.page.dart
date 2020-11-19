@@ -19,8 +19,7 @@ class AprovacoesPage extends StatefulWidget {
 }
 
 class _AprovacoesPageState extends State<AprovacoesPage> {
-  CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('Projects');
+  CollectionReference collectionReference = FirebaseFirestore.instance.collection('Projects');
 
   Future<QuerySnapshot> getData() {
     final Completer<QuerySnapshot> c = new Completer();
@@ -37,8 +36,7 @@ class _AprovacoesPageState extends State<AprovacoesPage> {
       child: Scaffold(
           bottomNavigationBar: BottomNavigation(),
           appBar: PreferredSize(
-            preferredSize:
-                Size.fromHeight(MediaQuery.of(context).size.height * 0.16),
+            preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.16),
             child: AppBarGestro(
               title: "Aprovações",
               tabBar: true,
@@ -70,8 +68,7 @@ class _AprovacoesPageState extends State<AprovacoesPage> {
                 ),
                 child: FutureBuilder<QuerySnapshot>(
                   future: getData(),
-                  builder: (BuildContext context,
-                      AsyncSnapshot<QuerySnapshot> snapshot) {
+                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
                     return snapshot.hasData
                         ? ListView.builder(
                             itemCount: snapshot.data.docs.length,
@@ -79,7 +76,9 @@ class _AprovacoesPageState extends State<AprovacoesPage> {
                               return CardAprovacao(
                                 index: index,
                                 projectModel: ProjectModel.fromJson(
-                                    snapshot.data.docs[index].data()),
+                                  snapshot.data.docs[index].data(),
+                                  snapshot.data.docs[index].reference,
+                                ),
                               );
                             },
                           )
