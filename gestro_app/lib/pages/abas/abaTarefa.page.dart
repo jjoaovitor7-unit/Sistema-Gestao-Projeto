@@ -30,10 +30,16 @@ class _AbaTarefaState extends State<AbaTarefa> {
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(top: 25, left: 10),
-              height: MediaQuery.of(context).size.height * 0.11,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              // color: Colors.red,
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(top: 25, left: 0),
+              // padding: EdgeInsets.only(right: 10),
+              height: MediaQuery.of(context).size.height * 0.13,
+              // width: MediaQuery.of(context).size.width * 0.9,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     child: Column(
@@ -42,8 +48,7 @@ class _AbaTarefaState extends State<AbaTarefa> {
                           "10",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Concluídas",
-                            style: TextStyle(color: Colors.white)),
+                        Text("Concluídas", style: TextStyle(color: Colors.white)),
                       ],
                     ),
                   ),
@@ -73,8 +78,7 @@ class _AbaTarefaState extends State<AbaTarefa> {
                           "05",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Executando",
-                            style: TextStyle(color: Colors.white))
+                        Text("Executando", style: TextStyle(color: Colors.white))
                       ],
                     ),
                   ),
