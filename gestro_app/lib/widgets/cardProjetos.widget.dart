@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gestro_app/models/project.model.dart';
+import 'package:gestro_app/pages/detalheProjeto.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
 class CardProjeto extends StatefulWidget {
@@ -11,7 +12,7 @@ class CardProjeto extends StatefulWidget {
   CardProjeto({
     this.onTap,
     this.status,
-    this.projectModel,
+    @required this.projectModel,
   });
 
   @override
@@ -26,7 +27,9 @@ class _CardProjetoState extends State<CardProjeto> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => this.widget.onTap,
+            builder: (context) => DetalheProjeto(
+              projectModel: this.widget.projectModel,
+            ),
           ),
         );
       },

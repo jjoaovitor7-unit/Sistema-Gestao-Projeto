@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/task_model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/smallButtonGestro.widget.dart';
 
@@ -6,8 +7,14 @@ class CardTarefa extends StatefulWidget {
   String textStatus;
   bool status;
   IconData icon;
+  TaskModel model;
 
-  CardTarefa({@required this.textStatus, this.status = false, this.icon});
+  CardTarefa({
+    @required this.textStatus,
+    this.status = false,
+    this.icon,
+    @required this.model,
+  });
 
   @override
   _CardTarefaState createState() => _CardTarefaState();
@@ -41,7 +48,7 @@ class _CardTarefaState extends State<CardTarefa> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Criação da tela de cadastro",
+                      widget.model.name,
                       style: TextStyle(
                         color: purpleSecudary,
                         fontSize: MediaQuery.of(context).size.height * 0.025,
@@ -89,7 +96,7 @@ class _CardTarefaState extends State<CardTarefa> {
                       ),
                     ),
                     Text(
-                      "10/08/2020",
+                      "this.widget.model.deadline",
                       style: TextStyle(
                         color: purpleSecudary,
                         fontSize: MediaQuery.of(context).size.height * 0.025,
@@ -103,7 +110,7 @@ class _CardTarefaState extends State<CardTarefa> {
           Padding(
             padding: const EdgeInsets.only(left: 15, top: 5),
             child: Text(
-              "On the other hand, we denounce with righteous indignation and dislike men who are so beguiledand demoralized by the.",
+              this.widget.model.description,
               style: TextStyle(fontSize: MediaQuery.of(context).size.height * 0.025),
               softWrap: true,
             ),

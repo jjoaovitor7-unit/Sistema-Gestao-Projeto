@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/pages/abas/abaAlunos.page.dart';
 import 'package:gestro_app/pages/abas/abaProjeto.page.dart';
 import 'package:gestro_app/pages/abas/abaTarefa.page.dart';
@@ -9,8 +10,9 @@ import 'aprovacoes.page.dart';
 
 class DetalheProjeto extends StatefulWidget {
   int index;
+  ProjectModel projectModel;
 
-  DetalheProjeto({this.index});
+  DetalheProjeto({this.index, this.projectModel});
 
   @override
   _DetalheProjetoState createState() => _DetalheProjetoState();
@@ -29,8 +31,7 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
       child: Scaffold(
         bottomNavigationBar: BottomNavigation(),
         appBar: PreferredSize(
-          preferredSize:
-              Size.fromHeight(MediaQuery.of(context).size.height * 0.16),
+          preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.16),
           child: AppBarGestro(
             title: "Projeto",
             tabBar: true,
@@ -69,13 +70,18 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
             Container(
               child: AbaProjeto(
                 index: widget.index,
+                projectModel: this.widget.projectModel,
               ),
             ),
             Container(
-              child: AbaTarefa(),
+              child: AbaTarefa(
+                projectModel: this.widget.projectModel,
+              ),
             ),
             Container(
-              child: AbaAluno(),
+              child: AbaAluno(
+                  // projectModel: this.widget.projectModel,
+                  ),
             ),
           ],
         ),

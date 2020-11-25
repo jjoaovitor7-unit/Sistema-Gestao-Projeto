@@ -13,9 +13,13 @@ import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/cardProjetos.widget.dart';
 
-class ProjetosPage extends StatelessWidget {
-  CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('Projects');
+class ProjetosPage extends StatefulWidget {
+  @override
+  _ProjetosPageState createState() => _ProjetosPageState();
+}
+
+class _ProjetosPageState extends State<ProjetosPage> {
+  CollectionReference collectionReference = FirebaseFirestore.instance.collection('Projects');
 
   Future<QuerySnapshot> getData() {
     final Completer<QuerySnapshot> c = new Completer();
@@ -40,19 +44,20 @@ class ProjetosPage extends StatelessWidget {
         ),
         child: FutureBuilder<QuerySnapshot>(
           future: getData(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             return snapshot.hasData
                 ? ListView.builder(
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (BuildContext context, int index) {
                       return CardProjeto(
-                        onTap: DetalheProjeto(
-                          index: index,
-                        ),
+                        // onTap: DetalheProjeto(
+                        //   index: index,
+                        // ),
                         status: true,
                         projectModel: ProjectModel.fromJson(
-                            snapshot.data.docs[index].data()),
+                          snapshot.data.docs[index].data(),
+                          snapshot.data.docs[index].reference,
+                        ),
                       );
                     },
                   )
