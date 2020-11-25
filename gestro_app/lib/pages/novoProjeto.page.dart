@@ -29,6 +29,7 @@ class NovoProjetoPage extends StatelessWidget {
       "description": myControllerDescProjeto.text,
       "startedAt": dataInicioProjeto,
       "activationStatus": null,
+      "endedAt": dataTerminoProjeto,
     });
   }
 

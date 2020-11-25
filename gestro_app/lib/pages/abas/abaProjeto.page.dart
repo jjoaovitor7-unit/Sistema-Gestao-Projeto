@@ -120,6 +120,9 @@ class _AbaProjetoState extends State<AbaProjeto> {
                       dataInicio: ProjectModel.fromJson(
                               snapshot.data.docs[widget.index].data())
                           .startedAt,
+                      dataTermino: ProjectModel.fromJson(
+                              snapshot.data.docs[widget.index].data())
+                          .endedAt,
                     )
                   : CircularProgressIndicator();
             }),

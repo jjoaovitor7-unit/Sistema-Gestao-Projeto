@@ -13,7 +13,7 @@ class DetalheProjetoGestro extends StatelessWidget {
       @required this.descText,
       @required this.pesquisador,
       @required this.dataInicio,
-      this.dataTermino});
+      @required this.dataTermino});
 
   @override
   Widget build(BuildContext context) {
@@ -94,14 +94,14 @@ class DetalheProjetoGestro extends StatelessWidget {
                           fontSize: 20,
                           fontWeight: FontWeight.bold),
                     ),
-                    // Text(
-                    //   this.dataTermino.toDate().day.toString() +
-                    //       "/" +
-                    //       this.dataTermino.toDate().month.toString() +
-                    //       "/" +
-                    //       this.dataTermino.toDate().year.toString(),
-                    //   style: TextStyle(color: Colors.purple, fontSize: 20),
-                    // ),
+                    Text(
+                      this.dataTermino.toDate().day.toString() +
+                          "/" +
+                          this.dataTermino.toDate().month.toString() +
+                          "/" +
+                          this.dataTermino.toDate().year.toString(),
+                      style: TextStyle(color: Colors.purple, fontSize: 20),
+                    ),
                   ],
                 ),
               ),
