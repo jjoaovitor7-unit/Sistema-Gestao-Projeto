@@ -18,7 +18,7 @@ class NovoProjetoPage extends StatelessWidget {
   dynamic myControllerDescProjeto = TextEditingController();
   dynamic myControllerdataInicio = TextEditingController();
   dynamic myControllerdataTermino = TextEditingController();
-  dynamic myControllerdataPesquisador = TextEditingController();
+  dynamic myControllerPesquisador = TextEditingController();
 
   final format = DateFormat("yyyy-MM-dd HH:mm");
   dynamic dataInicioProjeto;
@@ -28,8 +28,8 @@ class NovoProjetoPage extends StatelessWidget {
     firestoreInstance.collection("Projects").add({
       "name": myControllerNomeProjeto.text,
       "description": myControllerDescProjeto.text,
+      "pesquisador": myControllerPesquisador.text,
       "startedAt": dataInicioProjeto,
-      "endDate": dataTerminoProjeto,
       "activationStatus": null,
       "endedAt": dataTerminoProjeto,
     });
@@ -76,12 +76,19 @@ class NovoProjetoPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InputGestro(text: "Nome", icon: null, myController: myControllerNomeProjeto),
+                  InputGestro(
+                      text: "Nome",
+                      icon: null,
+                      myController: myControllerNomeProjeto),
                   InputGestroGrande(
                     text: "Descrição",
                     icon: null,
                     myController: myControllerDescProjeto,
                   ),
+                  InputGestro(
+                      text: "Nome do Pesquisador",
+                      icon: null,
+                      myController: myControllerPesquisador),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
@@ -99,7 +106,8 @@ class NovoProjetoPage extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: "Data de Início",
                               hintStyle: TextStyle(
-                                fontSize: MediaQuery.of(context).size.height * 0.032,
+                                fontSize:
+                                    MediaQuery.of(context).size.height * 0.032,
                                 color: Colors.white,
                               ),
                               border: InputBorder.none,
@@ -135,7 +143,8 @@ class NovoProjetoPage extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: "Data de Término",
                             hintStyle: TextStyle(
-                              fontSize: MediaQuery.of(context).size.height * 0.032,
+                              fontSize:
+                                  MediaQuery.of(context).size.height * 0.032,
                               color: Colors.white,
                             ),
                             border: InputBorder.none,

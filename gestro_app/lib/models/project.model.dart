@@ -8,33 +8,34 @@ class ProjectModel extends Equatable {
   final Timestamp startedAt;
   // final Timestamp endDate;
   final bool activationStatus;
+  String pesquisador;
 
   final DocumentReference idProject;
   final Timestamp endedAt;
 
-  ProjectModel({
-    this.name,
-    // this.nameResearchers,
-    this.description,
-    this.startedAt,
-    this.activationStatus,
-    // this.endDate,
-    this.idProject,
-    this.endedAt
-  });
+  ProjectModel(
+      {this.name,
+      // this.nameResearchers,
+      this.description,
+      this.startedAt,
+      this.activationStatus,
+      // this.endDate,
+      this.idProject,
+      this.endedAt,
+      this.pesquisador});
 
-  factory ProjectModel.fromJson(Map<String, dynamic> json, DocumentReference id) {
+  factory ProjectModel.fromJson(
+      Map<String, dynamic> json, DocumentReference id) {
     return ProjectModel(
+        name: json['name'],
+        // nameResearchers: json['researchers'],
 
-      name: json['name'],
-      // nameResearchers: json['researchers'],
-      description: json['description'],
-      startedAt: json['startedAt'],
-      // endDate: json['endDate'],
-      activationStatus: json['activationStatus'],
-      idProject: id,
-      endedAt: json['endedAt']
-    );
+        description: json['description'],
+        startedAt: json['startedAt'],
+        activationStatus: json['activationStatus'],
+        idProject: id,
+        endedAt: json['endedAt'],
+        pesquisador: json['pesquisador']);
   }
 
   @override
@@ -44,9 +45,9 @@ class ProjectModel extends Equatable {
       this.description,
       this.startedAt,
       this.activationStatus,
-      this.endedAt
+      this.endedAt,
+      this.pesquisador
     ];
-
   }
 
   Map<String, dynamic> toJson() {
@@ -55,9 +56,9 @@ class ProjectModel extends Equatable {
     data['researchers'] = this.name;
     data['description'] = this.description;
     data['startedAt'] = this.startedAt;
-    data['endDate'] = this.startedAt;
     data['activationStatus'] = this.activationStatus;
     data['endedAt'] = this.endedAt;
+    data['pesquisador'] = this.pesquisador;
     return data;
   }
 }
