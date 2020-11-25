@@ -112,7 +112,7 @@ class _AbaProjetoState extends State<AbaProjeto> {
                       descText: this.widget.projectModel.description,
                       pesquisador: "Nome Pesquisado",
                       dataInicio: this.widget.projectModel.startedAt,
-                      // dataTermino: this.widget.projectModel.endDate,
+                      dataTermino: this.widget.projectModel.endedAt,
                     )
                   : CircularProgressIndicator();
             }),

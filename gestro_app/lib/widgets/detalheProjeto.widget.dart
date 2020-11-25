@@ -8,7 +8,12 @@ class DetalheProjetoGestro extends StatelessWidget {
   Timestamp dataInicio;
   Timestamp dataTermino;
 
-  DetalheProjetoGestro({this.titleText, this.descText, this.pesquisador, this.dataInicio, this.dataTermino});
+  DetalheProjetoGestro(
+      {@required this.titleText,
+      @required this.descText,
+      @required this.pesquisador,
+      @required this.dataInicio,
+      @required this.dataTermino});
 
   @override
   Widget build(BuildContext context) {
@@ -76,14 +81,14 @@ class DetalheProjetoGestro extends StatelessWidget {
                       "Data de Término: ",
                       style: TextStyle(color: Colors.purple, fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    // Text(
-                    //   this.dataTermino.toDate().day.toString() +
-                    //       "/" +
-                    //       this.dataTermino.toDate().month.toString() +
-                    //       "/" +
-                    //       this.dataTermino.toDate().year.toString(),
-                    //   style: TextStyle(color: Colors.purple, fontSize: 20),
-                    // ),
+                    Text(
+                      this.dataTermino.toDate().day.toString() +
+                          "/" +
+                          this.dataTermino.toDate().month.toString() +
+                          "/" +
+                          this.dataTermino.toDate().year.toString(),
+                      style: TextStyle(color: Colors.purple, fontSize: 20),
+                    ),
                   ],
                 ),
               ),

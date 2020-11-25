@@ -8,7 +8,9 @@ class ProjectModel extends Equatable {
   final Timestamp startedAt;
   // final Timestamp endDate;
   final bool activationStatus;
+
   final DocumentReference idProject;
+  final Timestamp endedAt;
 
   ProjectModel({
     this.name,
@@ -18,10 +20,12 @@ class ProjectModel extends Equatable {
     this.activationStatus,
     // this.endDate,
     this.idProject,
+    this.endedAt
   });
 
   factory ProjectModel.fromJson(Map<String, dynamic> json, DocumentReference id) {
     return ProjectModel(
+
       name: json['name'],
       // nameResearchers: json['researchers'],
       description: json['description'],
@@ -29,12 +33,20 @@ class ProjectModel extends Equatable {
       // endDate: json['endDate'],
       activationStatus: json['activationStatus'],
       idProject: id,
+      endedAt: json['endedAt']
     );
   }
 
   @override
   List<dynamic> get props {
-    return <dynamic>[this.name, this.description, this.startedAt, this.activationStatus];
+    return <dynamic>[
+      this.name,
+      this.description,
+      this.startedAt,
+      this.activationStatus,
+      this.endedAt
+    ];
+
   }
 
   Map<String, dynamic> toJson() {
@@ -45,6 +57,7 @@ class ProjectModel extends Equatable {
     data['startedAt'] = this.startedAt;
     data['endDate'] = this.startedAt;
     data['activationStatus'] = this.activationStatus;
+    data['endedAt'] = this.endedAt;
     return data;
   }
 }
