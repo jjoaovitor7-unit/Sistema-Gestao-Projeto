@@ -6,14 +6,12 @@ import 'package:gestro_app/themes/globals.themes.dart';
 class CardProjeto extends StatefulWidget {
   Widget onTap;
   bool status;
+  int index;
 
   ProjectModel projectModel;
 
-  CardProjeto({
-    this.onTap,
-    this.status,
-    @required this.projectModel,
-  });
+  CardProjeto(
+      {this.onTap, this.status, @required this.projectModel, this.index});
 
   @override
   _CardProjetoState createState() => _CardProjetoState();
@@ -29,6 +27,7 @@ class _CardProjetoState extends State<CardProjeto> {
           MaterialPageRoute(
             builder: (context) => DetalheProjeto(
               projectModel: this.widget.projectModel,
+              index: this.widget.index,
             ),
           ),
         );
