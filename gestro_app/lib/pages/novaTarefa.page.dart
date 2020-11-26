@@ -13,16 +13,16 @@ class NovaTarefaPage extends StatelessWidget {
   final format = DateFormat("yyyy-MM-dd HH:mm");
   dynamic dataPrazo;
   int index;
-
   final firestoreInstance = FirebaseFirestore.instance;
 
   dynamic myControllerNomeTarefa = TextEditingController();
   dynamic myControllerDescTarefa = TextEditingController();
+  dynamic myControllerIDProjeto = TextEditingController();
 
   void newTask() {
     firestoreInstance
         .collection("Projects")
-        .doc("DWD2YOc2QK7dYYh8PArb")
+        .doc(myControllerIDProjeto.text)
         .collection("Tasks")
         .add({
       "name": myControllerNomeTarefa.text,
@@ -73,6 +73,10 @@ class NovaTarefaPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  InputGestro(
+                      text: "ID do Projeto - números",
+                      icon: null,
+                      myController: myControllerIDProjeto),
                   InputGestro(
                     text: "Nome",
                     icon: null,
