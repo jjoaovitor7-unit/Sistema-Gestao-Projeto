@@ -11,6 +11,8 @@ import 'package:gestro_app/widgets/inputGestro.widget.dart';
 import 'package:gestro_app/widgets/inputGestroGrande.widget.dart';
 import 'package:intl/intl.dart';
 
+import 'novaTarefa.page.dart';
+
 class NovoProjetoPage extends StatelessWidget {
   final firestoreInstance = FirebaseFirestore.instance;
 
@@ -19,13 +21,17 @@ class NovoProjetoPage extends StatelessWidget {
   dynamic myControllerdataInicio = TextEditingController();
   dynamic myControllerdataTermino = TextEditingController();
   dynamic myControllerPesquisador = TextEditingController();
+  dynamic myControllerIDProjeto = TextEditingController();
 
   final format = DateFormat("yyyy-MM-dd HH:mm");
   dynamic dataInicioProjeto;
   dynamic dataTerminoProjeto;
 
   void newProject() {
-    firestoreInstance.collection("Projects").add({
+    firestoreInstance
+        .collection("Projects")
+        .doc(myControllerIDProjeto.text)
+        .set({
       "name": myControllerNomeProjeto.text,
       "description": myControllerDescProjeto.text,
       "pesquisador": myControllerPesquisador.text,
@@ -76,6 +82,10 @@ class NovoProjetoPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  InputGestro(
+                      text: "ID do Projeto - números",
+                      icon: null,
+                      myController: myControllerIDProjeto),
                   InputGestro(
                       text: "Nome",
                       icon: null,
@@ -166,6 +176,7 @@ class NovoProjetoPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () => {
                       newProject(),
+                      NovaTarefaPage(index: this.myControllerIDProjeto),
                       Navigator.pop(context),
                       Navigator.pushReplacement(
                         context,

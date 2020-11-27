@@ -56,7 +56,7 @@ class _AbaProjetoState extends State<AbaProjeto> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NovaTarefaPage(),
+                builder: (context) => NovaTarefaPage(index: this.widget.index),
               ),
             ),
           ),

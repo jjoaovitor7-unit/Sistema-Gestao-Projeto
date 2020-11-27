@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
@@ -5,6 +6,24 @@ import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/inputGestro.widget.dart';
 
 class NovoAlunoPage extends StatelessWidget {
+  final firestoreInstance = FirebaseFirestore.instance;
+
+  dynamic myControllerAlunoNome = TextEditingController();
+  dynamic myControllerAlunoEmail = TextEditingController();
+  dynamic myControllerAlunoSenha = TextEditingController();
+  dynamic myControllerAlunoPassConfirm = TextEditingController();
+
+  void newAluno() {
+    firestoreInstance.collection("Users").add({
+      "name": myControllerAlunoNome.text,
+      "email": myControllerAlunoEmail.text,
+      "password": myControllerAlunoSenha.text,
+      "passwordConfirm": myControllerAlunoPassConfirm.text,
+      "type": "Aluno",
+      "created_at": DateTime.now()
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,20 +67,28 @@ class NovoAlunoPage extends StatelessWidget {
                   InputGestro(
                     text: "Nome",
                     icon: Icon(Icons.person),
+                    myController: myControllerAlunoNome,
                   ),
                   InputGestro(
                     text: "Email",
                     icon: Icon(Icons.email),
+                    myController: myControllerAlunoEmail,
                   ),
                   InputGestro(
                     text: "Senha",
                     icon: Icon(Icons.lock),
+                    myController: myControllerAlunoSenha,
                   ),
                   InputGestro(
                     text: "Confirme a senha",
                     icon: Icon(Icons.lock),
+                    myController: myControllerAlunoPassConfirm,
                   ),
-                  ButtonGestro(text: "Salvar"),
+                  GestureDetector(
+                      child: ButtonGestro(text: "Salvar"),
+                      onTap: () {
+                        newAluno();
+                      }),
                 ],
               ),
             ),
