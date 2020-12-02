@@ -12,6 +12,7 @@ class NovoAlunoPage extends StatelessWidget {
   dynamic myControllerAlunoEmail = TextEditingController();
   dynamic myControllerAlunoSenha = TextEditingController();
   dynamic myControllerAlunoPassConfirm = TextEditingController();
+  dynamic myControllerIDProjeto = TextEditingController();
 
   void newAluno() {
     firestoreInstance.collection("Users").add({
@@ -21,6 +22,12 @@ class NovoAlunoPage extends StatelessWidget {
       "passwordConfirm": myControllerAlunoPassConfirm.text,
       "type": "Aluno",
       "created_at": DateTime.now()
+    }).then((reference) {
+      firestoreInstance
+          .collection("Projects")
+          .doc(myControllerIDProjeto.text)
+          .collection("Alunos")
+          .add({"referencia_aluno": reference});
     });
   }
 
@@ -63,6 +70,11 @@ class NovoAlunoPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                  ),
+                  InputGestro(
+                    text: "ID do Projeto - números",
+                    icon: Icon(Icons.person),
+                    myController: myControllerIDProjeto,
                   ),
                   InputGestro(
                     text: "Nome",
