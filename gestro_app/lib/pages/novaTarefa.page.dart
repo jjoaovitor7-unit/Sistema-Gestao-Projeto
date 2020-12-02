@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
@@ -14,15 +15,15 @@ class NovaTarefaPage extends StatelessWidget {
   dynamic dataPrazo;
   int index;
   final firestoreInstance = FirebaseFirestore.instance;
+  ProjectModel projeto;
 
   dynamic myControllerNomeTarefa = TextEditingController();
   dynamic myControllerDescTarefa = TextEditingController();
-  dynamic myControllerIDProjeto = TextEditingController();
 
   void newTask() {
     firestoreInstance
         .collection("Projects")
-        .doc(myControllerIDProjeto.text)
+        .doc(projeto.idProject.id)
         .collection("Tasks")
         .add({
       "name": myControllerNomeTarefa.text,
@@ -31,7 +32,7 @@ class NovaTarefaPage extends StatelessWidget {
     });
   }
 
-  NovaTarefaPage({this.index});
+  NovaTarefaPage({this.projeto});
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +74,6 @@ class NovaTarefaPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InputGestro(
-                      text: "ID do Projeto - números",
-                      icon: null,
-                      myController: myControllerIDProjeto),
                   InputGestro(
                     text: "Nome",
                     icon: null,
