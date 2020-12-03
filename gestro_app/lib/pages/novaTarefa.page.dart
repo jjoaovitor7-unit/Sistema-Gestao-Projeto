@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
@@ -14,6 +15,9 @@ class NovaTarefaPage extends StatelessWidget {
   dynamic dataPrazo;
   int index;
   final firestoreInstance = FirebaseFirestore.instance;
+  ProjectModel projectModel;
+
+  DocumentReference documentReference;
 
   dynamic myControllerNomeTarefa = TextEditingController();
   dynamic myControllerDescTarefa = TextEditingController();
@@ -24,11 +28,7 @@ class NovaTarefaPage extends StatelessWidget {
         .collection("Projects")
         .doc(myControllerIDProjeto.text)
         .collection("Tasks")
-        .add({
-      "name": myControllerNomeTarefa.text,
-      "description": myControllerDescTarefa.text,
-      "deadline": dataPrazo
-    });
+        .add({"name": myControllerNomeTarefa.text, "description": myControllerDescTarefa.text, "deadline": dataPrazo});
   }
 
   NovaTarefaPage({this.index});
@@ -73,10 +73,7 @@ class NovaTarefaPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InputGestro(
-                      text: "ID do Projeto - números",
-                      icon: null,
-                      myController: myControllerIDProjeto),
+                  // InputGestro(text: "ID do Projeto - números", icon: null, myController: myControllerIDProjeto),
                   InputGestro(
                     text: "Nome",
                     icon: null,
@@ -98,8 +95,7 @@ class NovaTarefaPage extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: "Prazo",
                               hintStyle: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.032,
+                                fontSize: MediaQuery.of(context).size.height * 0.032,
                                 color: Colors.white,
                               ),
                               border: InputBorder.none,
@@ -117,10 +113,7 @@ class NovaTarefaPage extends StatelessWidget {
                               });
                             })
                       ])),
-                  InputGestroGrande(
-                      text: "Descrição",
-                      icon: null,
-                      myController: myControllerDescTarefa),
+                  InputGestroGrande(text: "Descrição", icon: null, myController: myControllerDescTarefa),
                   GestureDetector(
                     onTap: () {
                       newTask();

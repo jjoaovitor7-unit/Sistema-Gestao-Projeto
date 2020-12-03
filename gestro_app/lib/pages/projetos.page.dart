@@ -50,9 +50,6 @@ class _ProjetosPageState extends State<ProjetosPage> {
                     itemCount: snapshot.data.docs.length,
                     itemBuilder: (BuildContext context, int index) {
                       return CardProjeto(
-                        // onTap: DetalheProjeto(
-                        //   index: index,
-                        // ),
                         status: true,
                         projectModel: ProjectModel.fromJson(
                           snapshot.data.docs[index].data(),
