@@ -3,33 +3,26 @@ import 'package:equatable/equatable.dart';
 
 class ProjectModel extends Equatable {
   final String name;
-  // final String nameResearchers;
   final String description;
   final Timestamp startedAt;
-  // final Timestamp endDate;
   final bool activationStatus;
   String pesquisador;
-
   final DocumentReference idProject;
   final Timestamp endedAt;
 
-  ProjectModel(
-      {this.name,
-      // this.nameResearchers,
-      this.description,
-      this.startedAt,
-      this.activationStatus,
-      // this.endDate,
-      this.idProject,
-      this.endedAt,
-      this.pesquisador});
+  ProjectModel({
+    this.name,
+    this.description,
+    this.startedAt,
+    this.activationStatus,
+    this.idProject,
+    this.endedAt,
+    this.pesquisador,
+  });
 
-  factory ProjectModel.fromJson(
-      Map<String, dynamic> json, DocumentReference id) {
+  factory ProjectModel.fromJson(Map<String, dynamic> json, DocumentReference id) {
     return ProjectModel(
         name: json['name'],
-        // nameResearchers: json['researchers'],
-
         description: json['description'],
         startedAt: json['startedAt'],
         activationStatus: json['activationStatus'],
@@ -46,7 +39,7 @@ class ProjectModel extends Equatable {
       this.startedAt,
       this.activationStatus,
       this.endedAt,
-      this.pesquisador
+      this.pesquisador,
     ];
   }
 

@@ -1,12 +1,21 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/user_model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 
-class PerfilPage extends StatelessWidget {
+import 'package:gestro_app/globals.dart' as globals;
+
+class PerfilPage extends StatefulWidget {
+  UserModel user;
+  @override
+  _PerfilPageState createState() => _PerfilPageState();
+}
+
+class _PerfilPageState extends State<PerfilPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,7 +86,7 @@ class PerfilPage extends StatelessWidget {
                         indent: MediaQuery.of(context).size.width * 0.38,
                       ),
                       Text(
-                        "Crislaine Santos de Macêdo",
+                        globals.user.name,
                         style: TextStyle(
                           color: purpleSecudary,
                           fontSize: MediaQuery.of(context).size.height * 0.028,
@@ -89,16 +98,14 @@ class PerfilPage extends StatelessWidget {
                       ),
                       Text(
                         "crislainesantos@souunit.com.br",
-                        style:
-                            TextStyle(fontStyle: FontStyle.italic, color: grey),
+                        style: TextStyle(fontStyle: FontStyle.italic, color: grey),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Text(
                         "linkedin.com/in/crislainesantos/",
-                        style: TextStyle(
-                            fontStyle: FontStyle.italic, color: purpleSecudary),
+                        style: TextStyle(fontStyle: FontStyle.italic, color: purpleSecudary),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.1,
@@ -122,10 +129,7 @@ class PerfilPage extends StatelessWidget {
                           child: Container(
                             child: Text(
                               "Atualizar dados",
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w400),
+                              style: TextStyle(fontSize: 18, color: Colors.white, fontWeight: FontWeight.w400),
                             ),
                           ),
                         ),

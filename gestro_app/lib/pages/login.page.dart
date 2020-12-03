@@ -4,6 +4,7 @@ import 'package:email_validator/email_validator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:gestro_app/models/user_model.dart';
 
 import 'package:gestro_app/pages/cadastro.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
@@ -23,8 +24,7 @@ class LoginScreen extends StatelessWidget {
 
     Future<User> signIn(String email, String password) async {
       try {
-        UserCredential userCredential = await auth.signInWithEmailAndPassword(
-            email: email, password: password);
+        UserCredential userCredential = await auth.signInWithEmailAndPassword(email: email, password: password);
         // print("---\n${userCredential.user}\n---");
 
         assert(userCredential.user != null);
@@ -141,28 +141,61 @@ class LoginScreen extends StatelessWidget {
                       ),
                       GestureDetector(
                         onTap: () {
-                          signIn(email, senha).then((value) {
-                            if (EmailValidator.validate(
-                                    myControllerEmail.text) &&
-                                (myControllerPass.text.toString().length >=
-                                    6)) {
-                              // print(value);
+                          if (EmailValidator.validate(myControllerEmail.text) && (myControllerPass.text.toString().length >= 6)) {
+                            signIn(myControllerEmail.text, myControllerPass.text).then((value) {
+                              if (value == null) {
+                                showDialog(
+                                  context: context,
+                                  builder: (_) => AlertDialog(
+                                    title: Text("O e-mail não está cadastrado no sistema"),
+                                  ),
+                                );
+                                return;
+                              }
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) => HomePage(),
                                 ),
                               );
-                            } else {
-                              showDialog(
-                                context: context,
-                                builder: (_) => AlertDialog(
-                                  title: Text(
-                                      "Formato de e-mail inválido ou senha com menos de 6 dígitos."),
-                                ),
-                              );
-                            }
-                          });
+                            });
+                          } else {
+                            showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                title: Text("Formato de e-mail inválido ou senha com menos de 6 dígitos."),
+                              ),
+                            );
+                          }
+                          // signIn(email, senha).then((value) {
+                          //   if (value == null) {
+                          //     showDialog(
+                          //       context: context,
+                          //       builder: (_) => AlertDialog(
+                          //         title: Text("O e-mail não está cadastrado no sistema"),
+                          //       ),
+                          //     );
+                          //     return;
+                          //   }
+
+                          //   if (EmailValidator.validate(myControllerEmail.text) && (myControllerPass.text.toString().length >= 6)) {
+                          //     user = UserModel(name: "Claylton", type: "Pesquisador");
+
+                          //     Navigator.push(
+                          //       context,
+                          //       MaterialPageRoute(
+                          //         builder: (context) => HomePage(),
+                          //       ),
+                          //     );
+                          //   } else {
+                          //     showDialog(
+                          //       context: context,
+                          //       builder: (_) => AlertDialog(
+                          //         title: Text("Formato de e-mail inválido ou senha com menos de 6 dígitos."),
+                          //       ),
+                          //     );
+                          //   }
+                          // });
                         },
                         child: ButtonGestro(
                           textKey: "btnLoginKey",

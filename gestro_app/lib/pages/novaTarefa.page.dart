@@ -16,6 +16,9 @@ class NovaTarefaPage extends StatelessWidget {
   int index;
   final firestoreInstance = FirebaseFirestore.instance;
   ProjectModel projeto;
+  ProjectModel projectModel;
+
+  DocumentReference documentReference;
 
   dynamic myControllerNomeTarefa = TextEditingController();
   dynamic myControllerDescTarefa = TextEditingController();
@@ -25,11 +28,7 @@ class NovaTarefaPage extends StatelessWidget {
         .collection("Projects")
         .doc(projeto.idProject.id)
         .collection("Tasks")
-        .add({
-      "name": myControllerNomeTarefa.text,
-      "description": myControllerDescTarefa.text,
-      "deadline": dataPrazo
-    });
+        .add({"name": myControllerNomeTarefa.text, "description": myControllerDescTarefa.text, "deadline": dataPrazo});
   }
 
   NovaTarefaPage({this.projeto});
@@ -74,6 +73,7 @@ class NovaTarefaPage extends StatelessWidget {
                       ),
                     ),
                   ),
+                  // InputGestro(text: "ID do Projeto - números", icon: null, myController: myControllerIDProjeto),
                   InputGestro(
                     text: "Nome",
                     icon: null,
@@ -95,8 +95,7 @@ class NovaTarefaPage extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: "Prazo",
                               hintStyle: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.032,
+                                fontSize: MediaQuery.of(context).size.height * 0.032,
                                 color: Colors.white,
                               ),
                               border: InputBorder.none,
@@ -114,10 +113,7 @@ class NovaTarefaPage extends StatelessWidget {
                               });
                             })
                       ])),
-                  InputGestroGrande(
-                      text: "Descrição",
-                      icon: null,
-                      myController: myControllerDescTarefa),
+                  InputGestroGrande(text: "Descrição", icon: null, myController: myControllerDescTarefa),
                   GestureDetector(
                     onTap: () {
                       newTask();

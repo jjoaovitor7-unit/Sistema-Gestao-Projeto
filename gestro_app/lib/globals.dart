@@ -1,3 +1,5 @@
+import 'package:gestro_app/models/user_model.dart';
+
 String nome;
 String email;
 String senha;
@@ -10,3 +12,5 @@ String nomeProjeto;
 String descProjeto;
 String dataInicio;
 String dataTermino;
+
+UserModel user = UserModel(name: "Nome Pesquisador1", type: "Pesquisador");

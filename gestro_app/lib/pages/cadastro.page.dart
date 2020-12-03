@@ -31,8 +31,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
 
     Future<User> signUp(email, password) async {
       try {
-        UserCredential userCredential = await auth
-            .createUserWithEmailAndPassword(email: email, password: password);
+        UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
         assert(userCredential.user != null);
         assert(await userCredential.user.getIdToken() != null);
         return userCredential.user;
@@ -44,8 +43,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
         if (e.code == "email-already-in-use") {
           showDialog(
             context: context,
-            builder: (_) =>
-                AlertDialog(title: Text("Esse e-mail já está cadastrado.")),
+            builder: (_) => AlertDialog(title: Text("Esse e-mail já está cadastrado.")),
           );
         }
       }
@@ -81,10 +79,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   child: Text(
                     "Cadastro",
                     key: ValueKey("CadastroTextKey"),
-                    style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -208,6 +203,11 @@ class _CadastroScreenState extends State<CadastroScreen> {
                             .set(docData);
                         Toast.show("Usuário cadastrado!", context,
                             duration: 5, gravity: Toast.BOTTOM);
+
+                        // FirebaseFirestore.instance
+                        //     .collection('Researchers')
+                        //     .doc(value.uid)
+                        //     .set(docData);
                         Navigator.pop(context);
                       },
                     );
@@ -233,10 +233,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     child: InkWell(
                       child: Text(
                         "Faça login.",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         Future.delayed(
