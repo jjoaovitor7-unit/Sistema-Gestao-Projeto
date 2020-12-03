@@ -1,4 +1,5 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
@@ -19,6 +20,16 @@ class AbaAluno extends StatefulWidget {
 }
 
 class _AbaAlunoState extends State<AbaAluno> {
+  int countdocs = 0;
+
+  Future<int> countDocuments() async {
+    QuerySnapshot _myDoc = await FirebaseFirestore.instance
+        .collection('Projects/' + widget.projectModel.idProject.id + '/Alunos')
+        .get();
+    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
+    return _myDocCount.length;
+  }
+
   List<UserModel> listUser;
 
   @override
@@ -28,13 +39,19 @@ class _AbaAlunoState extends State<AbaAluno> {
     this.widget.projectModel.idProject.collection('Alunos').get().then((value) {
       if (value.docs.isNotEmpty) {
         setState(() {
-          listUser = List<UserModel>.from(value.docs.map((e) => UserModel.fromJson(e.data(), e.reference)));
+          listUser = List<UserModel>.from(
+              value.docs.map((e) => UserModel.fromJson(e.data(), e.reference)));
         });
       }
     });
   }
 
   Widget build(BuildContext context) {
+    countDocuments().then((value) {
+      setState(() {
+        countdocs = value;
+      });
+    });
     return Scaffold(
       floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,
@@ -123,7 +140,11 @@ class _AbaAlunoState extends State<AbaAluno> {
                             '',
                             radius: 35,
                             backgroundColor: Colors.purple[200],
-                            initialsText: Text("LC", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
+                            initialsText: Text("LC",
+                                style: TextStyle(
+                                    fontSize: 35,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.purple)),
                           ),
                           Stack(
                             children: [
@@ -131,16 +152,25 @@ class _AbaAlunoState extends State<AbaAluno> {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Text(
                                   listUser[index].name,
-                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.white),
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 10, top: 25),
-                                child: Text("lucascalheiros@souunit.com.br", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+                                padding:
+                                    const EdgeInsets.only(left: 10, top: 25),
+                                child: Text("lucascalheiros@souunit.com.br",
+                                    style: TextStyle(
+                                        fontStyle: FontStyle.italic,
+                                        color: Colors.white)),
                               ),
                               Container(
                                 // color: Colors.blue,
-                                padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
+                                padding: EdgeInsets.only(
+                                    left: MediaQuery.of(context).size.width *
+                                        0.64),
                                 child: PopupMenuButton(
                                     // key: _menuKey,
                                     icon: Icon(
@@ -161,7 +191,8 @@ class _AbaAlunoState extends State<AbaAluno> {
                                           new PopupMenuItem<String>(
                                               child: const Text(
                                                 'Excluir',
-                                                style: TextStyle(color: Colors.white),
+                                                style: TextStyle(
+                                                    color: Colors.white),
                                               ),
                                               value: 'Excluir'),
                                         ],
