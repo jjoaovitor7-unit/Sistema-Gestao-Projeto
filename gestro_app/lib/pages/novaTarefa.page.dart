@@ -17,7 +17,6 @@ class NovaTarefaPage extends StatelessWidget {
   int index;
   final firestoreInstance = FirebaseFirestore.instance;
   ProjectModel projeto;
-  ProjectModel projectModel;
 
   DocumentReference documentReference;
 
@@ -33,12 +32,12 @@ class NovaTarefaPage extends StatelessWidget {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => AbaTarefa(projectModel: this.projectModel),
+        builder: (context) => AbaTarefa(projectModel: this.projeto),
       ),
     );
   }
 
-  NovaTarefaPage({this.projeto});
+  NovaTarefaPage({@required this.projeto});
 
   @override
   Widget build(BuildContext context) {

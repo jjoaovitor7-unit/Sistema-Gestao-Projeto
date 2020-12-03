@@ -13,6 +13,8 @@ class UserModel extends Equatable {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json, DocumentReference id) {
+    print(
+        "====================================================================================================================================== $json");
     return UserModel(
       idUser: id,
       name: json['name'],

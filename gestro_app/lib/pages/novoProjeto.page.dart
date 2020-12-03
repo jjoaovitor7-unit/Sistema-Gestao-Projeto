@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:gestro_app/globals.dart';
+import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/pages/projetos.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
@@ -14,6 +15,8 @@ import 'package:intl/intl.dart';
 import 'novaTarefa.page.dart';
 
 class NovoProjetoPage extends StatelessWidget {
+  ProjectModel projectModel;
+
   final firestoreInstance = FirebaseFirestore.instance;
 
   dynamic myControllerNomeProjeto = TextEditingController();
@@ -28,10 +31,7 @@ class NovoProjetoPage extends StatelessWidget {
   dynamic dataTerminoProjeto;
 
   void newProject() {
-    firestoreInstance
-        .collection("Projects")
-        .doc(myControllerIDProjeto.text)
-        .set({
+    firestoreInstance.collection("Projects").doc(myControllerIDProjeto.text).set({
       "name": myControllerNomeProjeto.text,
       "description": myControllerDescProjeto.text,
       "pesquisador": myControllerPesquisador.text,
@@ -82,23 +82,14 @@ class NovoProjetoPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  InputGestro(
-                      text: "ID do Projeto - números",
-                      icon: null,
-                      myController: myControllerIDProjeto),
-                  InputGestro(
-                      text: "Nome",
-                      icon: null,
-                      myController: myControllerNomeProjeto),
+                  InputGestro(text: "ID do Projeto - números", icon: null, myController: myControllerIDProjeto),
+                  InputGestro(text: "Nome", icon: null, myController: myControllerNomeProjeto),
                   InputGestroGrande(
                     text: "Descrição",
                     icon: null,
                     myController: myControllerDescProjeto,
                   ),
-                  InputGestro(
-                      text: "Nome do Pesquisador",
-                      icon: null,
-                      myController: myControllerPesquisador),
+                  InputGestro(text: "Nome do Pesquisador", icon: null, myController: myControllerPesquisador),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(
@@ -116,8 +107,7 @@ class NovoProjetoPage extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: "Data de Início",
                               hintStyle: TextStyle(
-                                fontSize:
-                                    MediaQuery.of(context).size.height * 0.032,
+                                fontSize: MediaQuery.of(context).size.height * 0.032,
                                 color: Colors.white,
                               ),
                               border: InputBorder.none,
@@ -153,8 +143,7 @@ class NovoProjetoPage extends StatelessWidget {
                           decoration: InputDecoration(
                             hintText: "Data de Término",
                             hintStyle: TextStyle(
-                              fontSize:
-                                  MediaQuery.of(context).size.height * 0.032,
+                              fontSize: MediaQuery.of(context).size.height * 0.032,
                               color: Colors.white,
                             ),
                             border: InputBorder.none,
@@ -176,7 +165,9 @@ class NovoProjetoPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () => {
                       newProject(),
-                      NovaTarefaPage(),
+                      NovaTarefaPage(
+                        projeto: projectModel,
+                      ),
                       Navigator.pop(context),
                       Navigator.pushReplacement(
                         context,

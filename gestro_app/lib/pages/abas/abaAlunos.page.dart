@@ -3,15 +3,36 @@ import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:gestro_app/models/project.model.dart';
+import 'package:gestro_app/models/user_model.dart';
 import 'package:gestro_app/pages/novaTarefa.page.dart';
 import 'package:gestro_app/pages/novoAluno.page.dart';
 import 'package:gestro_app/pages/selecionarAluno.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 
-class AbaAluno extends StatelessWidget {
+class AbaAluno extends StatefulWidget {
   ProjectModel projectModel;
 
   AbaAluno({@required this.projectModel});
+
+  @override
+  _AbaAlunoState createState() => _AbaAlunoState();
+}
+
+class _AbaAlunoState extends State<AbaAluno> {
+  List<UserModel> listUser;
+
+  @override
+  void initState() {
+    super.initState();
+    listUser = [];
+    this.widget.projectModel.idProject.collection('Alunos').get().then((value) {
+      if (value.docs.isNotEmpty) {
+        setState(() {
+          listUser = List<UserModel>.from(value.docs.map((e) => UserModel.fromJson(e.data(), e.reference)));
+        });
+      }
+    });
+  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +53,9 @@ class AbaAluno extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NovaTarefaPage(),
+                builder: (context) => NovaTarefaPage(
+                  projeto: this.widget.projectModel,
+                ),
               ),
             ),
           ),
@@ -49,7 +72,7 @@ class AbaAluno extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => NovoAlunoPage(
-                  projectModel: projectModel,
+                  projectModel: widget.projectModel,
                 ),
               ),
             ),
@@ -88,190 +111,69 @@ class AbaAluno extends StatelessWidget {
           child: Column(
             children: [
               Expanded(
-                child: ListView(children: [
-                  Column(
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircularProfileAvatar(
-                              '',
-                              radius: 35,
-                              backgroundColor: Colors.purple[200],
-                              initialsText: Text("LC", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
-                            ),
-                            Stack(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "Lucas Calheiros dos Santos",
-                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-                                  ),
+                child: ListView.builder(
+                  itemCount: listUser.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          CircularProfileAvatar(
+                            '',
+                            radius: 35,
+                            backgroundColor: Colors.purple[200],
+                            initialsText: Text("LC", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
+                          ),
+                          Stack(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10),
+                                child: Text(
+                                  listUser[index].name,
+                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10, top: 25),
-                                  child: Text("lucascalheiros@souunit.com.br", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
-                                ),
-                                Container(
-                                  // color: Colors.blue,
-                                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
-                                  child: PopupMenuButton(
-                                      // key: _menuKey,
-                                      icon: Icon(
-                                        Icons.more_vert,
-                                        color: Colors.white,
-                                      ),
-                                      color: purpleSecudary,
-                                      itemBuilder: (_) => <PopupMenuItem<String>>[
-                                            new PopupMenuItem<String>(
-                                                child: const Text(
-                                                  'Editar',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                  // textAlign: TextAlign.center,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 10, top: 25),
+                                child: Text("lucascalheiros@souunit.com.br", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+                              ),
+                              Container(
+                                // color: Colors.blue,
+                                padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
+                                child: PopupMenuButton(
+                                    // key: _menuKey,
+                                    icon: Icon(
+                                      Icons.more_vert,
+                                      color: Colors.white,
+                                    ),
+                                    color: purpleSecudary,
+                                    itemBuilder: (_) => <PopupMenuItem<String>>[
+                                          new PopupMenuItem<String>(
+                                              child: const Text(
+                                                'Editar',
+                                                style: TextStyle(
+                                                  color: Colors.white,
                                                 ),
-                                                value: 'Editar'),
-                                            new PopupMenuItem<String>(
-                                                child: const Text(
-                                                  'Excluir',
-                                                  style: TextStyle(color: Colors.white),
-                                                ),
-                                                value: 'Excluir'),
-                                          ],
-                                      onSelected: (_) {}),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
+                                                // textAlign: TextAlign.center,
+                                              ),
+                                              value: 'Editar'),
+                                          new PopupMenuItem<String>(
+                                              child: const Text(
+                                                'Excluir',
+                                                style: TextStyle(color: Colors.white),
+                                              ),
+                                              value: 'Excluir'),
+                                        ],
+                                    onSelected: (_) {}),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                      Container(width: 300, child: Divider(color: Colors.white)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircularProfileAvatar(
-                              '',
-                              radius: 35,
-                              backgroundColor: Colors.purple[200],
-                              initialsText: Text("AD", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
-                            ),
-                            Stack(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "Artur Delgado",
-                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10, top: 25),
-                                  child: Text("arturdelgado@souunit.com.br", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
-                                  child: PopupMenuButton(
-                                      // key: _menuKey,
-                                      icon: Icon(
-                                        Icons.more_vert,
-                                        color: Colors.white,
-                                      ),
-                                      color: purpleSecudary,
-                                      itemBuilder: (_) => <PopupMenuItem<String>>[
-                                            new PopupMenuItem<String>(
-                                                child: const Text(
-                                                  'Editar',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                  // textAlign: TextAlign.center,
-                                                ),
-                                                value: 'Editar'),
-                                            new PopupMenuItem<String>(
-                                                child: const Text(
-                                                  'Excluir',
-                                                  style: TextStyle(color: Colors.white),
-                                                ),
-                                                value: 'Excluir'),
-                                          ],
-                                      onSelected: (_) {}),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(width: 300, child: Divider(color: Colors.white)),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 10, bottom: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircularProfileAvatar(
-                              '',
-                              radius: 35,
-                              backgroundColor: Colors.purple[200],
-                              initialsText: Text("AD", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
-                            ),
-                            Stack(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10),
-                                  child: Text(
-                                    "Crislaine Santos de Macêdo",
-                                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 10, top: 25),
-                                  child: Text(
-                                    "arturdelgado@souunit.com.br",
-                                    style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white),
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
-                                  child: PopupMenuButton(
-                                      // key: _menuKey,
-                                      icon: Icon(
-                                        Icons.more_vert,
-                                        color: Colors.white,
-                                      ),
-                                      color: purpleSecudary,
-                                      itemBuilder: (_) => <PopupMenuItem<String>>[
-                                            new PopupMenuItem<String>(
-                                                child: const Text(
-                                                  'Editar',
-                                                  style: TextStyle(
-                                                    color: Colors.white,
-                                                  ),
-                                                  // textAlign: TextAlign.center,
-                                                ),
-                                                value: 'Editar'),
-                                            new PopupMenuItem<String>(
-                                                child: const Text(
-                                                  'Excluir',
-                                                  style: TextStyle(color: Colors.white),
-                                                ),
-                                                value: 'Excluir'),
-                                          ],
-                                      onSelected: (_) {}),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(width: 300, child: Divider(color: Colors.white)),
-                    ],
-                  ),
-                ]),
+                    );
+                  },
+                ),
               ),
             ],
           ),
