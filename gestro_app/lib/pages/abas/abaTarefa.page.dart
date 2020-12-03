@@ -1,6 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:fluttericon/font_awesome5_icons.dart';
 import 'package:gestro_app/models/task_model.dart';
+import 'package:gestro_app/pages/novaTarefa.page.dart';
+import 'package:gestro_app/pages/novoAluno.page.dart';
+import 'package:gestro_app/pages/selecionarAluno.page.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
@@ -40,10 +45,63 @@ class _AbaTarefaState extends State<AbaTarefa> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // bottomNavigationBar: BottomNavigation(),
-      // appBar: AppBarGestro(
-      //   title: "Tarefas",
-      // ),
+      floatingActionButton: SpeedDial(
+        animatedIcon: AnimatedIcons.menu_close,
+        backgroundColor: purpleSecudary,
+        closeManually: true,
+        children: [
+          SpeedDialChild(
+            child: Icon(FontAwesome5.list),
+            backgroundColor: purpleSecudary,
+            label: 'Nova Tarefa',
+            labelBackgroundColor: purpleSecudary,
+            labelStyle: TextStyle(
+              fontSize: 17.0,
+              color: Colors.white,
+            ),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NovaTarefaPage(),
+              ),
+            ),
+          ),
+          SpeedDialChild(
+            child: Icon(Icons.person, size: 30),
+            backgroundColor: purpleSecudary,
+            label: 'Novo Aluno',
+            labelBackgroundColor: purpleSecudary,
+            labelStyle: TextStyle(
+              fontSize: 17.0,
+              color: Colors.white,
+            ),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => NovoAlunoPage(
+                  projectModel: this.widget.projectModel,
+                ),
+              ),
+            ),
+          ),
+          SpeedDialChild(
+            child: Icon(FontAwesome5.search),
+            backgroundColor: purpleSecudary,
+            label: 'Selecionar Aluno',
+            labelBackgroundColor: purpleSecudary,
+            labelStyle: TextStyle(
+              fontSize: 17.0,
+              color: Colors.white,
+            ),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SelecionarAlunoPage(),
+              ),
+            ),
+          ),
+        ],
+      ),
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
@@ -73,8 +131,7 @@ class _AbaTarefaState extends State<AbaTarefa> {
                           "10",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Concluídas",
-                            style: TextStyle(color: Colors.white)),
+                        Text("Concluídas", style: TextStyle(color: Colors.white)),
                       ],
                     ),
                   ),
@@ -104,8 +161,7 @@ class _AbaTarefaState extends State<AbaTarefa> {
                           "05",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Executando",
-                            style: TextStyle(color: Colors.white))
+                        Text("Executando", style: TextStyle(color: Colors.white))
                       ],
                     ),
                   ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/pages/alunos.page.dart';
 import 'package:gestro_app/pages/aprovacoes.page.dart';
 import 'package:gestro_app/pages/home.page.dart';
@@ -11,6 +12,7 @@ import 'package:gestro_app/themes/globals.themes.dart';
 import '../globals.dart';
 
 class BottomNavigation extends StatefulWidget {
+  ProjectModel projectModel;
   @override
   _BottomNavigationState createState() => _BottomNavigationState();
 }
@@ -52,7 +54,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => AlunosPage(),
+          builder: (context) => AlunosPage(projectModel: this.widget.projectModel),
         ),
       );
     }

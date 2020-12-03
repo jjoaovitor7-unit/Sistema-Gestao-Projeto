@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
 import 'package:gestro_app/models/project.model.dart';
+import 'package:gestro_app/pages/abas/abaTarefa.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
@@ -23,12 +24,18 @@ class NovaTarefaPage extends StatelessWidget {
   dynamic myControllerNomeTarefa = TextEditingController();
   dynamic myControllerDescTarefa = TextEditingController();
 
-  void newTask() {
-    firestoreInstance
-        .collection("Projects")
-        .doc(projeto.idProject.id)
-        .collection("Tasks")
-        .add({"name": myControllerNomeTarefa.text, "description": myControllerDescTarefa.text, "deadline": dataPrazo});
+  void newTask(context) {
+    firestoreInstance.collection("Projects").doc(projeto.idProject.id).collection("Tasks").add({
+      "name": myControllerNomeTarefa.text,
+      "description": myControllerDescTarefa.text,
+      "deadline": dataPrazo,
+    });
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AbaTarefa(projectModel: this.projectModel),
+      ),
+    );
   }
 
   NovaTarefaPage({this.projeto});
@@ -116,7 +123,7 @@ class NovaTarefaPage extends StatelessWidget {
                   InputGestroGrande(text: "Descrição", icon: null, myController: myControllerDescTarefa),
                   GestureDetector(
                     onTap: () {
-                      newTask();
+                      newTask(context);
                     },
                     child: ButtonGestro(
                       text: "Salvar",

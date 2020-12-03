@@ -1,11 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/project.model.dart';
+import 'package:gestro_app/pages/abas/abaAlunos.page.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/inputGestro.widget.dart';
 
 class NovoAlunoPage extends StatelessWidget {
+  ProjectModel projectModel;
+  NovoAlunoPage({
+    @required this.projectModel,
+  });
   final firestoreInstance = FirebaseFirestore.instance;
 
   dynamic myControllerAlunoNome = TextEditingController();
@@ -14,7 +20,7 @@ class NovoAlunoPage extends StatelessWidget {
   dynamic myControllerAlunoPassConfirm = TextEditingController();
   dynamic myControllerIDProjeto = TextEditingController();
 
-  void newAluno() {
+  void newAluno(context) {
     firestoreInstance.collection("Users").add({
       "name": myControllerAlunoNome.text,
       "email": myControllerAlunoEmail.text,
@@ -23,12 +29,17 @@ class NovoAlunoPage extends StatelessWidget {
       "type": "Aluno",
       "created_at": DateTime.now()
     }).then((reference) {
-      firestoreInstance
-          .collection("Projects")
-          .doc(myControllerIDProjeto.text)
-          .collection("Alunos")
-          .add({"referencia_aluno": reference});
+      firestoreInstance.collection("Projects").doc(projectModel.idProject.id).collection("Alunos").add({
+        "referencia_aluno": reference,
+      });
     });
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AbaAluno(projectModel: projectModel),
+      ),
+    );
   }
 
   @override
@@ -72,11 +83,6 @@ class NovoAlunoPage extends StatelessWidget {
                     ),
                   ),
                   InputGestro(
-                    text: "ID do Projeto - números",
-                    icon: Icon(Icons.person),
-                    myController: myControllerIDProjeto,
-                  ),
-                  InputGestro(
                     text: "Nome",
                     icon: Icon(Icons.person),
                     myController: myControllerAlunoNome,
@@ -99,7 +105,7 @@ class NovoAlunoPage extends StatelessWidget {
                   GestureDetector(
                       child: ButtonGestro(text: "Salvar"),
                       onTap: () {
-                        newAluno();
+                        newAluno(context);
                       }),
                 ],
               ),
