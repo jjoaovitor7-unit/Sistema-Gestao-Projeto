@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
+import 'package:toast/toast.dart';
 import 'package:gestro_app/pages/login.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/button2Gestro.widget.dart';
@@ -195,6 +196,14 @@ class _CadastroScreenState extends State<CadastroScreen> {
                         docData['type'] = 'Pesquisador';
                         docData['curriculum'] = curriculum;
                         docData['activationStatus'] = false;
+
+                        FirebaseFirestore.instance
+                            .collection('Researchers')
+                            .doc(value.uid)
+                            .set(docData);
+                        Toast.show("Usuário cadastrado!", context,
+                            duration: 5, gravity: Toast.BOTTOM);
+
                         // FirebaseFirestore.instance
                         //     .collection('Researchers')
                         //     .doc(value.uid)

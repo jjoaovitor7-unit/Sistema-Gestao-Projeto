@@ -176,7 +176,7 @@ class NovoProjetoPage extends StatelessWidget {
                   GestureDetector(
                     onTap: () => {
                       newProject(),
-                      NovaTarefaPage(index: this.myControllerIDProjeto),
+                      NovaTarefaPage(),
                       Navigator.pop(context),
                       Navigator.pushReplacement(
                         context,

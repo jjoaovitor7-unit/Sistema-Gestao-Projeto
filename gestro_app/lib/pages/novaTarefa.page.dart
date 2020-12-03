@@ -15,23 +15,23 @@ class NovaTarefaPage extends StatelessWidget {
   dynamic dataPrazo;
   int index;
   final firestoreInstance = FirebaseFirestore.instance;
+  ProjectModel projeto;
   ProjectModel projectModel;
 
   DocumentReference documentReference;
 
   dynamic myControllerNomeTarefa = TextEditingController();
   dynamic myControllerDescTarefa = TextEditingController();
-  dynamic myControllerIDProjeto = TextEditingController();
 
   void newTask() {
     firestoreInstance
         .collection("Projects")
-        .doc(myControllerIDProjeto.text)
+        .doc(projeto.idProject.id)
         .collection("Tasks")
         .add({"name": myControllerNomeTarefa.text, "description": myControllerDescTarefa.text, "deadline": dataPrazo});
   }
 
-  NovaTarefaPage({this.index});
+  NovaTarefaPage({this.projeto});
 
   @override
   Widget build(BuildContext context) {
