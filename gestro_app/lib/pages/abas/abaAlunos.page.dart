@@ -20,6 +20,14 @@ class AbaAluno extends StatefulWidget {
 }
 
 class _AbaAlunoState extends State<AbaAluno> {
+  int countdocs = 0;
+
+  Future<int> countDocuments() async {
+    QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('Projects/' + widget.projectModel.idProject.id + '/Alunos').get();
+    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
+    return _myDocCount.length;
+  }
+
   List<UserModel> listUser;
 
   @override
@@ -43,6 +51,11 @@ class _AbaAlunoState extends State<AbaAluno> {
   }
 
   Widget build(BuildContext context) {
+    countDocuments().then((value) {
+      setState(() {
+        countdocs = value;
+      });
+    });
     return Scaffold(
       floatingActionButton: SpeedDial(
         animatedIcon: AnimatedIcons.menu_close,
