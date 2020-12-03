@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gestro_app/models/project.model.dart';
+import 'package:gestro_app/pages/abas/abaAlunos.page.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
@@ -19,7 +20,7 @@ class NovoAlunoPage extends StatelessWidget {
   dynamic myControllerAlunoPassConfirm = TextEditingController();
   dynamic myControllerIDProjeto = TextEditingController();
 
-  void newAluno() {
+  void newAluno(context) {
     firestoreInstance.collection("Users").add({
       "name": myControllerAlunoNome.text,
       "email": myControllerAlunoEmail.text,
@@ -32,6 +33,13 @@ class NovoAlunoPage extends StatelessWidget {
         "referencia_aluno": reference,
       });
     });
+
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => AbaAluno(projectModel: projectModel),
+      ),
+    );
   }
 
   @override
@@ -97,7 +105,7 @@ class NovoAlunoPage extends StatelessWidget {
                   GestureDetector(
                       child: ButtonGestro(text: "Salvar"),
                       onTap: () {
-                        newAluno();
+                        newAluno(context);
                       }),
                 ],
               ),
