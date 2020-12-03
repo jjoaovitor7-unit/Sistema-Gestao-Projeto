@@ -78,7 +78,9 @@ class _AbaTarefaState extends State<AbaTarefa> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NovoAlunoPage(),
+                builder: (context) => NovoAlunoPage(
+                  projectModel: this.widget.projectModel,
+                ),
               ),
             ),
           ),

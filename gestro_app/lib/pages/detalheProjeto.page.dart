@@ -80,8 +80,8 @@ class _DetalheProjetoState extends State<DetalheProjeto> {
             ),
             Container(
               child: AbaAluno(
-                  // projectModel: this.widget.projectModel,
-                  ),
+                projectModel: this.widget.projectModel,
+              ),
             ),
           ],
         ),

@@ -1,11 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/inputGestro.widget.dart';
 
 class NovoAlunoPage extends StatelessWidget {
+  ProjectModel projectModel;
+  NovoAlunoPage({
+    @required this.projectModel,
+  });
   final firestoreInstance = FirebaseFirestore.instance;
 
   dynamic myControllerAlunoNome = TextEditingController();
@@ -23,11 +28,9 @@ class NovoAlunoPage extends StatelessWidget {
       "type": "Aluno",
       "created_at": DateTime.now()
     }).then((reference) {
-      firestoreInstance
-          .collection("Projects")
-          .doc(myControllerIDProjeto.text)
-          .collection("Alunos")
-          .add({"referencia_aluno": reference});
+      firestoreInstance.collection("Projects").doc(projectModel.idProject.id).collection("Alunos").add({
+        "referencia_aluno": reference,
+      });
     });
   }
 
@@ -70,11 +73,6 @@ class NovoAlunoPage extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                  InputGestro(
-                    text: "ID do Projeto - números",
-                    icon: Icon(Icons.person),
-                    myController: myControllerIDProjeto,
                   ),
                   InputGestro(
                     text: "Nome",
