@@ -1,4 +1,5 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
@@ -27,8 +28,15 @@ class _AbaAlunoState extends State<AbaAluno> {
     listUser = [];
     this.widget.projectModel.idProject.collection('Alunos').get().then((value) {
       if (value.docs.isNotEmpty) {
-        setState(() {
-          listUser = List<UserModel>.from(value.docs.map((e) => UserModel.fromJson(e.data(), e.reference)));
+        value.docs.forEach((element) {
+          DocumentReference documentReference = element.data()['referencia_aluno'];
+          documentReference.get().then((document) {
+            setState(() {
+              listUser.add(
+                UserModel.fromJson(document.data(), document.reference),
+              );
+            });
+          });
         });
       }
     });
