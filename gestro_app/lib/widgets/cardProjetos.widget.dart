@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/globals.dart';
 import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/pages/detalheProjeto.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:intl/intl.dart';
 
 class CardProjeto extends StatefulWidget {
   Widget onTap;
@@ -10,6 +13,13 @@ class CardProjeto extends StatefulWidget {
   int index;
 
   ProjectModel projectModel;
+  dynamic nomeProjeto = TextEditingController();
+  dynamic descProjeto = TextEditingController();
+  dynamic pesquisadorProjeto = TextEditingController();
+  dynamic dataInicioProjeto = TextEditingController();
+  dynamic dataTerminoProjeto = TextEditingController();
+
+  final format = DateFormat("yyyy-MM-dd HH:mm");
 
   CardProjeto(
       {this.onTap, this.status, @required this.projectModel, this.index});
@@ -68,6 +78,123 @@ class _CardProjetoState extends State<CardProjeto> {
                       ),
                       PopupMenuButton(
                         onSelected: (value) {
+                          if (value == 'Editar') {
+                            showDialog(
+                              context: context,
+                              child: Dialog(
+                                child: Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.52,
+                                  child: Column(
+                                    children: <Widget>[
+                                      TextFormField(
+                                        decoration: const InputDecoration(
+                                            hintText: 'Nome do Projeto'),
+                                        controller: this.widget.nomeProjeto,
+                                      ),
+                                      TextFormField(
+                                        decoration: const InputDecoration(
+                                            hintText: 'Descrição'),
+                                        controller: this.widget.descProjeto,
+                                      ),
+                                      TextFormField(
+                                        decoration: const InputDecoration(
+                                            hintText: 'Pesquisador'),
+                                        controller:
+                                            this.widget.pesquisadorProjeto,
+                                      ),
+                                      DateTimeField(
+                                          decoration: InputDecoration(
+                                            hintText: "Data de Início",
+                                            hintStyle: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.032,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          format: this.widget.format,
+                                          onShowPicker:
+                                              (context, currentValue) {
+                                            return showDatePicker(
+                                              context: context,
+                                              firstDate: DateTime(1900),
+                                              initialDate: currentValue ??
+                                                  DateTime.now(),
+                                              lastDate: DateTime(2100),
+                                            ).then((pickedDate) {
+                                              this.widget.dataInicioProjeto =
+                                                  pickedDate;
+                                              return this
+                                                  .widget
+                                                  .dataInicioProjeto;
+                                            });
+                                          }),
+                                      DateTimeField(
+                                          decoration: InputDecoration(
+                                            hintText: "Data de Início",
+                                            hintStyle: TextStyle(
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.032,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          format: this.widget.format,
+                                          onShowPicker:
+                                              (context, currentValue) {
+                                            return showDatePicker(
+                                              context: context,
+                                              firstDate: DateTime(1900),
+                                              initialDate: currentValue ??
+                                                  DateTime.now(),
+                                              lastDate: DateTime(2100),
+                                            ).then((pickedDate) {
+                                              this.widget.dataTerminoProjeto =
+                                                  pickedDate;
+                                              return this
+                                                  .widget
+                                                  .dataTerminoProjeto;
+                                            });
+                                          }),
+                                      FlatButton(
+                                          child: Text("Editar"),
+                                          onPressed: () => FirebaseFirestore
+                                                  .instance
+                                                  .collection("Projects")
+                                                  .doc(this
+                                                      .widget
+                                                      .projectModel
+                                                      .idProject
+                                                      .id)
+                                                  .update({
+                                                "name": this
+                                                    .widget
+                                                    .nomeProjeto
+                                                    .text,
+                                                "description": this
+                                                    .widget
+                                                    .descProjeto
+                                                    .text,
+                                                "pesquisador": this
+                                                    .widget
+                                                    .pesquisadorProjeto
+                                                    .text,
+                                                "startedAt": this
+                                                    .widget
+                                                    .dataInicioProjeto,
+                                                "endedAt": this
+                                                    .widget
+                                                    .dataTerminoProjeto
+                                              }))
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
                           if (value == 'Excluir') {
                             CollectionReference collectionReference1 =
                                 FirebaseFirestore.instance
