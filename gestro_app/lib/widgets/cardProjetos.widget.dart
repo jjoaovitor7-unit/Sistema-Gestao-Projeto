@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:gestro_app/globals.dart';
 import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/pages/detalheProjeto.page.dart';
+import 'package:gestro_app/pages/projetos.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:intl/intl.dart';
 
@@ -161,34 +162,36 @@ class _CardProjetoState extends State<CardProjeto> {
                                           }),
                                       FlatButton(
                                           child: Text("Editar"),
-                                          onPressed: () => FirebaseFirestore
-                                                  .instance
-                                                  .collection("Projects")
-                                                  .doc(this
-                                                      .widget
-                                                      .projectModel
-                                                      .idProject
-                                                      .id)
-                                                  .update({
-                                                "name": this
+                                          onPressed: () {
+                                            FirebaseFirestore.instance
+                                                .collection("Projects")
+                                                .doc(this
                                                     .widget
-                                                    .nomeProjeto
-                                                    .text,
-                                                "description": this
-                                                    .widget
-                                                    .descProjeto
-                                                    .text,
-                                                "pesquisador": this
-                                                    .widget
-                                                    .pesquisadorProjeto
-                                                    .text,
-                                                "startedAt": this
-                                                    .widget
-                                                    .dataInicioProjeto,
-                                                "endedAt": this
-                                                    .widget
-                                                    .dataTerminoProjeto
-                                              }))
+                                                    .projectModel
+                                                    .idProject
+                                                    .id)
+                                                .update({
+                                              "name":
+                                                  this.widget.nomeProjeto.text,
+                                              "description":
+                                                  this.widget.descProjeto.text,
+                                              "pesquisador": this
+                                                  .widget
+                                                  .pesquisadorProjeto
+                                                  .text,
+                                              "startedAt":
+                                                  this.widget.dataInicioProjeto,
+                                              "endedAt":
+                                                  this.widget.dataTerminoProjeto
+                                            });
+                                            Navigator.pop(context);
+                                            Navigator.pushReplacement(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      ProjetosPage(),
+                                                ));
+                                          })
                                     ],
                                   ),
                                 ),
