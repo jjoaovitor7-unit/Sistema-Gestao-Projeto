@@ -27,7 +27,8 @@ class AbaProjeto extends StatefulWidget {
 }
 
 class _AbaProjetoState extends State<AbaProjeto> {
-  CollectionReference collectionReference = FirebaseFirestore.instance.collection('Projects');
+  CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('Projects');
 
   Future<QuerySnapshot> getData() {
     final Completer<QuerySnapshot> c = new Completer();
@@ -108,7 +109,8 @@ class _AbaProjetoState extends State<AbaProjeto> {
         // margin: EdgeInsets.symmetric(horizontal: 20),
         child: FutureBuilder(
             future: getData(),
-            builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            builder:
+                (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
               return snapshot.hasData
                   ? DetalheProjetoGestro(
                       titleText: this.widget.projectModel.name,

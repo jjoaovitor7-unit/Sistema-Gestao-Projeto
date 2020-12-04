@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/pages/detalheProjeto.page.dart';
@@ -66,30 +67,68 @@ class _CardProjetoState extends State<CardProjeto> {
                         ),
                       ),
                       PopupMenuButton(
-                          // key: _menuKey,
+                        onSelected: (value) {
+                          if (value == 'Excluir') {
+                            CollectionReference collectionReference1 =
+                                FirebaseFirestore.instance
+                                    .collection('Projects');
+
+                            collectionReference1
+                                .doc(this.widget.projectModel.idProject.id +
+                                    "/Alunos")
+                                .get()
+                                .then((doc) {
+                              if (doc.exists) {
+                                collectionReference1
+                                  ..doc(this.widget.projectModel.idProject.id +
+                                          "/Alunos")
+                                      .delete();
+                              }
+                            });
+
+                            collectionReference1
+                                .doc(this.widget.projectModel.idProject.id +
+                                    "/Tasks")
+                                .get()
+                                .then((doc) {
+                              if (doc.exists) {
+                                collectionReference1
+                                  ..doc(this.widget.projectModel.idProject.id +
+                                          "/Tasks")
+                                      .delete();
+                              }
+                            });
+
+                            collectionReference1
+                              ..doc(this.widget.projectModel.idProject.id)
+                                  .delete();
+                          }
+                        },
+                        // key: _menuKey,
+                        color: purpleSecudary,
+                        icon: Icon(
+                          Icons.more_vert,
                           color: purpleSecudary,
-                          icon: Icon(
-                            Icons.more_vert,
-                            color: purpleSecudary,
+                        ),
+                        itemBuilder: (_) => <PopupMenuItem<String>>[
+                          new PopupMenuItem<String>(
+                              child: const Text(
+                                'Editar',
+                                style: TextStyle(
+                                  color: Colors.white,
+                                ),
+                                // textAlign: TextAlign.center,
+                              ),
+                              value: 'Editar'),
+                          new PopupMenuItem<String>(
+                            child: const Text(
+                              'Excluir',
+                              style: TextStyle(color: Colors.white),
+                            ),
+                            value: 'Excluir',
                           ),
-                          itemBuilder: (_) => <PopupMenuItem<String>>[
-                                new PopupMenuItem<String>(
-                                    child: const Text(
-                                      'Editar',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                      // textAlign: TextAlign.center,
-                                    ),
-                                    value: 'Editar'),
-                                new PopupMenuItem<String>(
-                                    child: const Text(
-                                      'Excluir',
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    value: 'Excluir'),
-                              ],
-                          onSelected: (_) {}),
+                        ],
+                      ),
                     ],
                   ),
                   Row(
