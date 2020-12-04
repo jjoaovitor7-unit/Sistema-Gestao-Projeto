@@ -1,4 +1,6 @@
 import 'package:circular_profile_avatar/circular_profile_avatar.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gestro_app/models/user_model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
@@ -10,14 +12,44 @@ import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/globals.dart' as globals;
 
 class PerfilPage extends StatefulWidget {
-  UserModel user;
   @override
   _PerfilPageState createState() => _PerfilPageState();
 }
 
 class _PerfilPageState extends State<PerfilPage> {
+  UserModel usuario;
+  // FirebaseAuth firebaseAuth;
+
+  void initState() {
+    super.initState();
+    getUser().then((user) {
+      setState(() {
+        usuario = user;
+        print("==================$user");
+      });
+    });
+  }
+
+  Future<UserModel> getUser() {
+    return FirebaseAuth.instance.authStateChanges().firstWhere((user) => user != null).then((user) {
+      String uid = user.uid;
+      print(uid);
+      return FirebaseFirestore.instance.collection("Users").doc(uid).get().then((value) {
+        print("------------------------------->${value}");
+        print("------------------------------->${value.id}");
+        print("------------------------------->${value.reference}");
+        print("------------------------------->${value.exists}");
+        print("------------------------------->${value.toString()}");
+        return UserModel.fromJson(value.data(), value.reference);
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (usuario == null) {
+      return CircularProgressIndicator();
+    }
     return Scaffold(
         appBar: AppBarGestro(
           title: "Perfil",
@@ -97,7 +129,7 @@ class _PerfilPageState extends State<PerfilPage> {
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Text(
-                        "crislainesantos@souunit.com.br",
+                        usuario.name,
                         style: TextStyle(fontStyle: FontStyle.italic, color: grey),
                       ),
                       SizedBox(
