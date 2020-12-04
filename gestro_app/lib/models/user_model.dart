@@ -4,12 +4,14 @@ import 'package:equatable/equatable.dart';
 class UserModel extends Equatable {
   final DocumentReference idUser;
   final String name;
+  final String email;
   final String type;
 
   UserModel({
     this.idUser,
     this.name,
     this.type,
+    this.email,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json, DocumentReference id) {
@@ -19,6 +21,7 @@ class UserModel extends Equatable {
       idUser: id,
       name: json['name'],
       type: json['type'],
+      email: json['email'],
     );
   }
 
@@ -27,6 +30,7 @@ class UserModel extends Equatable {
     return <dynamic>[
       this.name,
       this.type,
+      this.email,
     ];
   }
 
@@ -34,6 +38,7 @@ class UserModel extends Equatable {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     data['type'] = this.type;
+    data['email'] = this.type;
     return data;
   }
 }

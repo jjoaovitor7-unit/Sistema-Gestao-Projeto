@@ -28,6 +28,11 @@ class _AbaAlunoState extends State<AbaAluno> {
     return _myDocCount.length;
   }
 
+  String initialUser(String nomeCompleto) {
+    List<String> nome = nomeCompleto.split(" ");
+    return nome[0][0] + (nome.length > 1 ? nome[1][0] : "");
+  }
+
   List<UserModel> listUser;
 
   @override
@@ -144,7 +149,8 @@ class _AbaAlunoState extends State<AbaAluno> {
                             '',
                             radius: 35,
                             backgroundColor: Colors.purple[200],
-                            initialsText: Text("LC", style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
+                            initialsText: Text(initialUser(listUser[index].name),
+                                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
                           ),
                           Stack(
                             children: [
@@ -157,7 +163,7 @@ class _AbaAlunoState extends State<AbaAluno> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 10, top: 25),
-                                child: Text("lucascalheiros@souunit.com.br", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
+                                child: Text(listUser[index].email, style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
                               ),
                               Container(
                                 // color: Colors.blue,
