@@ -112,7 +112,7 @@ class _CardProjetoState extends State<CardProjeto> {
                                                       .size
                                                       .height *
                                                   0.032,
-                                              color: Colors.white,
+                                              color: Colors.black,
                                             ),
                                           ),
                                           format: this.widget.format,
@@ -140,7 +140,7 @@ class _CardProjetoState extends State<CardProjeto> {
                                                       .size
                                                       .height *
                                                   0.032,
-                                              color: Colors.white,
+                                              color: Colors.black,
                                             ),
                                           ),
                                           format: this.widget.format,
