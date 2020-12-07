@@ -1,3 +1,5 @@
+// NÃO TÁ CADASTRANDO NO SISTEMA SÓ NA AUTENTICAÇÃO
+
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome_icons.dart';
 import 'package:email_validator/email_validator.dart';
@@ -24,38 +26,38 @@ class CadastroScreen extends StatefulWidget {
 }
 
 class _CadastroScreenState extends State<CadastroScreen> {
-  @override
-  Widget build(BuildContext context) {
-    FirebaseAuth auth = FirebaseAuth.instance;
-    Map<String, dynamic> docData = new Map();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  Future<User> signUp(String email, String password) async {
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(email: email, password: password);
+      assert(userCredential.user != null);
+      assert(await userCredential.user.getIdToken() != null);
+      return userCredential.user;
+    } catch (e) {
+      // print do código do erro
+      print("===Error===\n${e.code}\n-----------");
 
-    Future<User> signUp(email, password) async {
-      try {
-        UserCredential userCredential = await auth
-            .createUserWithEmailAndPassword(email: email, password: password);
-        assert(userCredential.user != null);
-        assert(await userCredential.user.getIdToken() != null);
-        return userCredential.user;
-      } catch (e) {
-        // print do código do erro
-        print("===Error===\n${e.code}\n-----------");
-
-        // se o e-mail já estiver cadastrado
-        if (e.code == "email-already-in-use") {
-          showDialog(
-            context: context,
-            builder: (_) =>
-                AlertDialog(title: Text("Esse e-mail já está cadastrado.")),
-          );
-        }
+      // se o e-mail já estiver cadastrado
+      if (e.code == "email-already-in-use") {
+        showDialog(
+          context: context,
+          builder: (_) => AlertDialog(title: Text("Esse e-mail já está cadastrado.")),
+        );
       }
     }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Map<String, dynamic> docData = new Map();
 
     // controladores de senha e de confirmar senha,
     // para registrar o que está sendo digitado.
     dynamic myControllerPass = TextEditingController();
     dynamic myControllerPassConfirm = TextEditingController();
     dynamic myControllerLattes = TextEditingController();
+    dynamic myControllerName = TextEditingController();
+    dynamic myControllerEmail = TextEditingController();
 
     return Scaffold(
       // resizeToAvoidBottomInset: false,
@@ -82,10 +84,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   child: Text(
                     "Cadastro",
                     key: ValueKey("CadastroTextKey"),
-                    style: TextStyle(
-                        color: Colors.purple,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
+                    style: TextStyle(color: Colors.purple, fontSize: 25, fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -97,7 +96,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   color: purpleSecudary,
                 ),
                 qtdeLengthCharacters: 50,
-                valueForm: nome,
+                valueForm: myControllerName.text,
+                myController: myControllerName,
                 validator: (nameValue) {
                   if (nameValue.isEmpty) {
                     return 'O campo não pode ficar em branco.';
@@ -113,7 +113,8 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   color: purpleSecudary,
                 ),
                 qtdeLengthCharacters: 35,
-                valueForm: email,
+                valueForm: myControllerEmail.text,
+                myController: myControllerEmail,
                 validator: (emailValue) {
                   if (emailValue.isEmpty) {
                     return 'O campo não pode ficar em branco.';
@@ -123,7 +124,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     return 'E-mail inválido!';
                   }
                 },
-                onSaved: (input) => email = input,
+                onSaved: (input) => myControllerEmail.text = input,
               ),
               InputGestro(
                 textKey: "LattesKey",
@@ -133,7 +134,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   color: purpleSecudary,
                 ),
                 qtdeLengthCharacters: 50,
-                valueForm: curriculum,
+                valueForm: myControllerLattes.text,
                 myController: myControllerLattes,
                 validator: (curriculumValue) {
                   if (curriculumValue.isEmpty) {
@@ -144,7 +145,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     return 'Talvez esteja faltando o http:// ou o https://';
                   }
                 },
-                onSaved: (input) => curriculum = input,
+                onSaved: (input) => myControllerLattes.text = input,
               ),
               InputGestro(
                 textKey: "PassKey",
@@ -155,7 +156,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                   color: purpleSecudary,
                 ),
                 qtdeLengthCharacters: 15,
-                valueForm: senha,
+                valueForm: myControllerPass.text,
                 myController: myControllerPass,
                 validator: (passValue) {
                   if (passValue.isEmpty) {
@@ -170,7 +171,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     return 'As senhas precisam ser iguais.';
                   }
                 },
-                onSaved: (input) => senha = input,
+                onSaved: (input) => myControllerPass.text = input,
               ),
               InputGestro(
                 textKey: "PassConfirmKey",
@@ -201,18 +202,18 @@ class _CadastroScreenState extends State<CadastroScreen> {
                 onTap: () {
                   if (widget.formKey.currentState.validate()) {
                     widget.formKey.currentState.save();
-                    signUp(email, senha).then(
+                    signUp(myControllerEmail.text, myControllerPass.text).then(
                       (value) {
-                        docData['name'] = nome;
+                        if (value == null) {
+                          return;
+                        }
+                        docData['name'] = myControllerName.text;
+                        docData['email'] = myControllerEmail.text;
                         docData['type'] = 'Pesquisador';
-                        docData['curriculum'] = curriculum;
+                        docData['curriculum'] = myControllerLattes.text;
                         docData['activationStatus'] = false;
-                        FirebaseFirestore.instance
-                            .collection('Researchers')
-                            .doc(value.uid)
-                            .set(docData);
-                        Toast.show("Usuário cadastrado!", context,
-                            duration: 5, gravity: Toast.BOTTOM);
+                        FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
+                        Toast.show("Usuário cadastrado!", context, duration: 5, gravity: Toast.BOTTOM);
 
                         Navigator.pop(context);
                       },
@@ -239,10 +240,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                     child: InkWell(
                       child: Text(
                         "Faça login.",
-                        style: TextStyle(
-                            fontSize: 16,
-                            color: Colors.purple,
-                            fontWeight: FontWeight.bold),
+                        style: TextStyle(fontSize: 16, color: Colors.purple, fontWeight: FontWeight.bold),
                       ),
                       onTap: () {
                         Future.delayed(
