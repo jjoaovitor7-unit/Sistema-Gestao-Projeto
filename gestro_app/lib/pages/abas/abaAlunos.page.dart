@@ -9,6 +9,7 @@ import 'package:gestro_app/pages/novaTarefa.page.dart';
 import 'package:gestro_app/pages/novoAluno.page.dart';
 import 'package:gestro_app/pages/selecionarAluno.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/extensions/sigla.dart';
 
 class AbaAluno extends StatefulWidget {
   ProjectModel projectModel;
@@ -26,11 +27,6 @@ class _AbaAlunoState extends State<AbaAluno> {
     QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('Projects/' + widget.projectModel.idProject.id + '/Alunos').get();
     List<DocumentSnapshot> _myDocCount = _myDoc.docs;
     return _myDocCount.length;
-  }
-
-  String initialUser(String nomeCompleto) {
-    List<String> nome = nomeCompleto.split(" ");
-    return nome[0][0] + (nome.length > 1 ? nome[1][0] : "");
   }
 
   List<UserModel> listUser;
@@ -149,7 +145,7 @@ class _AbaAlunoState extends State<AbaAluno> {
                             '',
                             radius: 35,
                             backgroundColor: Colors.purple[200],
-                            initialsText: Text(initialUser(listUser[index].name),
+                            initialsText: Text((listUser[index].name.toSiglas),
                                 style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
                           ),
                           Stack(

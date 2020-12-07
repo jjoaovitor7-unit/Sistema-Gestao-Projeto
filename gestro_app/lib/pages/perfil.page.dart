@@ -6,7 +6,7 @@ import 'package:gestro_app/models/user_model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
-
+import 'package:gestro_app/extensions/sigla.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 
 import 'package:gestro_app/globals.dart' as globals;
@@ -102,7 +102,7 @@ class _PerfilPageState extends State<PerfilPage> {
                           radius: 35,
                           backgroundColor: Colors.purple[200],
                           initialsText: Text(
-                            "CS",
+                            usuario.name.toSiglas,
                             style: TextStyle(
                               fontSize: 35,
                               fontWeight: FontWeight.bold,
