@@ -5,6 +5,7 @@ class UserModel extends Equatable {
   final DocumentReference idUser;
   final String name;
   final String email;
+  final String curriculum;
   final String type;
 
   UserModel({
@@ -12,6 +13,7 @@ class UserModel extends Equatable {
     this.name,
     this.type,
     this.email,
+    this.curriculum,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json, DocumentReference id) {
@@ -22,6 +24,7 @@ class UserModel extends Equatable {
       name: json['name'],
       type: json['type'],
       email: json['email'],
+      curriculum: json['curriculum'],
     );
   }
 
@@ -31,6 +34,7 @@ class UserModel extends Equatable {
       this.name,
       this.type,
       this.email,
+      this.curriculum,
     ];
   }
 
@@ -39,6 +43,7 @@ class UserModel extends Equatable {
     data['name'] = this.name;
     data['type'] = this.type;
     data['email'] = this.type;
+    data['curriculum'] = this.type;
     return data;
   }
 }

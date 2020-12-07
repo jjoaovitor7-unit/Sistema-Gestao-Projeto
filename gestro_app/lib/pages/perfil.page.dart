@@ -39,6 +39,7 @@ class _PerfilPageState extends State<PerfilPage> {
         print("------------------------------->${value.id}");
         print("------------------------------->${value.reference}");
         print("------------------------------->${value.exists}");
+        print("------------------------------->${value.data()}");
         print("------------------------------->${value.toString()}");
         return UserModel.fromJson(value.data(), value.reference);
       });
@@ -118,7 +119,7 @@ class _PerfilPageState extends State<PerfilPage> {
                         indent: MediaQuery.of(context).size.width * 0.38,
                       ),
                       Text(
-                        globals.user.name,
+                        usuario.name,
                         style: TextStyle(
                           color: purpleSecudary,
                           fontSize: MediaQuery.of(context).size.height * 0.028,
@@ -129,14 +130,14 @@ class _PerfilPageState extends State<PerfilPage> {
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Text(
-                        usuario.name,
+                        usuario.email,
                         style: TextStyle(fontStyle: FontStyle.italic, color: grey),
                       ),
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
                       Text(
-                        "linkedin.com/in/crislainesantos/",
+                        usuario.curriculum,
                         style: TextStyle(fontStyle: FontStyle.italic, color: purpleSecudary),
                       ),
                       SizedBox(
