@@ -33,7 +33,7 @@ class _AbaTarefaState extends State<AbaTarefa> {
     widget.projectModel.idProject.collection('Tasks').get().then((snapshot) {
       if (snapshot.docs.isNotEmpty) {
         var t = List<TaskModel>.from(snapshot.docs.map((element) {
-          return TaskModel.fromJson(element.data());
+          return TaskModel.fromJson(element.data(), element.reference);
         }));
         setState(() {
           tarefas = t;
@@ -62,7 +62,8 @@ class _AbaTarefaState extends State<AbaTarefa> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => NovaTarefaPage(projeto: this.widget.projectModel),
+                builder: (context) =>
+                    NovaTarefaPage(projeto: this.widget.projectModel),
               ),
             ),
           ),
@@ -131,7 +132,8 @@ class _AbaTarefaState extends State<AbaTarefa> {
                           "10",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Concluídas", style: TextStyle(color: Colors.white)),
+                        Text("Concluídas",
+                            style: TextStyle(color: Colors.white)),
                       ],
                     ),
                   ),
@@ -161,7 +163,8 @@ class _AbaTarefaState extends State<AbaTarefa> {
                           "05",
                           style: TextStyle(fontSize: 50, color: Colors.white),
                         ),
-                        Text("Executando", style: TextStyle(color: Colors.white))
+                        Text("Executando",
+                            style: TextStyle(color: Colors.white))
                       ],
                     ),
                   ),
@@ -252,6 +255,7 @@ class _AbaTarefaState extends State<AbaTarefa> {
                     textStatus: "Concluída",
                     status: true,
                     model: tarefas[index],
+                    projectModel: this.widget.projectModel,
                   );
                 },
               ),
