@@ -210,9 +210,9 @@ class _CardProjetoState extends State<CardProjeto> {
                                 .then((doc) {
                               if (doc.exists) {
                                 collectionReference1
-                                  ..doc(this.widget.projectModel.idProject.id +
-                                          "/Alunos")
-                                      .delete();
+                                    .doc(this.widget.projectModel.idProject.id +
+                                        "/Alunos")
+                                    .delete();
                               }
                             });
 
@@ -223,15 +223,15 @@ class _CardProjetoState extends State<CardProjeto> {
                                 .then((doc) {
                               if (doc.exists) {
                                 collectionReference1
-                                  ..doc(this.widget.projectModel.idProject.id +
-                                          "/Tasks")
-                                      .delete();
+                                    .doc(this.widget.projectModel.idProject.id +
+                                        "/Tasks")
+                                    .delete();
                               }
                             });
 
                             collectionReference1
-                              ..doc(this.widget.projectModel.idProject.id)
-                                  .delete();
+                                .doc(this.widget.projectModel.idProject.id)
+                                .delete();
                           }
                         },
                         // key: _menuKey,

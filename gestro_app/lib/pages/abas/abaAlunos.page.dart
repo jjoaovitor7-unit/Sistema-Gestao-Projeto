@@ -31,6 +31,10 @@ class _AbaAlunoState extends State<AbaAluno> {
 
   List<UserModel> listUser;
 
+  dynamic nomeAluno = TextEditingController();
+  dynamic emailAluno = TextEditingController();
+  dynamic senhaAluno = TextEditingController();
+
   @override
   void initState() {
     super.initState();
@@ -165,30 +169,86 @@ class _AbaAlunoState extends State<AbaAluno> {
                                 // color: Colors.blue,
                                 padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
                                 child: PopupMenuButton(
-                                    // key: _menuKey,
-                                    icon: Icon(
-                                      Icons.more_vert,
-                                      color: Colors.white,
-                                    ),
-                                    color: purpleSecudary,
-                                    itemBuilder: (_) => <PopupMenuItem<String>>[
-                                          new PopupMenuItem<String>(
-                                              child: const Text(
-                                                'Editar',
-                                                style: TextStyle(
-                                                  color: Colors.white,
+                                  // key: _menuKey,
+                                  icon: Icon(
+                                    Icons.more_vert,
+                                    color: Colors.white,
+                                  ),
+                                  color: purpleSecudary,
+                                  itemBuilder: (_) => <PopupMenuItem<String>>[
+                                    new PopupMenuItem<String>(
+                                        child: const Text(
+                                          'Editar',
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                          // textAlign: TextAlign.center,
+                                        ),
+                                        value: 'Editar'),
+                                    new PopupMenuItem<String>(
+                                        child: const Text(
+                                          'Excluir',
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                        value: 'Excluir'),
+                                  ],
+                                  onSelected: (value) {
+                                    if (value == 'Editar') {
+                                      showDialog(
+                                        context: context,
+                                        child: Dialog(
+                                          child: Container(
+                                            height: MediaQuery.of(context).size.height * 0.32,
+                                            child: Column(
+                                              children: <Widget>[
+                                                TextFormField(
+                                                  decoration: const InputDecoration(hintText: 'Nome do Aluno'),
+                                                  controller: this.nomeAluno,
                                                 ),
-                                                // textAlign: TextAlign.center,
-                                              ),
-                                              value: 'Editar'),
-                                          new PopupMenuItem<String>(
-                                              child: const Text(
-                                                'Excluir',
-                                                style: TextStyle(color: Colors.white),
-                                              ),
-                                              value: 'Excluir'),
-                                        ],
-                                    onSelected: (_) {}),
+                                                TextFormField(
+                                                  decoration: const InputDecoration(hintText: 'E-mail'),
+                                                  controller: this.emailAluno,
+                                                ),
+                                                TextFormField(
+                                                  decoration: const InputDecoration(hintText: 'Senha'),
+                                                  controller: this.senhaAluno,
+                                                ),
+                                                FlatButton(
+                                                    child: Text("Editar"),
+                                                    onPressed: () {
+                                                      CollectionReference collectionReference1 = FirebaseFirestore.instance.collection('Users');
+
+                                                      collectionReference1.doc(this.listUser[index].idUser.id).update({
+                                                        "name": this.nomeAluno.text,
+                                                        "email": this.emailAluno.text,
+                                                        "password": this.senhaAluno.text,
+                                                      });
+                                                    })
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    if (value == 'Excluir') {
+                                      CollectionReference collectionReference1 = FirebaseFirestore.instance.collection('Projects');
+
+                                      Future<QuerySnapshot> test = collectionReference1
+                                          .doc(this.widget.projectModel.idProject.id)
+                                          .collection("Alunos")
+                                          .where("referencia_aluno",
+                                              isEqualTo: FirebaseFirestore.instance.collection("Users").doc(this.listUser[index].idUser.id))
+                                          .get();
+                                      test.then((value) => value.docs.forEach((element) async {
+                                            collectionReference1
+                                                .doc(this.widget.projectModel.idProject.id)
+                                                .collection("Alunos")
+                                                .doc(element.id)
+                                                .delete();
+                                          }));
+                                    }
+                                  },
+                                ),
                               ),
                             ],
                           ),
