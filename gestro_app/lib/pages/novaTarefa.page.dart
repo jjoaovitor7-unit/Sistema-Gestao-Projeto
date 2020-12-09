@@ -33,6 +33,7 @@ class NovaTarefaPage extends StatelessWidget {
       "description": myControllerDescTarefa.text,
       "deadline": dataPrazo,
     });
+    Navigator.pop(context);
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(

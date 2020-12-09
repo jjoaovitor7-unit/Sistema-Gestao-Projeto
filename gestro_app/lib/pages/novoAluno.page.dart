@@ -43,6 +43,7 @@ class NovoAlunoPage extends StatelessWidget {
     });
 
     AbaAluno(projectModel: this.projectModel);
+    Navigator.pop(context);
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
