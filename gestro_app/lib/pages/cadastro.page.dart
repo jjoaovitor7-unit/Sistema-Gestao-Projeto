@@ -211,7 +211,7 @@ class _CadastroScreenState extends State<CadastroScreen> {
                         docData['email'] = myControllerEmail.text;
                         docData['type'] = 'Pesquisador';
                         docData['curriculum'] = myControllerLattes.text;
-                        docData['activationStatus'] = false;
+                        docData['activationStatus'] = null;
                         FirebaseFirestore.instance.collection('Users').doc(value.uid).set(docData);
                         Toast.show("Usuário cadastrado!", context, duration: 5, gravity: Toast.BOTTOM);
 

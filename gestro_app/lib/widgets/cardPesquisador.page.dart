@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttericon/font_awesome5_icons.dart';
+import 'package:gestro_app/models/user_model.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
 import 'package:gestro_app/widgets/button2Gestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
@@ -7,6 +8,21 @@ import 'package:gestro_app/widgets/smallButton2Gestro.widget.dart';
 import 'package:gestro_app/widgets/smallButtonGestro.widget.dart';
 
 class CardPesquisador extends StatelessWidget {
+  UserModel pesquisador;
+
+  final String name;
+  final String email;
+  final String curriculum;
+  final Function onTap;
+
+  CardPesquisador({
+    @required this.name,
+    @required this.email,
+    @required this.curriculum,
+    @required this.pesquisador,
+    @required this.onTap,
+  });
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +53,7 @@ class CardPesquisador extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Dr. Fábio Gomes Rocha",
+                      this.name,
                       style: TextStyle(
                         color: purpleSecudary,
                         fontSize: MediaQuery.of(context).size.height * 0.03,
@@ -50,7 +66,7 @@ class CardPesquisador extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
                 Text(
-                  "fabiorocha@souunit.com.br",
+                  this.email,
                   style: TextStyle(
                     color: grey,
                     fontStyle: FontStyle.normal,
@@ -60,7 +76,7 @@ class CardPesquisador extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.025,
                 ),
                 Button2Gestro(
-                  text: "curriculum_vitai.doc",
+                  text: this.curriculum,
                   onTap: null,
                   icon: Icon(
                     FontAwesome5.download,
@@ -84,14 +100,22 @@ class CardPesquisador extends StatelessWidget {
                     children: [
                       SmallButton2Gestro(
                         text: "Rejeitar",
-                        onTap: null,
+                        onTap: () {
+                          pesquisador.idUser.update({'activationStatus': false}).then((value) {
+                            onTap();
+                          });
+                        },
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.013,
                       ),
                       SmallButtonGestro(
                         text: "Aprovar",
-                        onTap: null,
+                        onTap: () {
+                          pesquisador.idUser.update({'activationStatus': true}).then((value) {
+                            onTap();
+                          });
+                        },
                       )
                     ],
                   ),
