@@ -13,6 +13,7 @@ import '../globals.dart';
 
 class BottomNavigation extends StatefulWidget {
   ProjectModel projectModel;
+
   @override
   _BottomNavigationState createState() => _BottomNavigationState();
 }
@@ -54,7 +55,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => AlunosPage(projectModel: this.widget.projectModel),
+          builder: (context) => AlunosPage(),
         ),
       );
     }
