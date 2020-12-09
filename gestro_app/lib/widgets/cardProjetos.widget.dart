@@ -34,6 +34,8 @@ class _CardProjetoState extends State<CardProjeto> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        projectModelGlobal = this.widget.projectModel;
+
         Navigator.push(
           context,
           MaterialPageRoute(

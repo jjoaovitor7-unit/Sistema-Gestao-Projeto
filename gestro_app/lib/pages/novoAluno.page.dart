@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:gestro_app/globals.dart';
 import 'package:gestro_app/models/project.model.dart';
 import 'package:gestro_app/pages/abas/abaAlunos.page.dart';
+import 'package:gestro_app/pages/alunos.page.dart';
 import 'package:gestro_app/widgets/bottomNavigation.dart';
 import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
@@ -44,8 +46,8 @@ class NovoAlunoPage extends StatelessWidget {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-          builder: (context) => DetalheProjeto(
-                projectModel: this.projectModel,
+          builder: (context) => AlunosPage(
+                projectModel: projectModelGlobal,
               )),
     );
   }
