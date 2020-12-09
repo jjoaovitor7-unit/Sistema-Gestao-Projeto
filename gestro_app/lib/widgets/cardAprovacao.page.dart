@@ -70,7 +70,7 @@ class _CardAprovacaoState extends State<CardAprovacao> {
                       ),
                     ),
                     Text(
-                      "Dr. Fábio Gomes Rocha",
+                      this.widget.projectModel.pesquisador,
                       style: TextStyle(
                         color: purpleSecudary,
                         fontStyle: FontStyle.normal,

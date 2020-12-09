@@ -9,6 +9,7 @@ import 'package:gestro_app/pages/novaTarefa.page.dart';
 import 'package:gestro_app/pages/novoAluno.page.dart';
 import 'package:gestro_app/pages/selecionarAluno.page.dart';
 import 'package:gestro_app/themes/globals.themes.dart';
+import 'package:gestro_app/extensions/sigla.dart';
 
 class AbaAluno extends StatefulWidget {
   ProjectModel projectModel;
@@ -23,16 +24,9 @@ class _AbaAlunoState extends State<AbaAluno> {
   int countdocs = 0;
 
   Future<int> countDocuments() async {
-    QuerySnapshot _myDoc = await FirebaseFirestore.instance
-        .collection('Projects/' + widget.projectModel.idProject.id + '/Alunos')
-        .get();
+    QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection('Projects/' + widget.projectModel.idProject.id + '/Alunos').get();
     List<DocumentSnapshot> _myDocCount = _myDoc.docs;
     return _myDocCount.length;
-  }
-
-  String initialUser(String nomeCompleto) {
-    List<String> nome = nomeCompleto.split(" ");
-    return nome[0][0] + (nome.length > 1 ? nome[1][0] : "");
   }
 
   List<UserModel> listUser;
@@ -48,8 +42,7 @@ class _AbaAlunoState extends State<AbaAluno> {
     this.widget.projectModel.idProject.collection('Alunos').get().then((value) {
       if (value.docs.isNotEmpty) {
         value.docs.forEach((element) {
-          DocumentReference documentReference =
-              element.data()['referencia_aluno'];
+          DocumentReference documentReference = element.data()['referencia_aluno'];
           documentReference.get().then((document) {
             setState(() {
               listUser.add(
@@ -156,12 +149,8 @@ class _AbaAlunoState extends State<AbaAluno> {
                             '',
                             radius: 35,
                             backgroundColor: Colors.purple[200],
-                            initialsText: Text(
-                                initialUser(listUser[index].name),
-                                style: TextStyle(
-                                    fontSize: 35,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.purple)),
+                            initialsText: Text((listUser[index].name.toSiglas),
+                                style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold, color: Colors.purple)),
                           ),
                           Stack(
                             children: [
@@ -169,25 +158,16 @@ class _AbaAlunoState extends State<AbaAluno> {
                                 padding: const EdgeInsets.only(left: 10),
                                 child: Text(
                                   listUser[index].name,
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.white),
+                                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                                 ),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.only(left: 10, top: 25),
-                                child: Text(listUser[index].email,
-                                    style: TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        color: Colors.white)),
+                                padding: const EdgeInsets.only(left: 10, top: 25),
+                                child: Text(listUser[index].email, style: TextStyle(fontStyle: FontStyle.italic, color: Colors.white)),
                               ),
                               Container(
                                 // color: Colors.blue,
-                                padding: EdgeInsets.only(
-                                    left: MediaQuery.of(context).size.width *
-                                        0.64),
+                                padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.64),
                                 child: PopupMenuButton(
                                   // key: _menuKey,
                                   icon: Icon(
@@ -218,55 +198,30 @@ class _AbaAlunoState extends State<AbaAluno> {
                                         context: context,
                                         child: Dialog(
                                           child: Container(
-                                            height: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.32,
+                                            height: MediaQuery.of(context).size.height * 0.32,
                                             child: Column(
                                               children: <Widget>[
                                                 TextFormField(
-                                                  decoration:
-                                                      const InputDecoration(
-                                                          hintText:
-                                                              'Nome do Aluno'),
+                                                  decoration: const InputDecoration(hintText: 'Nome do Aluno'),
                                                   controller: this.nomeAluno,
                                                 ),
                                                 TextFormField(
-                                                  decoration:
-                                                      const InputDecoration(
-                                                          hintText: 'E-mail'),
+                                                  decoration: const InputDecoration(hintText: 'E-mail'),
                                                   controller: this.emailAluno,
                                                 ),
                                                 TextFormField(
-                                                  decoration:
-                                                      const InputDecoration(
-                                                          hintText: 'Senha'),
+                                                  decoration: const InputDecoration(hintText: 'Senha'),
                                                   controller: this.senhaAluno,
                                                 ),
                                                 FlatButton(
                                                     child: Text("Editar"),
                                                     onPressed: () {
-                                                      CollectionReference
-                                                          collectionReference1 =
-                                                          FirebaseFirestore
-                                                              .instance
-                                                              .collection(
-                                                                  'Users');
+                                                      CollectionReference collectionReference1 = FirebaseFirestore.instance.collection('Users');
 
-                                                      collectionReference1
-                                                          .doc(this
-                                                              .listUser[index]
-                                                              .idUser
-                                                              .id)
-                                                          .update({
-                                                        "name":
-                                                            this.nomeAluno.text,
-                                                        "email": this
-                                                            .emailAluno
-                                                            .text,
-                                                        "password": this
-                                                            .senhaAluno
-                                                            .text,
+                                                      collectionReference1.doc(this.listUser[index].idUser.id).update({
+                                                        "name": this.nomeAluno.text,
+                                                        "email": this.emailAluno.text,
+                                                        "password": this.senhaAluno.text,
                                                       });
                                                     })
                                               ],
@@ -276,35 +231,17 @@ class _AbaAlunoState extends State<AbaAluno> {
                                       );
                                     }
                                     if (value == 'Excluir') {
-                                      CollectionReference collectionReference1 =
-                                          FirebaseFirestore.instance
-                                              .collection('Projects');
+                                      CollectionReference collectionReference1 = FirebaseFirestore.instance.collection('Projects');
 
-                                      Future<QuerySnapshot> test =
-                                          collectionReference1
-                                              .doc(this
-                                                  .widget
-                                                  .projectModel
-                                                  .idProject
-                                                  .id)
-                                              .collection("Alunos")
-                                              .where("referencia_aluno",
-                                                  isEqualTo: FirebaseFirestore
-                                                      .instance
-                                                      .collection("Users")
-                                                      .doc(this
-                                                          .listUser[index]
-                                                          .idUser
-                                                          .id))
-                                              .get();
-                                      test.then((value) =>
-                                          value.docs.forEach((element) async {
+                                      Future<QuerySnapshot> test = collectionReference1
+                                          .doc(this.widget.projectModel.idProject.id)
+                                          .collection("Alunos")
+                                          .where("referencia_aluno",
+                                              isEqualTo: FirebaseFirestore.instance.collection("Users").doc(this.listUser[index].idUser.id))
+                                          .get();
+                                      test.then((value) => value.docs.forEach((element) async {
                                             collectionReference1
-                                                .doc(this
-                                                    .widget
-                                                    .projectModel
-                                                    .idProject
-                                                    .id)
+                                                .doc(this.widget.projectModel.idProject.id)
                                                 .collection("Alunos")
                                                 .doc(element.id)
                                                 .delete();
