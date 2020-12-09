@@ -7,6 +7,8 @@ import 'package:gestro_app/widgets/appBarGestro.widget.dart';
 import 'package:gestro_app/widgets/buttonGestro.widget.dart';
 import 'package:gestro_app/widgets/inputGestro.widget.dart';
 
+import 'detalheProjeto.page.dart';
+
 class NovoAlunoPage extends StatelessWidget {
   ProjectModel projectModel;
   NovoAlunoPage({
@@ -29,16 +31,22 @@ class NovoAlunoPage extends StatelessWidget {
       "type": "Aluno",
       "created_at": DateTime.now()
     }).then((reference) {
-      firestoreInstance.collection("Projects").doc(projectModel.idProject.id).collection("Alunos").add({
+      firestoreInstance
+          .collection("Projects")
+          .doc(projectModel.idProject.id)
+          .collection("Alunos")
+          .add({
         "referencia_aluno": reference,
       });
     });
 
+    AbaAluno(projectModel: this.projectModel);
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => AbaAluno(projectModel: projectModel),
-      ),
+          builder: (context) => DetalheProjeto(
+                projectModel: this.projectModel,
+              )),
     );
   }
 
