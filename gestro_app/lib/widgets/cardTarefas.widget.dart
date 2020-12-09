@@ -189,7 +189,11 @@ class _CardTarefaState extends State<CardTarefa> {
                       ),
                     ),
                     Text(
-                      "this.widget.model.deadline",
+                      this.widget.model.deadline.toDate().day.toString() +
+                          "/" +
+                          this.widget.model.deadline.toDate().month.toString() +
+                          "/" +
+                          this.widget.model.deadline.toDate().year.toString(),
                       style: TextStyle(
                         color: purpleSecudary,
                         fontSize: MediaQuery.of(context).size.height * 0.025,
